@@ -10,10 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-    <!-- Google Sign-In -->
-    <script src="https://accounts.google.com/gsi/client" async defer></script>
-    <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=Ae1feOk5gDiJHdsIPBBfpxIweKAASQ9tmxpCwJGd3xzJ6qSTRPeDiCBW6XYN0tEZ3pW7KACgD4BjrgKs&currency=USD&disable-funding=credit,card"></script>
     <style>
         * {
             margin: 0;
@@ -72,12 +68,12 @@
             font-family: 'Space Grotesk', sans-serif;
         }
 
-        /* Navigation */
+        /* Navigation - Mobile First */
         nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 1rem 5%;
+            padding: 0.8rem 5%;
             background: var(--bg-secondary);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border-color);
@@ -85,11 +81,11 @@
             top: 0;
             z-index: 100;
             flex-wrap: wrap;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .logo {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
             background: var(--gradient-1);
             -webkit-background-clip: text;
@@ -97,15 +93,27 @@
             cursor: pointer;
         }
 
+        .hamburger {
+            display: block;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+
         .nav-menu {
-            display: flex;
+            display: none;
+            flex-direction: column;
+            width: 100%;
             gap: 0.5rem;
-            align-items: center;
-            flex-wrap: wrap;
+            padding: 1rem 0;
+        }
+
+        .nav-menu.show {
+            display: flex;
         }
 
         .nav-item {
-            padding: 0.5rem 1rem;
+            padding: 0.7rem 1rem;
             border-radius: 30px;
             cursor: pointer;
             transition: all 0.3s;
@@ -113,7 +121,7 @@
             font-weight: 500;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.8rem;
         }
 
         .nav-item:hover, .nav-item.active {
@@ -124,11 +132,11 @@
         .user-menu, .wallet-info {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
+            gap: 0.5rem;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 40px;
-            padding: 0.5rem 1rem;
+            padding: 0.4rem 0.8rem;
             cursor: pointer;
             transition: 0.3s;
         }
@@ -138,26 +146,26 @@
         }
 
         .user-avatar {
-            width: 32px;
-            height: 32px;
+            width: 28px;
+            height: 28px;
             background: var(--gradient-1);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.7rem;
         }
 
         .container {
-            max-width: 1400px;
-            margin: 2rem auto;
-            padding: 0 5%;
+            max-width: 1200px;
+            margin: 1rem auto;
+            padding: 0 4%;
         }
 
         .page {
             display: none;
-            animation: fadeIn 0.4s ease;
+            animation: fadeIn 0.3s ease;
         }
 
         .page.active {
@@ -165,27 +173,28 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero */
+        /* Hero Section */
         .hero {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
             align-items: center;
-            padding: 2.5rem;
+            text-align: center;
+            padding: 1.8rem;
             background: var(--card-bg);
-            border-radius: 40px;
+            border-radius: 30px;
             border: 1px solid var(--border-color);
-            margin-bottom: 2rem;
+            margin-bottom: 1.5rem;
         }
 
         .hero h1 {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.3;
         }
 
         .gradient-text {
@@ -199,7 +208,7 @@
             background: rgba(99, 102, 241, 0.2);
             border-radius: 30px;
             padding: 0.3rem 1rem;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             margin-top: 0.5rem;
             color: var(--primary-light);
         }
@@ -207,33 +216,39 @@
         /* Stats Grid */
         .stats-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
         }
 
         .stat-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 1rem;
             text-align: center;
             transition: all 0.3s;
         }
 
         .stat-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: var(--primary);
         }
 
         .stat-icon {
-            font-size: 2rem;
+            font-size: 1.5rem;
             color: var(--primary);
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.3rem;
         }
 
         .stat-number {
-            font-size: 1.8rem;
+            font-size: 1.3rem;
             font-weight: 700;
             color: var(--primary);
         }
@@ -241,61 +256,67 @@
         /* Packages Grid */
         .packages-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: 1fr;
             gap: 1.5rem;
-            margin: 2rem 0;
+            margin: 1.5rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .packages-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .package-card {
             background: var(--card-bg);
             border: 2px solid var(--border-color);
-            border-radius: 30px;
-            padding: 1.8rem;
+            border-radius: 28px;
+            padding: 1.5rem;
             text-align: center;
             transition: all 0.3s;
             position: relative;
         }
 
         .package-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-5px);
             border-color: var(--primary);
         }
 
         .package-card.popular {
             border-color: var(--accent);
-            transform: scale(1.02);
         }
 
         .popular-badge {
             position: absolute;
-            top: 15px;
-            right: -25px;
+            top: 12px;
+            right: -20px;
             background: var(--accent);
             color: var(--darker);
-            padding: 0.3rem 2rem;
+            padding: 0.2rem 1.8rem;
             transform: rotate(45deg);
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             font-weight: 600;
         }
 
         .package-price {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: var(--primary);
-            margin: 1rem 0;
+            margin: 0.8rem 0;
         }
 
         .package-features {
             list-style: none;
-            margin: 1.5rem 0;
+            margin: 1rem 0;
         }
 
         .package-features li {
-            padding: 0.4rem 0;
+            padding: 0.3rem 0;
             color: var(--text-secondary);
             display: flex;
             align-items: center;
             gap: 0.5rem;
+            font-size: 0.85rem;
         }
 
         .package-features i {
@@ -305,29 +326,41 @@
         /* Tasks Grid */
         .tasks-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-            margin: 2rem 0;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        @media (min-width: 640px) {
+            .tasks-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .tasks-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .task-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 1.5rem;
+            border-radius: 20px;
+            padding: 1.2rem;
             transition: all 0.3s;
             cursor: pointer;
-            position: relative;
         }
 
         .task-card:hover:not(.locked-task) {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: var(--primary);
         }
 
         .task-card.locked-task {
             opacity: 0.6;
             cursor: not-allowed;
+            position: relative;
         }
 
         .task-card.locked-task::after {
@@ -338,142 +371,70 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            font-size: 2.5rem;
+            font-size: 2rem;
             color: var(--primary);
         }
 
         .task-badge {
             background: var(--gradient-1);
-            padding: 0.2rem 0.8rem;
+            padding: 0.2rem 0.7rem;
             border-radius: 20px;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             display: inline-block;
         }
 
         /* Dashboard Charts */
         .dashboard-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         .chart-container {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 1.5rem;
-            height: 300px;
+            border-radius: 20px;
+            padding: 1rem;
+            height: 250px;
         }
 
         .progress-circles {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-            margin-top: 1.5rem;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .progress-circles {
+                grid-template-columns: repeat(3, 1fr);
+            }
         }
 
         .progress-circle-item {
             text-align: center;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 24px;
-            padding: 1.5rem;
-        }
-
-        .progress-ring {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 1rem;
-            position: relative;
-        }
-
-        .progress-ring svg {
-            transform: rotate(-90deg);
-        }
-
-        .progress-ring circle {
-            fill: none;
-            stroke-width: 8;
-            stroke-linecap: round;
-        }
-
-        .progress-ring-bg {
-            stroke: var(--border-color);
-        }
-
-        .progress-ring-fill {
-            stroke: var(--primary);
-            stroke-dasharray: 283;
-            stroke-dashoffset: 283;
-            transition: stroke-dashoffset 0.5s ease;
-        }
-
-        /* Settings Panel */
-        .settings-panel {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 2rem;
-        }
-
-        .settings-group {
-            margin-bottom: 2rem;
-        }
-
-        .settings-group h3 {
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .settings-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            border-radius: 20px;
             padding: 1rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .toggle-switch {
-            width: 50px;
-            height: 26px;
-            background: var(--border-color);
-            border-radius: 30px;
-            position: relative;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .toggle-switch.active {
-            background: var(--primary);
-        }
-
-        .toggle-switch::after {
-            content: '';
-            width: 22px;
-            height: 22px;
-            background: white;
-            border-radius: 50%;
-            position: absolute;
-            top: 2px;
-            left: 2px;
-            transition: 0.3s;
-        }
-
-        .toggle-switch.active::after {
-            left: 26px;
         }
 
         /* Buttons */
         .btn {
-            padding: 0.7rem 1.5rem;
+            padding: 0.6rem 1.2rem;
             border-radius: 40px;
             border: none;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
@@ -505,14 +466,9 @@
             color: white;
         }
 
-        .btn-danger {
-            background: var(--danger);
-            color: white;
-        }
-
         .wallet-address-input, select {
             width: 100%;
-            padding: 0.8rem;
+            padding: 0.7rem;
             background: var(--bg-primary);
             border: 1px solid var(--border-color);
             border-radius: 12px;
@@ -520,24 +476,132 @@
             margin: 0.5rem 0;
         }
 
-        /* Payment Method Cards */
+        /* Payment Cards */
+        .payment-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .payment-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         .payment-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 24px;
-            padding: 1.5rem;
+            padding: 1.2rem;
             text-align: center;
             transition: all 0.3s;
         }
 
         .payment-card:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
             border-color: var(--primary);
         }
 
         .payment-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Settings Panel */
+        .settings-panel {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 1.2rem;
+        }
+
+        .settings-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .settings-group h3 {
+            margin-bottom: 0.8rem;
+            padding-bottom: 0.3rem;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 1rem;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.8rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .toggle-switch {
+            width: 44px;
+            height: 22px;
+            background: var(--border-color);
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: var(--primary);
+        }
+
+        .toggle-switch::after {
+            content: '';
+            width: 18px;
+            height: 18px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            transition: 0.3s;
+        }
+
+        .toggle-switch.active::after {
+            left: 24px;
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            margin: 1rem 0;
+        }
+
+        .faq-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            margin-bottom: 0.8rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 1rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question h3 {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .faq-answer {
+            padding: 0 1rem 1rem 1rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            font-size: 0.85rem;
+            display: none;
+        }
+
+        .faq-item.active .faq-answer {
+            display: block;
         }
 
         /* Modal */
@@ -562,9 +626,9 @@
         .modal-content {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
-            border-radius: 30px;
-            padding: 2rem;
-            max-width: 450px;
+            border-radius: 28px;
+            padding: 1.5rem;
+            max-width: 400px;
             width: 90%;
             max-height: 85vh;
             overflow-y: auto;
@@ -574,49 +638,57 @@
         footer {
             background: var(--bg-secondary);
             border-top: 1px solid var(--border-color);
-            padding: 3rem 5% 1.5rem;
-            margin-top: 3rem;
+            padding: 2rem 5% 1rem;
+            margin-top: 2rem;
         }
 
         .footer-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 2rem;
-            margin-bottom: 2rem;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (min-width: 640px) {
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .footer-grid {
+                grid-template-columns: 2fr 1fr 1fr 1fr;
+            }
         }
 
         .partner-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: 0.8rem;
-            margin-top: 1rem;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
         }
 
         .partner-item {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 0.8rem;
+            padding: 0.5rem;
             text-align: center;
-            transition: 0.3s;
+            font-size: 0.75rem;
             cursor: pointer;
-        }
-
-        .partner-item:hover {
-            transform: translateY(-3px);
-            border-color: var(--primary);
+            transition: 0.3s;
         }
 
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
+            gap: 0.8rem;
+            margin-top: 0.8rem;
             flex-wrap: wrap;
         }
 
         .social-icon {
-            width: 40px;
-            height: 40px;
+            width: 35px;
+            height: 35px;
             background: var(--card-bg);
             border-radius: 50%;
             display: flex;
@@ -627,28 +699,20 @@
             border: 1px solid var(--border-color);
         }
 
-        .social-icon:hover {
-            background: var(--gradient-1);
-            transform: translateY(-3px) rotate(360deg);
-        }
-
         .footer-links a {
             color: var(--text-secondary);
             display: block;
-            margin: 0.5rem 0;
+            margin: 0.4rem 0;
             cursor: pointer;
+            font-size: 0.85rem;
             transition: 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--primary);
-            transform: translateX(5px);
         }
 
         .copyright {
             text-align: center;
-            padding-top: 2rem;
+            padding-top: 1rem;
             border-top: 1px solid var(--border-color);
+            font-size: 0.7rem;
             color: var(--text-secondary);
         }
 
@@ -660,34 +724,24 @@
             background: var(--card-bg);
             border-left: 4px solid var(--primary);
             border-radius: 12px;
-            padding: 1rem 1.5rem;
+            padding: 0.8rem 1.2rem;
             box-shadow: var(--shadow);
             z-index: 1001;
             animation: slideIn 0.3s ease;
             display: none;
+            font-size: 0.85rem;
         }
 
         @keyframes slideIn {
             from { transform: translateX(100%); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
         }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero { grid-template-columns: 1fr; text-align: center; padding: 1.5rem; }
-            .hero h1 { font-size: 1.8rem; }
-            .dashboard-grid { grid-template-columns: 1fr; }
-            .progress-circles { grid-template-columns: 1fr; }
-            .nav-menu { display: none; }
-            .nav-menu.show { display: flex; flex-direction: column; width: 100%; }
-            .hamburger { display: block !important; }
-        }
     </style>
 </head>
 <body>
     <nav>
         <div class="logo" onclick="showPage('home')">AcademiX<span style="color: var(--accent);">Pro</span></div>
-        <div class="hamburger" style="display: none; font-size: 1.5rem; cursor: pointer;" onclick="toggleMobileMenu()">☰</div>
+        <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
         <div class="nav-menu" id="navMenu">
             <div class="nav-item active" onclick="showPage('home')"><i class="fas fa-home"></i><span>Home</span></div>
             <div class="nav-item" onclick="showPage('work')"><i class="fas fa-briefcase"></i><span>Work</span></div>
@@ -718,13 +772,12 @@
                 <div>
                     <h1><span class="gradient-text">Transform Your Skills</span><br>Into Real Rewards</h1>
                     <div class="established-badge"><i class="fas fa-calendar-alt"></i> Established 2022 • 75,000+ Scholars</div>
-                    <p style="color: var(--text-secondary); margin: 1rem 0;">Join a thriving community of academic professionals. Complete tasks, earn rewards, and build your portfolio since 2022.</p>
-                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <p style="color: var(--text-secondary); margin: 0.8rem 0;">Join a thriving community of academic professionals. Complete tasks, earn rewards, and build your portfolio.</p>
+                    <div style="display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap;">
                         <button class="btn btn-primary" onclick="showPage('packages')"><i class="fas fa-rocket"></i> Get Started</button>
                         <button class="btn btn-outline" onclick="showPage('faq')"><i class="fas fa-question-circle"></i> Learn More</button>
                     </div>
                 </div>
-                <div style="text-align: center;"><i class="fas fa-graduation-cap" style="font-size: 8rem; color: var(--primary); opacity: 0.5;"></i></div>
             </div>
             <div class="stats-grid">
                 <div class="stat-card"><i class="fas fa-users stat-icon"></i><div class="stat-number">75K+</div><p>Active Scholars</p></div>
@@ -736,11 +789,11 @@
 
         <!-- WORK PAGE -->
         <div id="work-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Available Tasks</h1>
-            <div id="packageStatus" style="background: var(--card-bg); border-radius: 20px; padding: 1rem; margin-bottom: 1.5rem; display: none;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div><h3 id="activePackage">Active Package</h3><p id="tasksRemaining">Tasks remaining: 0</p></div>
-                    <button class="btn btn-primary" onclick="showPage('packages')">Upgrade <i class="fas fa-arrow-right"></i></button>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.8rem;">Available Tasks</h1>
+            <div id="packageStatus" style="background: var(--card-bg); border-radius: 20px; padding: 0.8rem; margin-bottom: 1rem; display: none;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+                    <div><h3 id="activePackage" style="font-size: 1.1rem;">Active Package</h3><p id="tasksRemaining" style="font-size: 0.85rem;">Tasks remaining: 0</p></div>
+                    <button class="btn btn-primary btn-sm" onclick="showPage('packages')">Upgrade <i class="fas fa-arrow-right"></i></button>
                 </div>
             </div>
             <div class="tasks-grid" id="tasksGrid"></div>
@@ -748,24 +801,24 @@
 
         <!-- CONTESTS PAGE -->
         <div id="contests-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Premium Contests</h1>
-            <p id="contestMessage" style="color: var(--text-secondary); margin-bottom: 1.5rem;">Exclusive contests for Premium package holders</p>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Premium Contests</h1>
+            <p id="contestMessage" style="color: var(--text-secondary); margin-bottom: 1rem;">Exclusive contests for Premium package holders</p>
             <div class="tasks-grid" id="contestsGrid"></div>
         </div>
 
         <!-- PACKAGES PAGE -->
         <div id="packages-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1rem;">Membership Packages</h1>
-            <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Choose your package. Add funds to wallet to purchase.</p>
+            <h1 style="font-size: 1.6rem; margin-bottom: 0.5rem;">Membership Packages</h1>
+            <p style="color: var(--text-secondary); margin-bottom: 1rem;">Choose your package. Secure payment via PayPal.</p>
             <div class="packages-grid" id="packagesGrid"></div>
         </div>
 
         <!-- DASHBOARD PAGE -->
         <div id="dashboard-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Your Dashboard</h1>
-            <div style="background: var(--gradient-1); border-radius: 30px; padding: 1.5rem; margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div><p>Available Balance</p><p style="font-size: 2.5rem; font-weight: 800;" id="dashboardBalance">$0.00</p></div>
+            <h1 style="font-size: 1.6rem; margin-bottom: 1rem;">Your Dashboard</h1>
+            <div style="background: var(--gradient-1); border-radius: 24px; padding: 1rem; margin-bottom: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.8rem;">
+                    <div><p style="font-size: 0.8rem;">Available Balance</p><p style="font-size: 1.8rem; font-weight: 800;" id="dashboardBalance">$0.00</p></div>
                     <button class="btn btn-success" onclick="showDepositModal()"><i class="fas fa-plus-circle"></i> Add Funds</button>
                 </div>
             </div>
@@ -773,12 +826,7 @@
                 <div class="chart-container"><canvas id="earningsChart"></canvas></div>
                 <div class="chart-container"><canvas id="tasksChart"></canvas></div>
             </div>
-            <div class="progress-circles">
-                <div class="progress-circle-item"><div class="progress-ring" id="taskProgressRing"></div><p>Tasks Progress</p><span id="taskPercent">0%</span></div>
-                <div class="progress-circle-item"><div class="progress-ring" id="earningsProgressRing"></div><p>Earnings Progress</p><span id="earningsPercent">0%</span></div>
-                <div class="progress-circle-item"><div class="progress-ring" id="packageProgressRing"></div><p>Package Progress</p><span id="packagePercent">0%</span></div>
-            </div>
-            <div class="stats-grid" style="margin-top: 1.5rem;">
+            <div class="stats-grid" style="margin-top: 1rem;">
                 <div class="stat-card"><div class="stat-number" id="tasksCompleted">0</div><p>Tasks Done</p></div>
                 <div class="stat-card"><div class="stat-number" id="totalEarned">$0</div><p>Total Earned</p></div>
                 <div class="stat-card"><div class="stat-number" id="activePackageDisplay">None</div><p>Active Package</p></div>
@@ -788,26 +836,33 @@
 
         <!-- WALLET PAGE -->
         <div id="wallet-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Wallet Management</h1>
-            <div style="background: var(--gradient-2); border-radius: 30px; padding: 1.5rem; margin-bottom: 1.5rem;">
-                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;">
-                    <div><p>Current Balance</p><p style="font-size: 2.5rem; font-weight: 800;" id="walletPageBalance">$0.00</p></div>
-                </div>
+            <h1 style="font-size: 1.6rem; margin-bottom: 1rem;">Wallet Management</h1>
+            <div style="background: var(--gradient-2); border-radius: 24px; padding: 1rem; margin-bottom: 1rem;">
+                <div><p>Current Balance</p><p style="font-size: 2rem; font-weight: 800;" id="walletPageBalance">$0.00</p></div>
             </div>
-            <div class="stats-grid">
+            <div class="payment-cards">
                 <div class="payment-card">
                     <div class="payment-icon"><i class="fab fa-paypal" style="color: #003087;"></i></div>
                     <h3>PayPal</h3>
-                    <p style="color: var(--text-secondary); margin: 0.5rem 0;">Instant deposits to your wallet</p>
+                    <p style="color: var(--text-secondary); margin: 0.3rem 0; font-size: 0.8rem;">Instant deposits to your wallet</p>
                     <input type="number" id="paypalAmount" placeholder="Enter amount (min $10)" class="wallet-address-input" value="50" min="10">
-                    <button class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" onclick="processPayPalDeposit()">
-                        <i class="fab fa-paypal"></i> Pay with PayPal
-                    </button>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                        <input type="hidden" name="cmd" value="_xclick">
+                        <input type="hidden" name="business" value="F46BGYVCNCTFN">
+                        <input type="hidden" name="item_name" value="AcademiX Pro Wallet Deposit">
+                        <input type="hidden" name="amount" id="paypalAmountField" value="50">
+                        <input type="hidden" name="currency_code" value="USD">
+                        <input type="hidden" name="return" value="https://academixpro-five.vercel.app/wallet">
+                        <input type="hidden" name="cancel_return" value="https://academixpro-five.vercel.app/wallet">
+                        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;" onclick="updatePaypalAmount()">
+                            <i class="fab fa-paypal"></i> Pay with PayPal
+                        </button>
+                    </form>
                 </div>
                 <div class="payment-card">
                     <div class="payment-icon"><i class="fab fa-bitcoin" style="color: #f7931a;"></i> <i class="fab fa-ethereum" style="color: #627eea;"></i></div>
                     <h3>Cryptocurrency</h3>
-                    <p style="color: var(--text-secondary); margin: 0.5rem 0;">Bitcoin • Ethereum • USDT</p>
+                    <p style="color: var(--text-secondary); margin: 0.3rem 0; font-size: 0.8rem;">Bitcoin • Ethereum • USDT</p>
                     <a href="https://nowpayments.io/payment/?iid=4699167845&source=button" target="_blank">
                         <button class="btn btn-primary" style="width: 100%;">
                             <i class="fas fa-coins"></i> Pay with Crypto
@@ -819,17 +874,16 @@
 
         <!-- PROFILE PAGE -->
         <div id="profile-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Your Profile</h1>
-            <div class="stats-grid">
+            <h1 style="font-size: 1.6rem; margin-bottom: 1rem;">Your Profile</h1>
+            <div class="stats-grid" style="grid-template-columns: 1fr;">
                 <div class="stat-card" style="text-align: center;">
-                    <div class="user-avatar" id="profileAvatar" style="width: 80px; height: 80px; font-size: 2rem; margin: 0 auto 1rem;">JD</div>
+                    <div class="user-avatar" id="profileAvatar" style="width: 70px; height: 70px; font-size: 1.8rem; margin: 0 auto 0.8rem;">JD</div>
                     <h2 id="displayName">Guest User</h2>
-                    <p id="displayEmail" style="color: var(--primary);">Not signed in</p>
-                    <p id="displayCategory" style="color: var(--text-secondary);"></p>
-                    <p style="margin-top: 0.5rem; font-size: 0.8rem;"><i class="fas fa-calendar-alt"></i> Member since 2022</p>
+                    <p id="displayEmail" style="color: var(--primary); font-size: 0.85rem;">Not signed in</p>
+                    <p id="displayCategory" style="color: var(--text-secondary); font-size: 0.8rem;"></p>
                 </div>
                 <div class="stat-card">
-                    <h3>Personal Information</h3>
+                    <h3 style="font-size: 1rem;">Personal Information</h3>
                     <input type="text" id="editName" class="wallet-address-input" placeholder="Full Name" disabled>
                     <input type="email" id="editEmail" class="wallet-address-input" placeholder="Email" disabled>
                     <select id="editCategory" class="wallet-address-input" disabled>
@@ -843,7 +897,7 @@
 
         <!-- SETTINGS PAGE -->
         <div id="settings-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Settings</h1>
+            <h1 style="font-size: 1.6rem; margin-bottom: 1rem;">Settings</h1>
             <div class="settings-panel">
                 <div class="settings-group"><h3><i class="fas fa-palette"></i> Appearance</h3>
                     <div class="settings-item"><span><i class="fas fa-moon"></i> Dark Mode</span><div class="toggle-switch active" onclick="setTheme('dark')"></div></div>
@@ -852,11 +906,6 @@
                 <div class="settings-group"><h3><i class="fas fa-bell"></i> Notifications</h3>
                     <div class="settings-item"><span><i class="fas fa-envelope"></i> Email Notifications</span><div class="toggle-switch active" id="emailNotifToggle"></div></div>
                     <div class="settings-item"><span><i class="fas fa-bell"></i> Task Alerts</span><div class="toggle-switch active" id="taskNotifToggle"></div></div>
-                </div>
-                <div class="settings-group"><h3><i class="fas fa-language"></i> Language</h3>
-                    <select id="languageSelect" class="wallet-address-input" onchange="changeLanguage(this.value)">
-                        <option value="en">English</option><option value="es">Español</option><option value="fr">Français</option><option value="zh">中文</option>
-                    </select>
                 </div>
                 <div class="settings-group"><h3><i class="fas fa-database"></i> Data</h3>
                     <div class="settings-item"><span><i class="fas fa-download"></i> Export My Data</span><button class="btn btn-outline btn-sm" onclick="exportData()">Export</button></div>
@@ -870,29 +919,24 @@
 
         <!-- FAQ PAGE -->
         <div id="faq-page" class="page">
-            <h1 style="font-size: 2rem; margin-bottom: 1.5rem;">Frequently Asked Questions</h1>
+            <h1 style="font-size: 1.6rem; margin-bottom: 1rem;">Frequently Asked Questions</h1>
             <div class="faq-section" id="faqSection"></div>
-            <div style="background: var(--gradient-1); border-radius: 30px; padding: 2rem; text-align: center; margin-top: 2rem;">
-                <h2>Still Have Questions?</h2>
-                <button class="btn btn-outline" style="margin-top: 1rem;" onclick="showToast('Email: support@academix.com')">Contact Support</button>
+            <div style="background: var(--gradient-1); border-radius: 24px; padding: 1.5rem; text-align: center; margin-top: 1.5rem;">
+                <h2 style="font-size: 1.2rem;">Still Have Questions?</h2>
+                <button class="btn btn-outline" style="margin-top: 0.8rem;" onclick="showToast('Email: support@academix.com')">Contact Support</button>
             </div>
         </div>
 
         <!-- ACCOUNT SETUP PAGE -->
         <div id="setup-page" class="page">
-            <div class="setup-container" style="max-width: 500px; margin: 0 auto; background: var(--card-bg); border-radius: 30px; padding: 2rem;">
-                <h1 style="text-align: center; margin-bottom: 1.5rem;">Complete Your Profile</h1>
+            <div style="max-width: 450px; margin: 0 auto; background: var(--card-bg); border-radius: 28px; padding: 1.5rem;">
+                <h1 style="text-align: center; margin-bottom: 1rem; font-size: 1.5rem;">Complete Your Profile</h1>
                 <input type="text" id="setupName" class="wallet-address-input" placeholder="Full Name">
                 <select id="setupCategory" class="wallet-address-input">
                     <option value="">Select Specialization</option>
                     <option>Essay Writing</option><option>Research Papers</option><option>Proofreading</option><option>Coding</option><option>Tutoring</option>
                 </select>
-                <select id="setupPaymentMethod" class="wallet-address-input" onchange="togglePaymentAddress()">
-                    <option value="">Select Payment Method</option>
-                    <option value="paypal">PayPal</option><option value="bitcoin">Bitcoin</option><option value="ethereum">Ethereum</option>
-                </select>
-                <div id="paymentAddressField" style="display: none;"><input type="text" id="setupPaymentAddress" class="wallet-address-input" placeholder="Payment Address/Email"></div>
-                <button class="btn btn-primary" style="width: 100%; margin-top: 1rem;" onclick="completeSetup()">Complete Setup</button>
+                <button class="btn btn-primary" style="width: 100%; margin-top: 0.8rem;" onclick="completeSetup()">Complete Setup</button>
             </div>
         </div>
     </div>
@@ -900,25 +944,12 @@
     <footer>
         <div class="footer-grid">
             <div>
-                <div class="logo" style="font-size: 1.3rem;">AcademiX<span style="color: var(--accent);">Pro</span></div>
-                <p style="color: var(--text-secondary); margin: 1rem 0;">Empowering scholars since 2022</p>
+                <div class="logo" style="font-size: 1.2rem;">AcademiX<span style="color: var(--accent);">Pro</span></div>
+                <p style="color: var(--text-secondary); margin: 0.5rem 0; font-size: 0.8rem;">Empowering scholars since 2022</p>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/mit" target="_blank"><div class="social-icon"><i class="fab fa-instagram"></i></div></a>
-                    <a href="https://twitter.com/harvard" target="_blank"><div class="social-icon"><i class="fab fa-twitter"></i></div></a>
-                    <a href="https://www.linkedin.com/school/stanford-university" target="_blank"><div class="social-icon"><i class="fab fa-linkedin-in"></i></div></a>
-                    <a href="https://github.com/oxforduni" target="_blank"><div class="social-icon"><i class="fab fa-github"></i></div></a>
-                    <a href="https://www.youtube.com/cambridge" target="_blank"><div class="social-icon"><i class="fab fa-youtube"></i></div></a>
-                </div>
-            </div>
-            <div class="footer-links">
-                <h4>Our Partners</h4>
-                <div class="partner-grid">
-                    <div class="partner-item" onclick="window.open('https://www.instagram.com/mit', '_blank')"><i class="fab fa-instagram"></i> MIT</div>
-                    <div class="partner-item" onclick="window.open('https://twitter.com/harvard', '_blank')"><i class="fab fa-twitter"></i> Harvard</div>
-                    <div class="partner-item" onclick="window.open('https://www.linkedin.com/school/stanford-university', '_blank')"><i class="fab fa-linkedin"></i> Stanford</div>
-                    <div class="partner-item" onclick="window.open('https://github.com/oxforduni', '_blank')"><i class="fab fa-github"></i> Oxford</div>
-                    <div class="partner-item" onclick="window.open('https://www.youtube.com/cambridge', '_blank')"><i class="fab fa-youtube"></i> Cambridge</div>
-                    <div class="partner-item" onclick="window.open('https://www.instagram.com/berkeley', '_blank')"><i class="fab fa-instagram"></i> Berkeley</div>
+                    <div class="social-icon" onclick="window.open('https://www.instagram.com/mit', '_blank')"><i class="fab fa-instagram"></i></div>
+                    <div class="social-icon" onclick="window.open('https://twitter.com/harvard', '_blank')"><i class="fab fa-twitter"></i></div>
+                    <div class="social-icon" onclick="window.open('https://www.linkedin.com/school/stanford-university', '_blank')"><i class="fab fa-linkedin-in"></i></div>
                 </div>
             </div>
             <div class="footer-links">
@@ -926,162 +957,431 @@
                 <a onclick="showPage('work')">Find Work</a>
                 <a onclick="showPage('packages')">Packages</a>
                 <a onclick="showPage('dashboard')">Dashboard</a>
-                <a onclick="showPage('faq')">FAQ</a>
             </div>
             <div class="footer-links">
                 <h4>Support</h4>
                 <a onclick="showToast('Email: support@academix.com')">support@academix.com</a>
                 <a onclick="showToast('Live Chat: Available 24/7')">Live Chat</a>
-                <a onclick="showToast('Phone: +1 (415) 867-5309')">+1 (415) 867-5309</a>
             </div>
         </div>
-        <div class="copyright"><p>© 2022-2026 AcademiX Pro. All rights reserved. Empowering scholars since 2022.</p></div>
+        <div class="copyright"><p>© 2022-2026 AcademiX Pro. All rights reserved.</p></div>
     </footer>
 
     <!-- Auth Modal -->
     <div class="modal" id="authModal">
         <div class="modal-content">
-            <div style="display: flex; justify-content: space-between; margin-bottom: 1rem;"><h2>Welcome to AcademiX Pro</h2><i class="fas fa-times" style="cursor: pointer;" onclick="closeModal('authModal')"></i></div>
-            <div style="display: flex; gap: 0.5rem; margin-bottom: 1rem;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem;"><h2 style="font-size: 1.3rem;">Welcome</h2><i class="fas fa-times" style="cursor: pointer;" onclick="closeModal('authModal')"></i></div>
+            <div style="display: flex; gap: 0.5rem; margin-bottom: 0.8rem;">
                 <button class="btn btn-primary" style="flex:1" onclick="showAuthTab('login')" id="loginTabBtn">Login</button>
                 <button class="btn btn-outline" style="flex:1" onclick="showAuthTab('register')" id="registerTabBtn">Register</button>
             </div>
             <div id="loginForm"><input type="email" id="loginEmail" placeholder="Email" class="wallet-address-input"><input type="password" id="loginPassword" placeholder="Password" class="wallet-address-input"><button class="btn btn-primary" style="width:100%; margin-top:0.5rem;" onclick="handleLogin()">Sign In</button></div>
             <div id="registerForm" style="display:none;"><input type="text" id="regName" placeholder="Full Name" class="wallet-address-input"><input type="email" id="regEmail" placeholder="Email" class="wallet-address-input"><input type="password" id="regPassword" placeholder="Password (min 6 chars)" class="wallet-address-input"><select id="regCategory" class="wallet-address-input"><option>Essay Writing</option><option>Research Papers</option><option>Proofreading</option><option>Coding</option></select><button class="btn btn-primary" style="width:100%; margin-top:0.5rem;" onclick="handleRegister()">Create Account</button></div>
-            <div style="text-align:center; margin:1rem 0;">or</div>
-            <div id="g_id_onload" data-client_id="140087538110-dud1s1la4ai15bq5os1b3c8lj7vv04j6.apps.googleusercontent.com" data-callback="handleGoogleSignIn"></div>
-            <div class="g_id_signin" data-type="standard" data-size="large" data-theme="outline"></div>
-            <button class="btn btn-outline" style="width:100%; margin-top:1rem;" onclick="continueAsGuest()">Continue as Guest</button>
+            <button class="btn btn-outline" style="width:100%; margin-top:0.8rem;" onclick="continueAsGuest()">Continue as Guest</button>
         </div>
     </div>
 
-    <div class="modal" id="depositModal"><div class="modal-content"><h2>Add Funds</h2><input type="number" id="depositAmount" value="50" class="wallet-address-input" min="10"><div id="paypal-deposit-modal" style="margin:1rem 0;"></div><button class="btn btn-primary" style="width:100%;" onclick="initPayPalDeposit()">Pay with PayPal</button><a href="https://nowpayments.io/payment/?iid=4699167845&source=button" target="_blank"><button class="btn btn-outline" style="width:100%; margin-top:0.5rem;">Pay with Crypto</button></a></div></div>
-    <div class="modal" id="successModal"><div class="modal-content" style="text-align:center;"><i class="fas fa-check-circle" style="font-size:4rem; color:var(--success);"></i><h2 id="successTitle">Success!</h2><p id="successMessage"></p><button class="btn btn-primary" onclick="closeModal('successModal')">Continue</button></div></div>
+    <div class="modal" id="depositModal"><div class="modal-content"><h2>Add Funds</h2><input type="number" id="depositAmount" value="50" class="wallet-address-input" min="10"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="F46BGYVCNCTFN"><input type="hidden" name="item_name" value="AcademiX Pro Wallet Deposit"><input type="hidden" name="amount" id="depositAmountField" value="50"><input type="hidden" name="currency_code" value="USD"><button type="submit" class="btn btn-primary" style="width:100%;" onclick="updateDepositAmount()">Pay with PayPal</button></form></div></div>
+    <div class="modal" id="successModal"><div class="modal-content" style="text-align:center;"><i class="fas fa-check-circle" style="font-size:3rem; color:var(--success);"></i><h2 id="successTitle" style="font-size:1.2rem;">Success!</h2><p id="successMessage"></p><button class="btn btn-primary" onclick="closeModal('successModal')">Continue</button></div></div>
     <div id="toast" class="toast"></div>
 
     <script>
-        let currentUser = null, walletBalance = 0, tasksCompleted = 0, totalEarned = 0, activePackage = null, tasksRemaining = 0, availableTasks = [];
-        const packages = [{id:1,name:"Starter",price:50,tasks:8,features:["8 tasks","Essay writing","Proofreading"],hasContests:false},{id:2,name:"Professional",price:99,tasks:20,features:["20 tasks","Coding","Research","Priority support"],hasContests:false},{id:3,name:"Premium",price:199,tasks:50,features:["50 tasks","All types","Contest access","24/7 support","Double rewards"],hasContests:true,popular:true}];
-        const taskTemplates = [{category:"essay",title:"Academic Essay",price:15,desc:"Write compelling essay"},{category:"essay",title:"Personal Statement",price:20,desc:"Craft powerful statement"},{category:"proofreading",title:"Document Review",price:12,desc:"Proofread papers"},{category:"coding",title:"HTML/CSS Project",price:25,desc:"Build responsive component"},{category:"coding",title:"JavaScript Function",price:30,desc:"Implement features"},{category:"research",title:"Literature Review",price:35,desc:"Summarize research"}];
-        const contests = [{id:1,name:"Global Essay Championship",prize:5000,deadline:"15 days",desc:"Best essay on innovation"},{id:2,name:"Code Masters Challenge",prize:3000,deadline:"10 days",desc:"Solve coding problems"}];
-
-        // PayPal Deposit Function - Button similar to Crypto
-        function processPayPalDeposit() {
-            let amount = parseFloat(document.getElementById('paypalAmount').value);
-            if (isNaN(amount) || amount < 10) {
-                showToast('Minimum deposit is $10', 'error');
+        // ==================== CONFIGURATION ====================
+        // Your PayPal Merchant ID from working code
+        const PAYPAL_MERCHANT_ID = "F46BGYVCNCTFN";
+        const PAYPAL_RETURN_URL = "https://academixpro-five.vercel.app/wallet";
+        
+        // Packages with prices: $50, $99, $199
+        const packages = [
+            {id:1, name:"Starter", price:50, tasks:8, features:["8 tasks","Essay writing","Proofreading"], hasContests:false},
+            {id:2, name:"Professional", price:99, tasks:20, features:["20 tasks","Coding","Research","Priority support"], hasContests:false},
+            {id:3, name:"Premium", price:199, tasks:50, features:["50 tasks","All types","Contest access","24/7 support","Double rewards"], hasContests:true, popular:true}
+        ];
+        
+        // Task templates
+        const taskTemplates = [
+            {category:"essay", title:"Academic Essay", price:15, desc:"Write compelling essay on given topic"},
+            {category:"essay", title:"Personal Statement", price:20, desc:"Craft powerful personal statement"},
+            {category:"proofreading", title:"Document Review", price:12, desc:"Proofread academic papers"},
+            {category:"coding", title:"HTML/CSS Project", price:25, desc:"Build responsive component"},
+            {category:"coding", title:"JavaScript Function", price:30, desc:"Implement interactive features"},
+            {category:"research", title:"Literature Review", price:35, desc:"Summarize recent research"}
+        ];
+        
+        // Contests
+        const contests = [
+            {id:1, name:"Global Essay Championship", prize:5000, deadline:"15 days", desc:"Best essay on innovation"},
+            {id:2, name:"Code Masters Challenge", prize:3000, deadline:"10 days", desc:"Solve coding problems creatively"}
+        ];
+        
+        // User state
+        let currentUser = null;
+        let walletBalance = 0;
+        let tasksCompleted = 0;
+        let totalEarned = 0;
+        let activePackage = null;
+        let tasksRemaining = 0;
+        let availableTasks = [];
+        
+        // ==================== HELPER FUNCTIONS ====================
+        function updatePaypalAmount() {
+            let amount = document.getElementById('paypalAmount').value;
+            document.getElementById('paypalAmountField').value = amount;
+        }
+        
+        function updateDepositAmount() {
+            let amount = document.getElementById('depositAmount').value;
+            document.getElementById('depositAmountField').value = amount;
+        }
+        
+        function showToast(msg, type = 'info') {
+            let toast = document.getElementById('toast');
+            toast.innerHTML = msg;
+            toast.style.display = 'block';
+            setTimeout(() => toast.style.display = 'none', 3000);
+        }
+        
+        function showSuccessModal(title, msg) {
+            document.getElementById('successTitle').innerHTML = title;
+            document.getElementById('successMessage').innerHTML = msg;
+            document.getElementById('successModal').classList.add('active');
+        }
+        
+        function closeModal(id) {
+            document.getElementById(id).classList.remove('active');
+        }
+        
+        function toggleMobileMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
+        
+        // ==================== PACKAGE FUNCTIONS ====================
+        function loadPackages() {
+            let html = '';
+            packages.forEach(p => {
+                html += `
+                    <div class="package-card ${p.popular ? 'popular' : ''}">
+                        ${p.popular ? '<div class="popular-badge">BEST VALUE</div>' : ''}
+                        <h3>${p.name}</h3>
+                        <div class="package-price">$${p.price}</div>
+                        <ul class="package-features">
+                            ${p.features.map(f => `<li><i class="fas fa-check"></i> ${f}</li>`).join('')}
+                        </ul>
+                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+                            <input type="hidden" name="cmd" value="_xclick">
+                            <input type="hidden" name="business" value="${PAYPAL_MERCHANT_ID}">
+                            <input type="hidden" name="item_name" value="${p.name} Package - AcademiX Pro">
+                            <input type="hidden" name="amount" value="${p.price}">
+                            <input type="hidden" name="currency_code" value="USD">
+                            <input type="hidden" name="return" value="${PAYPAL_RETURN_URL}">
+                            <input type="hidden" name="cancel_return" value="${PAYPAL_RETURN_URL}">
+                            <button type="submit" class="btn btn-primary" style="width: 100%;">
+                                <i class="fab fa-paypal"></i> Purchase $${p.price}
+                            </button>
+                        </form>
+                    </div>
+                `;
+            });
+            document.getElementById('packagesGrid').innerHTML = html;
+        }
+        
+        function activatePackage(pkg) {
+            activePackage = pkg;
+            tasksRemaining = pkg.tasks;
+            generateTasks();
+            updateAll();
+            showSuccessModal('Package Activated!', `${pkg.name} package active. Complete ${pkg.tasks} tasks to earn rewards!`);
+        }
+        
+        // ==================== TASK FUNCTIONS ====================
+        function generateTasks() {
+            availableTasks = [];
+            let taskCount = Math.min(activePackage.tasks, 12);
+            for (let i = 0; i < taskCount; i++) {
+                let t = taskTemplates[Math.floor(Math.random() * taskTemplates.length)];
+                availableTasks.push({id: Date.now() + i, ...t});
+            }
+            loadTasks();
+        }
+        
+        function loadTasks() {
+            if (!currentUser) {
+                document.getElementById('tasksGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:1.5rem;"><i class="fas fa-lock"></i><h3>Sign in to view tasks</h3><button class="btn btn-primary" onclick="showAuthModal()">Sign In</button></div>`;
                 return;
             }
-            
-            if (typeof paypal === 'undefined') {
-                showToast('PayPal SDK loading, please try again', 'error');
+            if (!activePackage) {
+                document.getElementById('tasksGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:1.5rem;"><i class="fas fa-box-open"></i><h3>Choose a Package</h3><button class="btn btn-primary" onclick="showPage('packages')">View Packages</button></div>`;
                 return;
             }
-            
-            showToast('Processing PayPal payment...', 'info');
-            
-            paypal.Buttons({
-                createOrder: function(data, actions) {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: { value: amount.toFixed(2), currency_code: 'USD' },
-                            description: 'AcademiX Pro Wallet Deposit'
-                        }]
-                    });
-                },
-                onApprove: function(data, actions) {
-                    return actions.order.capture().then(function(details) {
-                        walletBalance += amount;
-                        updateAll();
-                        showSuccessModal('Deposit Successful!', `$${amount.toFixed(2)} has been added to your wallet.`);
-                    });
-                },
-                onError: function(err) {
-                    console.error('PayPal Error:', err);
-                    showToast('Payment failed. Please try again.', 'error');
-                },
-                onCancel: function() {
-                    showToast('Payment cancelled', 'info');
+            if (tasksRemaining <= 0) {
+                document.getElementById('tasksGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:1.5rem;"><i class="fas fa-trophy"></i><h3>Package Complete!</h3><button class="btn btn-primary" onclick="showPage('packages')">Get Another Package</button></div>`;
+                return;
+            }
+            let html = '';
+            availableTasks.forEach(t => {
+                html += `<div class="task-card" onclick="completeTask(${t.id})"><span class="task-badge">${t.category}</span><h3 style="margin:0.5rem 0; font-size:1rem;">${t.title}</h3><p style="font-size:0.8rem;">${t.desc}</p><div style="display:flex;justify-content:space-between;margin-top:0.8rem;"><span style="font-size:1.2rem;color:var(--primary);">$${t.price}</span></div></div>`;
+            });
+            document.getElementById('tasksGrid').innerHTML = html;
+        }
+        
+        function completeTask(id) {
+            let task = availableTasks.find(t => t.id === id);
+            if (task && tasksRemaining > 0) {
+                tasksRemaining--;
+                tasksCompleted++;
+                totalEarned += task.price;
+                walletBalance += task.price;
+                availableTasks = availableTasks.filter(t => t.id !== id);
+                updateAll();
+                showSuccessModal('Task Completed!', `Earned $${task.price}!`);
+                if (availableTasks.length === 0 && tasksRemaining > 0) generateTasks();
+                else loadTasks();
+            }
+        }
+        
+        // ==================== CONTEST FUNCTIONS ====================
+        function loadContests() {
+            if (!currentUser || !activePackage || !activePackage.hasContests) {
+                document.getElementById('contestsGrid').innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:1.5rem;"><i class="fas fa-crown"></i><h3>Premium Package Required</h3><button class="btn btn-primary" onclick="showPage('packages')">Upgrade to Premium</button></div>`;
+                return;
+            }
+            let html = '';
+            contests.forEach(c => {
+                html += `<div class="task-card" onclick="enterContest(${c.id})"><span class="task-badge" style="background:var(--gradient-3);">🏆 Contest</span><h3 style="margin:0.5rem 0;">${c.name}</h3><div style="font-size:1.5rem;color:var(--accent);">$${c.prize}</div><p style="font-size:0.8rem;">${c.desc}</p><div><i class="fas fa-clock"></i> ${c.deadline}</div></div>`;
+            });
+            document.getElementById('contestsGrid').innerHTML = html;
+        }
+        
+        function enterContest(id) {
+            showSuccessModal('Entry Submitted!', 'Your contest entry has been submitted. Good luck!');
+        }
+        
+        // ==================== USER FUNCTIONS ====================
+        function handleLogin() {
+            let email = document.getElementById('loginEmail').value;
+            let pwd = document.getElementById('loginPassword').value;
+            if (!email || !pwd) { showToast('Enter credentials', 'error'); return; }
+            let saved = localStorage.getItem(`user_${email}`);
+            if (saved) {
+                let user = JSON.parse(saved);
+                if (user.password === pwd) {
+                    currentUser = user;
+                    walletBalance = user.walletBalance || 0;
+                    tasksCompleted = user.tasksCompleted || 0;
+                    totalEarned = user.totalEarned || 0;
+                    activePackage = user.activePackage || null;
+                    tasksRemaining = user.tasksRemaining || 0;
+                    updateUI();
+                    closeModal('authModal');
+                    showToast(`Welcome back ${currentUser.name}!`, 'success');
+                    return;
                 }
-            }).render('#paypal-deposit-modal');
-            
-            // Show modal for PayPal payment
-            document.getElementById('depositModal').classList.add('active');
-            setTimeout(() => {
-                document.getElementById('paypal-deposit-modal').innerHTML = '';
-                paypal.Buttons({
-                    createOrder: (d,a)=>a.order.create({purchase_units:[{amount:{value:amount.toFixed(2)}}]}),
-                    onApprove: (d,a)=>a.order.capture().then(()=>{walletBalance+=amount;updateAll();closeModal('depositModal');showSuccessModal('Success!',`$${amount} added.`);}),
-                    onError:()=>showToast('Payment failed','error')
-                }).render('#paypal-deposit-modal');
-            }, 100);
+            }
+            showToast('Invalid credentials', 'error');
         }
-
+        
+        function handleRegister() {
+            let name = document.getElementById('regName').value;
+            let email = document.getElementById('regEmail').value;
+            let pwd = document.getElementById('regPassword').value;
+            let cat = document.getElementById('regCategory').value;
+            if (!name || !email || !pwd || !cat) { showToast('Fill all fields', 'error'); return; }
+            if (pwd.length < 6) { showToast('Password min 6 chars', 'error'); return; }
+            if (localStorage.getItem(`user_${email}`)) { showToast('Email exists', 'error'); return; }
+            let user = {name, email, password: pwd, category: cat, avatar: name.substring(0,2).toUpperCase(), walletBalance:0, tasksCompleted:0, totalEarned:0, activePackage:null, tasksRemaining:0, joinDate:'2022'};
+            localStorage.setItem(`user_${email}`, JSON.stringify(user));
+            currentUser = user;
+            walletBalance = 0; tasksCompleted = 0; totalEarned = 0; activePackage = null; tasksRemaining = 0;
+            updateUI();
+            closeModal('authModal');
+            showPage('setup');
+        }
+        
+        function completeSetup() {
+            let name = document.getElementById('setupName').value;
+            let cat = document.getElementById('setupCategory').value;
+            if (!name || !cat) { showToast('Fill required fields', 'error'); return; }
+            if (currentUser) {
+                currentUser.name = name;
+                currentUser.category = cat;
+                currentUser.avatar = name.substring(0,2).toUpperCase();
+                localStorage.setItem(`user_${currentUser.email}`, JSON.stringify(currentUser));
+                updateUI();
+                showPage('home');
+                showSuccessModal('Welcome!', 'Your account is ready. Purchase a package to get started!');
+            }
+        }
+        
+        function updateUI() {
+            document.getElementById('authButton').style.display = 'none';
+            document.getElementById('walletInfo').style.display = 'flex';
+            document.getElementById('userMenu').style.display = 'flex';
+            document.getElementById('userName').innerHTML = currentUser.name.split(' ')[0];
+            document.getElementById('userAvatar').innerHTML = currentUser.avatar;
+            document.getElementById('profileAvatar').innerHTML = currentUser.avatar;
+            document.getElementById('displayName').innerHTML = currentUser.name;
+            document.getElementById('displayEmail').innerHTML = currentUser.email;
+            document.getElementById('displayCategory').innerHTML = currentUser.category;
+            document.getElementById('editName').value = currentUser.name;
+            document.getElementById('editEmail').value = currentUser.email;
+            document.getElementById('editCategory').value = currentUser.category;
+            document.getElementById('editName').disabled = false;
+            document.getElementById('editEmail').disabled = false;
+            document.getElementById('editCategory').disabled = false;
+            document.getElementById('editProfileBtn').style.display = 'block';
+            document.getElementById('signInPromptBtn').style.display = 'none';
+            updateWalletDisplay();
+        }
+        
+        function updateAll() {
+            updateDashboard();
+            updateWalletDisplay();
+            updatePackageStatus();
+            if (currentUser) {
+                currentUser.walletBalance = walletBalance;
+                currentUser.tasksCompleted = tasksCompleted;
+                currentUser.totalEarned = totalEarned;
+                currentUser.activePackage = activePackage;
+                currentUser.tasksRemaining = tasksRemaining;
+                localStorage.setItem(`user_${currentUser.email}`, JSON.stringify(currentUser));
+            }
+        }
+        
+        function updateDashboard() {
+            document.getElementById('dashboardBalance').innerHTML = `$${walletBalance.toFixed(2)}`;
+            document.getElementById('tasksCompleted').innerHTML = tasksCompleted;
+            document.getElementById('totalEarned').innerHTML = `$${totalEarned.toFixed(2)}`;
+            document.getElementById('activePackageDisplay').innerHTML = activePackage ? activePackage.name : 'None';
+            document.getElementById('tasksLeft').innerHTML = tasksRemaining;
+        }
+        
+        function updateWalletDisplay() {
+            document.getElementById('walletDisplay').innerHTML = `$${walletBalance.toFixed(2)}`;
+            document.getElementById('walletPageBalance').innerHTML = `$${walletBalance.toFixed(2)}`;
+        }
+        
+        function updatePackageStatus() {
+            let div = document.getElementById('packageStatus');
+            if (activePackage && currentUser) {
+                div.style.display = 'block';
+                document.getElementById('activePackage').innerHTML = `Active: ${activePackage.name}`;
+                document.getElementById('tasksRemaining').innerHTML = `${tasksRemaining} tasks left`;
+            } else {
+                div.style.display = 'none';
+            }
+        }
+        
+        function enableEditMode() {
+            document.getElementById('editName').disabled = false;
+            document.getElementById('editEmail').disabled = false;
+            document.getElementById('editCategory').disabled = false;
+            document.getElementById('editProfileBtn').innerHTML = '<i class="fas fa-save"></i> Save';
+            document.getElementById('editProfileBtn').setAttribute('onclick', 'saveProfile()');
+        }
+        
+        function saveProfile() {
+            currentUser.name = document.getElementById('editName').value;
+            currentUser.email = document.getElementById('editEmail').value;
+            currentUser.category = document.getElementById('editCategory').value;
+            currentUser.avatar = currentUser.name.substring(0,2).toUpperCase();
+            localStorage.setItem(`user_${currentUser.email}`, JSON.stringify(currentUser));
+            updateUI();
+            document.getElementById('editName').disabled = true;
+            document.getElementById('editEmail').disabled = true;
+            document.getElementById('editCategory').disabled = true;
+            document.getElementById('editProfileBtn').innerHTML = '<i class="fas fa-edit"></i> Edit Profile';
+            document.getElementById('editProfileBtn').setAttribute('onclick', 'enableEditMode()');
+            showToast('Profile updated', 'success');
+        }
+        
+        function setTheme(theme) { document.body.className = theme; localStorage.setItem('theme', theme); }
+        function exportData() {
+            let data = JSON.stringify({user: currentUser, wallet: walletBalance, tasks: tasksCompleted, earnings: totalEarned});
+            let blob = new Blob([data], {type:'application/json'});
+            let a = document.createElement('a');
+            a.href = URL.createObjectURL(blob);
+            a.download = 'academix-data.json';
+            a.click();
+            showToast('Data exported', 'success');
+        }
+        
+        function logout() {
+            currentUser = null;
+            walletBalance = 0; tasksCompleted = 0; totalEarned = 0; activePackage = null; tasksRemaining = 0;
+            document.getElementById('authButton').style.display = 'flex';
+            document.getElementById('walletInfo').style.display = 'none';
+            document.getElementById('userMenu').style.display = 'none';
+            showPage('home');
+            showToast('Logged out', 'info');
+        }
+        
+        function deleteAccount() {
+            if (confirm('Delete account permanently?')) {
+                if (currentUser) localStorage.removeItem(`user_${currentUser.email}`);
+                logout();
+                showToast('Account deleted', 'info');
+            }
+        }
+        
+        function continueAsGuest() { closeModal('authModal'); showToast('Browsing as guest', 'info'); }
+        function showAuthModal() { document.getElementById('authModal').classList.add('active'); }
+        function showAuthTab(tab) {
+            let login = document.getElementById('loginForm'), reg = document.getElementById('registerForm');
+            if (tab === 'login') {
+                login.style.display = 'block'; reg.style.display = 'none';
+                document.getElementById('loginTabBtn').className = 'btn btn-primary';
+                document.getElementById('registerTabBtn').className = 'btn btn-outline';
+            } else {
+                login.style.display = 'none'; reg.style.display = 'block';
+                document.getElementById('loginTabBtn').className = 'btn btn-outline';
+                document.getElementById('registerTabBtn').className = 'btn btn-primary';
+            }
+        }
+        
+        function showDepositModal() { document.getElementById('depositModal').classList.add('active'); }
+        
+        function showPage(page) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(page + '-page').classList.add('active');
+            if (page === 'work') loadTasks();
+            if (page === 'dashboard') { initCharts(); updateAll(); }
+            if (page === 'packages') loadPackages();
+            if (page === 'contests') loadContests();
+            document.getElementById('navMenu').classList.remove('show');
+        }
+        
         function initCharts() {
-            new Chart(document.getElementById('earningsChart'),{type:'line',data:{labels:['Week1','Week2','Week3','Week4'],datasets:[{label:'Earnings',data:[0,0,0,0],borderColor:'#6366f1',backgroundColor:'rgba(99,102,241,0.1)',tension:0.4,fill:true}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{labels:{color:'var(--text-primary)'}}}}});
-            new Chart(document.getElementById('tasksChart'),{type:'doughnut',data:{labels:['Completed','Remaining'],datasets:[{data:[0,100],backgroundColor:['#10b981','#334155']}]},options:{responsive:true,maintainAspectRatio:false}});
+            let ctx1 = document.getElementById('earningsChart')?.getContext('2d');
+            if (ctx1) new Chart(ctx1, {type:'line', data:{labels:['Week1','Week2','Week3','Week4'], datasets:[{label:'Earnings', data:[0,0,0,0], borderColor:'#6366f1', backgroundColor:'rgba(99,102,241,0.1)', tension:0.4, fill:true}]}, options:{responsive:true, maintainAspectRatio:false}});
+            let ctx2 = document.getElementById('tasksChart')?.getContext('2d');
+            if (ctx2) new Chart(ctx2, {type:'doughnut', data:{labels:['Completed','Remaining'], datasets:[{data:[tasksCompleted, Math.max(0, 50 - tasksCompleted)], backgroundColor:['#10b981','#334155']}]}, options:{responsive:true, maintainAspectRatio:false}});
         }
         
-        function updateProgressRings() {let taskPct=Math.min((tasksCompleted/50)*100,100), earnPct=Math.min((totalEarned/2500)*100,100), pkgPct=activePackage?Math.min(((activePackage.tasks-tasksRemaining)/activePackage.tasks)*100,100):0;
-            document.getElementById('taskPercent').innerHTML=Math.floor(taskPct)+'%';document.getElementById('earningsPercent').innerHTML=Math.floor(earnPct)+'%';document.getElementById('packagePercent').innerHTML=Math.floor(pkgPct)+'%';
+        function loadFAQ() {
+            let faqs = [
+                {q:"How do packages work?", a:"Choose Starter($50), Professional($99), or Premium($199). Each unlocks tasks. Complete tasks to earn rewards."},
+                {q:"How to add funds?", a:"Go to Wallet → PayPal. Minimum $10 deposit."},
+                {q:"How are rewards calculated?", a:"Each task has base price ($12-35). Complete tasks to earn directly to wallet."},
+                {q:"Contest requirements?", a:"Premium package holders only. Submit entries before deadline."},
+                {q:"When was AcademiX Pro founded?", a:"AcademiX Pro was established in 2022."}
+            ];
+            let html = '';
+            faqs.forEach((f,i) => {
+                html += `<div class="faq-item ${i===0?'active':''}"><div class="faq-question" onclick="toggleFAQ(this)"><h3>${f.q}</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${f.a}</p></div></div>`;
+            });
+            document.getElementById('faqSection').innerHTML = html;
         }
         
-        function loadPackages(){let html='';packages.forEach(p=>{html+=`<div class="package-card ${p.popular?'popular':''}">${p.popular?'<div class="popular-badge">BEST VALUE</div>':''}<h3>${p.name}</h3><div class="package-price">$${p.price}</div><ul class="package-features">${p.features.map(f=>`<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul><button class="btn btn-primary" onclick="purchasePackage(${p.id})">Purchase $${p.price}</button></div>`});document.getElementById('packagesGrid').innerHTML=html;}
+        function toggleFAQ(el) { el.closest('.faq-item').classList.toggle('active'); }
         
-        function purchasePackage(id){if(!currentUser){showToast('Sign in first','error');showAuthModal();return;}let pkg=packages.find(p=>p.id===id);if(walletBalance<pkg.price){showToast(`Need $${pkg.price-walletBalance} more`,'error');showDepositModal();return;}walletBalance-=pkg.price;activePackage=pkg;tasksRemaining=pkg.tasks;generateTasks();updateAll();showSuccessModal('Package Activated!',`${pkg.name} package active. Complete ${pkg.tasks} tasks!`);}
-        
-        function generateTasks(){availableTasks=[];for(let i=0;i<Math.min(activePackage.tasks,12);i++){let t=taskTemplates[Math.floor(Math.random()*taskTemplates.length)];availableTasks.push({id:Date.now()+i,...t});}loadTasks();}
-        
-        function loadTasks(){if(!currentUser){let html='';taskTemplates.slice(0,6).forEach(t=>{html+=`<div class="task-card locked-task" onclick="showAuthModal()"><span class="task-badge">${t.category}</span><h3>${t.title}</h3><p>${t.desc}</p><div style="display:flex;justify-content:space-between;margin-top:1rem;"><span style="color:var(--primary);">$${t.price}</span><span><i class="fas fa-lock"></i> Locked</span></div></div>`});document.getElementById('tasksGrid').innerHTML=html;return;}
-            if(!activePackage){document.getElementById('tasksGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:2rem;"><i class="fas fa-box-open"></i><h3>Choose a Package</h3><button class="btn btn-primary" onclick="showPage(\'packages\')">View Packages</button></div>`;return;}
-            if(tasksRemaining<=0){document.getElementById('tasksGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:2rem;"><i class="fas fa-trophy"></i><h3>Package Complete!</h3><button class="btn btn-primary" onclick="showPage(\'packages\')">Get Another</button></div>`;return;}
-            let html='';availableTasks.forEach(t=>{html+=`<div class="task-card" onclick="completeTask(${t.id})"><span class="task-badge">${t.category}</span><h3>${t.title}</h3><p>${t.desc}</p><div style="display:flex;justify-content:space-between;margin-top:1rem;"><span style="font-size:1.5rem;color:var(--primary);">$${t.price}</span></div></div>`});document.getElementById('tasksGrid').innerHTML=html;}
-        
-        function completeTask(id){let task=availableTasks.find(t=>t.id===id);if(task&&tasksRemaining>0){tasksRemaining--;tasksCompleted++;totalEarned+=task.price;walletBalance+=task.price;availableTasks=availableTasks.filter(t=>t.id!==id);updateAll();showSuccessModal('Task Completed!',`Earned $${task.price}!`);if(availableTasks.length===0&&tasksRemaining>0)generateTasks();else loadTasks();}}
-        
-        function loadContests(){if(!currentUser||!activePackage||!activePackage.hasContests){document.getElementById('contestsGrid').innerHTML=`<div style="grid-column:1/-1;text-align:center;padding:2rem;"><i class="fas fa-crown"></i><h3>Premium Required</h3><button class="btn btn-primary" onclick="showPage(\'packages\')">Upgrade to Premium</button></div>`;return;}
-        let html='';contests.forEach(c=>{html+=`<div class="task-card" onclick="enterContest(${c.id})"><span class="task-badge" style="background:var(--gradient-3);">🏆 Contest</span><h3>${c.name}</h3><div style="font-size:1.8rem;color:var(--accent);">$${c.prize}</div><p>${c.desc}</p><div><i class="fas fa-clock"></i> ${c.deadline}</div></div>`});document.getElementById('contestsGrid').innerHTML=html;}
-        function enterContest(id){showSuccessModal('Entry Submitted!','Your contest entry has been submitted. Good luck!');}
-        
-        function updateAll(){updateDashboard();updateWalletDisplay();updatePackageStatus();updateProgressRings();if(currentUser)localStorage.setItem(`user_${currentUser.email}`,JSON.stringify(currentUser));}
-        function updateDashboard(){document.getElementById('dashboardBalance').innerHTML=`$${walletBalance.toFixed(2)}`;document.getElementById('tasksCompleted').innerHTML=tasksCompleted;document.getElementById('totalEarned').innerHTML=`$${totalEarned.toFixed(2)}`;document.getElementById('activePackageDisplay').innerHTML=activePackage?activePackage.name:'None';document.getElementById('tasksLeft').innerHTML=tasksRemaining;}
-        function updateWalletDisplay(){document.getElementById('walletDisplay').innerHTML=`$${walletBalance.toFixed(2)}`;document.getElementById('walletPageBalance').innerHTML=`$${walletBalance.toFixed(2)}`;}
-        function updatePackageStatus(){let div=document.getElementById('packageStatus');if(activePackage&&currentUser){div.style.display='block';document.getElementById('activePackage').innerHTML=`Active: ${activePackage.name}`;document.getElementById('tasksRemaining').innerHTML=`${tasksRemaining} tasks left`;}else div.style.display='none';}
-        
-        function showPage(page){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById(page+'-page').classList.add('active');if(page==='work')loadTasks();if(page==='dashboard'){initCharts();updateProgressRings();}if(page==='packages')loadPackages();if(page==='contests')loadContests();}
-        function showDepositModal(){document.getElementById('depositModal').classList.add('active');}
-        function initPayPalDeposit(){let amount=parseFloat(document.getElementById('depositAmount').value);if(amount<10){showToast('Minimum $10','error');return;}paypal.Buttons({createOrder:(d,a)=>a.order.create({purchase_units:[{amount:{value:amount.toFixed(2)}}]}),onApprove:(d,a)=>a.order.capture().then(()=>{walletBalance+=amount;updateAll();closeModal('depositModal');showSuccessModal('Success!',`$${amount} added.`);}),onError:()=>showToast('Payment failed','error')}).render('#paypal-deposit-modal');}
-        
-        function handleLogin(){let email=document.getElementById('loginEmail').value,pwd=document.getElementById('loginPassword').value;if(!email||!pwd){showToast('Enter credentials','error');return;}let saved=localStorage.getItem(`user_${email}`);if(saved){let user=JSON.parse(saved);if(user.password===pwd){currentUser=user;walletBalance=user.walletBalance||0;tasksCompleted=user.tasksCompleted||0;totalEarned=user.totalEarned||0;activePackage=user.activePackage||null;tasksRemaining=user.tasksRemaining||0;updateUI();closeModal('authModal');showToast(`Welcome back ${currentUser.name}!`,'success');return;}}showToast('Invalid credentials','error');}
-        
-        function handleRegister(){let name=document.getElementById('regName').value,email=document.getElementById('regEmail').value,pwd=document.getElementById('regPassword').value,cat=document.getElementById('regCategory').value;if(!name||!email||!pwd||!cat){showToast('Fill all fields','error');return;}if(pwd.length<6){showToast('Password min 6 chars','error');return;}if(localStorage.getItem(`user_${email}`)){showToast('Email exists','error');return;}let user={name,email,password:pwd,category:cat,avatar:name.substring(0,2).toUpperCase(),walletBalance:0,tasksCompleted:0,totalEarned:0,activePackage:null,tasksRemaining:0,joinDate:'2022'};localStorage.setItem(`user_${email}`,JSON.stringify(user));currentUser=user;walletBalance=0;tasksCompleted=0;totalEarned=0;activePackage=null;tasksRemaining=0;updateUI();closeModal('authModal');showPage('setup');}
-        
-        function handleGoogleSignIn(res){let user={name:"Google User",email:"google@user.com",category:"Essay Writing",avatar:"GU",walletBalance:0,tasksCompleted:0,totalEarned:0,joinDate:'2022'};currentUser=user;updateUI();closeModal('authModal');showPage('setup');}
-        
-        function completeSetup(){let name=document.getElementById('setupName').value,cat=document.getElementById('setupCategory').value,method=document.getElementById('setupPaymentMethod').value,addr=document.getElementById('setupPaymentAddress').value;if(!name||!cat){showToast('Fill required fields','error');return;}if(currentUser){currentUser.name=name;currentUser.category=cat;if(method&&addr){currentUser.paymentMethod=method;currentUser.paymentAddress=addr;}currentUser.avatar=name.substring(0,2).toUpperCase();currentUser.joinDate='2022';localStorage.setItem(`user_${currentUser.email}`,JSON.stringify(currentUser));updateUI();showPage('home');showSuccessModal('Welcome!','Your account is ready. Add funds to get started!');}}
-        
-        function updateUI(){document.getElementById('authButton').style.display='none';document.getElementById('walletInfo').style.display='flex';document.getElementById('userMenu').style.display='flex';document.getElementById('userName').innerHTML=currentUser.name.split(' ')[0];document.getElementById('userAvatar').innerHTML=currentUser.avatar;document.getElementById('profileAvatar').innerHTML=currentUser.avatar;document.getElementById('displayName').innerHTML=currentUser.name;document.getElementById('displayEmail').innerHTML=currentUser.email;document.getElementById('displayCategory').innerHTML=currentUser.category;document.getElementById('editName').value=currentUser.name;document.getElementById('editEmail').value=currentUser.email;document.getElementById('editCategory').value=currentUser.category;document.getElementById('editName').disabled=false;document.getElementById('editEmail').disabled=false;document.getElementById('editCategory').disabled=false;document.getElementById('editProfileBtn').style.display='block';document.getElementById('signInPromptBtn').style.display='none';updateWalletDisplay();}
-        
-        function enableEditMode(){document.getElementById('editName').disabled=false;document.getElementById('editEmail').disabled=false;document.getElementById('editCategory').disabled=false;document.getElementById('editProfileBtn').innerHTML='<i class="fas fa-save"></i> Save';document.getElementById('editProfileBtn').setAttribute('onclick','saveProfile()');}
-        function saveProfile(){currentUser.name=document.getElementById('editName').value;currentUser.email=document.getElementById('editEmail').value;currentUser.category=document.getElementById('editCategory').value;currentUser.avatar=currentUser.name.substring(0,2).toUpperCase();localStorage.setItem(`user_${currentUser.email}`,JSON.stringify(currentUser));updateUI();document.getElementById('editName').disabled=true;document.getElementById('editEmail').disabled=true;document.getElementById('editCategory').disabled=true;document.getElementById('editProfileBtn').innerHTML='<i class="fas fa-edit"></i> Edit Profile';document.getElementById('editProfileBtn').setAttribute('onclick','enableEditMode()');showToast('Profile updated','success');}
-        
-        function setTheme(theme){document.body.className=theme;localStorage.setItem('theme',theme);}
-        function changeLanguage(lang){showToast(`Language changed to ${lang}`,'info');}
-        function exportData(){let data=JSON.stringify({user:currentUser,wallet:walletBalance,tasks:tasksCompleted,earnings:totalEarned});let blob=new Blob([data],{type:'application/json'});let a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='academix-data.json';a.click();showToast('Data exported','success');}
-        function logout(){currentUser=null;walletBalance=0;tasksCompleted=0;totalEarned=0;activePackage=null;tasksRemaining=0;document.getElementById('authButton').style.display='flex';document.getElementById('walletInfo').style.display='none';document.getElementById('userMenu').style.display='none';showPage('home');showToast('Logged out','info');}
-        function deleteAccount(){if(confirm('Delete account permanently?')){if(currentUser)localStorage.removeItem(`user_${currentUser.email}`);logout();showToast('Account deleted','info');}}
-        function continueAsGuest(){closeModal('authModal');showToast('Browsing as guest','info');}
-        function showAuthModal(){document.getElementById('authModal').classList.add('active');}
-        function showAuthTab(tab){let login=document.getElementById('loginForm'),reg=document.getElementById('registerForm');if(tab==='login'){login.style.display='block';reg.style.display='none';document.getElementById('loginTabBtn').className='btn btn-primary';document.getElementById('registerTabBtn').className='btn btn-outline';}else{login.style.display='none';reg.style.display='block';document.getElementById('loginTabBtn').className='btn btn-outline';document.getElementById('registerTabBtn').className='btn btn-primary';}}
-        function closeModal(id){document.getElementById(id).classList.remove('active');}
-        function showToast(msg){let toast=document.getElementById('toast');toast.innerHTML=msg;toast.style.display='block';setTimeout(()=>toast.style.display='none',3000);}
-        function showSuccessModal(title,msg){document.getElementById('successTitle').innerHTML=title;document.getElementById('successMessage').innerHTML=msg;document.getElementById('successModal').classList.add('active');}
-        function toggleMobileMenu(){document.getElementById('navMenu').classList.toggle('show');}
-        function togglePaymentAddress(){let method=document.getElementById('setupPaymentMethod').value;document.getElementById('paymentAddressField').style.display=method?'block':'none';}
-        function toggleFAQ(el){el.closest('.faq-item').classList.toggle('active');}
-        function loadFAQ(){let faqs=[{q:"How do packages work?",a:"Choose Starter($50), Professional($99), or Premium($199). Each unlocks tasks. Complete tasks to earn rewards."},{q:"How to add funds?",a:"Go to Wallet → PayPal or Crypto. Minimum $10 deposit."},{q:"How are rewards calculated?",a:"Each task has base price ($10-35). Quality work = higher rewards."},{q:"Contest requirements?",a:"Premium package holders only. Submit entries before deadline."},{q:"When was AcademiX Pro founded?",a:"AcademiX Pro was established in 2022 to connect scholars with premium academic opportunities worldwide."}];let html='';faqs.forEach((f,i)=>{html+=`<div class="faq-item ${i===0?'active':''}"><div class="faq-question" onclick="toggleFAQ(this)"><h3>${f.q}</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${f.a}</p></div></div>`;});document.getElementById('faqSection').innerHTML=html;}
-        
-        window.onload=function(){loadPackages();initCharts();loadFAQ();let savedTheme=localStorage.getItem('theme');if(savedTheme)document.body.className=savedTheme;loadGuestTasks();};
+        window.onload = function() {
+            loadPackages();
+            initCharts();
+            loadFAQ();
+            let savedTheme = localStorage.getItem('theme');
+            if (savedTheme) document.body.className = savedTheme;
+            showPage('home');
+        };
     </script>
 </body>
 </html>
