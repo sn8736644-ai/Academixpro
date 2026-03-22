@@ -6,7 +6,7 @@
     <title>AcademiX Pro | Global Scholar Network</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Modern blend -->
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <!-- Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
@@ -35,7 +35,6 @@
         body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); transition: all 0.3s ease; overflow-x: hidden; }
         h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 600; }
         
-        /* theme switcher */
         .theme-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 8px 12px; display: flex; gap: 8px; backdrop-filter: blur(10px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
         .theme-btn { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
         .theme-btn:hover { transform: scale(1.1); }
@@ -65,14 +64,16 @@
         .package-card.popular { border-color: var(--accent); transform: scale(1.02); }
         .popular-badge { position: absolute; top: 15px; right: -25px; background: var(--accent); color: #0a0a0a; padding: 0.3rem 2rem; transform: rotate(45deg); font-size: 0.7rem; font-weight: 700; }
         .package-price { font-size: 2.5rem; font-weight: 800; color: var(--primary); margin: 1rem 0; }
-        .task-card.locked-task { opacity: 0.6; cursor: not-allowed; filter: grayscale(0.2); position: relative; }
-        .task-card.locked-task::after { content: '\f023'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: var(--primary); background: rgba(0,0,0,0.6); padding: 10px; border-radius: 50%; }
+        .task-card.locked-task { opacity: 0.7; cursor: pointer; filter: grayscale(0.2); position: relative; background: var(--card-bg-light); }
+        .task-card.locked-task::after { content: '\f023'; font-family: 'Font Awesome 6 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 2rem; color: var(--primary); background: rgba(0,0,0,0.7); padding: 10px; border-radius: 50%; z-index: 1; }
+        .task-card.locked-task:hover::after { background: var(--gradient-primary); color: white; }
         .task-badge { background: var(--gradient-primary); padding: 0.2rem 1rem; border-radius: 20px; font-size: 0.7rem; display: inline-block; }
         .btn { padding: 0.8rem 1.8rem; border-radius: 40px; border: none; font-weight: 600; cursor: pointer; transition: 0.3s; display: inline-flex; align-items: center; gap: 0.5rem; }
         .btn-primary { background: var(--gradient-primary); color: white; }
         .btn-primary:hover { transform: translateY(-2px); box-shadow: var(--shadow-glow); }
         .btn-outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
         .btn-success { background: var(--success); color: white; }
+        .btn-danger { background: var(--danger); color: white; }
         .wallet-address-input, select { width: 100%; padding: 0.8rem; background: var(--card-bg-light); border: 1px solid var(--border); border-radius: 12px; color: var(--text-primary); margin: 0.5rem 0; }
         .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(12px); z-index: 1000; justify-content: center; align-items: center; }
         .modal.active { display: flex; }
@@ -80,10 +81,13 @@
         footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 3rem 5% 1.5rem; margin-top: 3rem; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
         .partner-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.8rem; margin-top: 1rem; }
-        .partner-item { background: var(--card-bg-light); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem; text-align: center; transition: 0.3s; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; }
+        .partner-item { background: var(--card-bg-light); border: 1px solid var(--border); border-radius: 12px; padding: 0.8rem; text-align: center; transition: all 0.3s; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none; color: var(--text-primary); }
+        .partner-item:hover { transform: translateY(-3px); border-color: var(--primary); background: var(--gradient-primary); color: white; }
         .social-links { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
-        .social-icon { width: 40px; height: 40px; background: var(--card-bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: 0.3s; cursor: pointer; border: 1px solid var(--border); }
+        .social-icon { width: 40px; height: 40px; background: var(--card-bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; transition: all 0.3s; cursor: pointer; border: 1px solid var(--border); text-decoration: none; color: var(--text-primary); }
+        .social-icon:hover { transform: translateY(-3px); background: var(--gradient-primary); border-color: var(--primary); color: white; }
         .footer-links a { color: var(--text-secondary); display: block; margin: 0.5rem 0; cursor: pointer; transition: 0.3s; text-decoration: none; }
+        .footer-links a:hover { color: var(--primary); transform: translateX(5px); }
         .dashboard-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
         .chart-container { background: var(--card-bg); border: 1px solid var(--border); border-radius: 24px; padding: 1.5rem; height: 300px; }
         .payment-methods { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
@@ -95,11 +99,14 @@
         .toast { position: fixed; bottom: 80px; right: 20px; background: var(--card-bg); border-left: 4px solid var(--primary); border-radius: 12px; padding: 1rem 1.5rem; z-index: 1001; animation: slideIn 0.3s ease; display: none; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
         @media (max-width: 768px) { .hamburger { display: block; } .nav-menu { display: none; flex-direction: column; width: 100%; background: var(--card-bg); padding: 1rem; border-radius: 20px; } .nav-menu.show { display: flex; } .hero { grid-template-columns: 1fr; text-align: center; } .hero h1 { font-size: 1.8rem; } .dashboard-grid { grid-template-columns: 1fr; } }
-        /* payment method toggle styles */
         .payment-method-toggle { display: flex; gap: 1rem; margin: 0.5rem 0 0.8rem; }
         .payment-option { flex: 1; text-align: center; padding: 0.6rem; border-radius: 40px; cursor: pointer; border: 1px solid var(--border); transition: 0.2s; background: var(--card-bg-light); }
         .payment-option.active { background: var(--gradient-primary); border-color: var(--primary); color: white; }
         .address-hint { font-size: 0.7rem; color: var(--text-muted); margin-top: 4px; }
+        .amount-input-group { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin: 0.5rem 0; }
+        .amount-input-group input { flex: 2; min-width: 150px; }
+        .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
+        .guest-badge { display: inline-block; background: var(--accent); color: #0a0a0a; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; margin-left: 0.5rem; }
     </style>
 </head>
 <body class="theme-ocean">
@@ -134,7 +141,7 @@
         <div id="home-page" class="page active"><div class="hero"><div><div class="established-badge"><i class="fas fa-calendar-alt"></i> Established 2022 • 85,000+ Scholars</div><h1><span class="gradient-text">Transform Your Skills</span><br>Into Real Rewards</h1><p style="color: var(--text-secondary); margin: 1rem 0;">Join a thriving community of academic professionals. Complete tasks, earn rewards, build your future.</p><div><button class="btn btn-primary" onclick="showPage('packages')"><i class="fas fa-rocket"></i> Get Started</button><button class="btn btn-outline" style="margin-left:1rem;" onclick="showPage('faq')">Learn More</button></div></div><div><i class="fas fa-graduation-cap" style="font-size: 8rem; color: var(--primary); opacity: 0.5;"></i></div></div><div class="stats-grid"><div class="stat-card"><i class="fas fa-users stat-icon" style="font-size:2rem; color:var(--primary);"></i><div class="stat-number">85K+</div><p>Active Scholars</p></div><div class="stat-card"><i class="fas fa-dollar-sign stat-icon"></i><div class="stat-number">$22.4M</div><p>Total Rewards</p></div><div class="stat-card"><i class="fas fa-tasks stat-icon"></i><div class="stat-number">320K+</div><p>Tasks Completed</p></div><div class="stat-card"><i class="fas fa-trophy stat-icon"></i><div class="stat-number">4.5K+</div><p>Success Stories</p></div></div></div>
 
         <!-- WORK -->
-        <div id="work-page" class="page"><h1>📚 Available Tasks</h1><div id="packageStatus" style="background:var(--card-bg); border-radius:24px; padding:1rem; margin-bottom:1.5rem; display:none;"><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 id="activePackageName"></h3><p id="tasksRemainingText" style="color:var(--text-secondary);"></p></div><button class="btn btn-primary" onclick="showPage('packages')">Upgrade <i class="fas fa-arrow-right"></i></button></div></div><div class="tasks-grid" id="tasksGrid"></div></div>
+        <div id="work-page" class="page"><h1>📚 Available Tasks <span id="guestBadge" class="guest-badge" style="display:none;">Guest Mode - Sign in to unlock</span></h1><div id="packageStatus" style="background:var(--card-bg); border-radius:24px; padding:1rem; margin-bottom:1.5rem; display:none;"><div style="display:flex; justify-content:space-between; align-items:center;"><div><h3 id="activePackageName"></h3><p id="tasksRemainingText" style="color:var(--text-secondary);"></p></div><button class="btn btn-primary" onclick="showPage('packages')">Upgrade <i class="fas fa-arrow-right"></i></button></div></div><div class="tasks-grid" id="tasksGrid"></div></div>
 
         <!-- CONTESTS -->
         <div id="contests-page" class="page"><h1>🏆 Premium Contests</h1><p style="margin-bottom:1rem; color:var(--text-secondary);">Exclusive for Premium members. Win big prizes!</p><div class="tasks-grid" id="contestsGrid"></div></div>
@@ -145,8 +152,28 @@
         <!-- DASHBOARD -->
         <div id="dashboard-page" class="page"><h1>📊 Dashboard</h1><div style="background:var(--gradient-primary); border-radius:28px; padding:1.5rem; margin-bottom:1.5rem;"><div style="display:flex; justify-content:space-between; align-items:center;"><div><p>Available Balance</p><p style="font-size:2.5rem; font-weight:800;" id="dashboardBalance">$0.00</p></div><button class="btn btn-success" onclick="showPage('wallet')"><i class="fas fa-plus-circle"></i> Add Funds</button></div></div><div class="dashboard-grid"><div class="chart-container"><canvas id="earningsChart"></canvas></div><div class="chart-container"><canvas id="tasksChart"></canvas></div></div><div class="stats-grid"><div class="stat-card"><div class="stat-number" id="tasksCompleted">0</div><p>Tasks Done</p></div><div class="stat-card"><div class="stat-number" id="totalEarned">$0</div><p>Total Earned</p></div><div class="stat-card"><div class="stat-number" id="activePackageDisplay">None</div><p>Active Package</p></div><div class="stat-card"><div class="stat-number" id="tasksLeft">0</div><p>Tasks Left</p></div></div></div>
 
-        <!-- WALLET -->
-        <div id="wallet-page" class="page"><h1>💳 Wallet & Payments</h1><div style="background:var(--gradient-success); border-radius:28px; padding:1.5rem; margin-bottom:1.5rem;"><p style="font-size:2.5rem; font-weight:800;" id="walletPageBalance">$0.00</p><p id="walletAddressDisplay" style="font-size:0.8rem;"></p></div><div class="payment-methods"><div class="payment-card"><div class="payment-icon"><i class="fab fa-paypal" style="color:#003087;"></i></div><h3>PayPal Deposit</h3><input type="number" id="paypalAmount" placeholder="Amount (min $10)" value="50" class="wallet-address-input"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="F46BGYVCNCTFN"><input type="hidden" name="amount" id="paypalAmountField" value="50"><button type="submit" class="btn btn-primary" onclick="updatePaypalAmount()"><i class="fab fa-paypal"></i> Pay with PayPal</button></form></div><div class="payment-card"><div class="payment-icon"><i class="fab fa-bitcoin"></i> <i class="fab fa-ethereum"></i></div><h3>Crypto Gateway</h3><a href="https://nowpayments.io/payment/?iid=4699167845&source=button" target="_blank"><button class="btn btn-primary"><i class="fas fa-coins"></i> Pay with Crypto</button></a></div></div><div class="stat-card" style="margin-top:1rem;"><h3>Withdrawal Settings</h3><input type="text" id="withdrawalAddress" placeholder="PayPal Email or Crypto Wallet" class="wallet-address-input"><button class="btn btn-outline" onclick="saveWithdrawalAddress()">Save Payout Address</button></div></div>
+        <!-- WALLET with FIXED crypto deposit -->
+        <div id="wallet-page" class="page"><h1>💳 Wallet & Payments</h1><div style="background:var(--gradient-success); border-radius:28px; padding:1.5rem; margin-bottom:1.5rem;"><p style="font-size:2.5rem; font-weight:800;" id="walletPageBalance">$0.00</p><p id="walletAddressDisplay" style="font-size:0.8rem;"></p></div><div class="payment-methods"><div class="payment-card"><div class="payment-icon"><i class="fab fa-paypal" style="color:#003087;"></i></div><h3>PayPal Deposit</h3><input type="number" id="paypalAmount" placeholder="Amount (min $10)" value="50" class="wallet-address-input"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="F46BGYVCNCTFN"><input type="hidden" name="amount" id="paypalAmountField" value="50"><button type="submit" class="btn btn-primary" onclick="updatePaypalAmount()"><i class="fab fa-paypal"></i> Pay with PayPal</button></form></div><div class="payment-card"><div class="payment-icon"><i class="fab fa-bitcoin"></i> <i class="fab fa-ethereum"></i></div><h3>Crypto Gateway</h3>
+                <div class="amount-input-group">
+                    <input type="number" id="cryptoAmountInput" placeholder="Enter any amount (min $10)" value="50" class="wallet-address-input" style="margin:0.5rem 0;">
+                    <p class="address-hint" style="width:100%; text-align:left;"><i class="fas fa-info-circle"></i> Enter any amount - the exact amount will be passed to NowPayments</p>
+                </div>
+                <button class="btn btn-primary" onclick="openCryptoDeposit()"><i class="fas fa-coins"></i> Pay with Crypto (Custom Amount)</button>
+                <p class="address-hint" style="margin-top:8px;"><i class="fas fa-check-circle"></i> The amount you enter will be charged exactly.</p>
+            </div></div>
+            <div class="stat-card" style="margin-top:1rem;"><h3>💰 Withdraw Funds</h3>
+                <div class="amount-input-group">
+                    <input type="number" id="withdrawAmountInput" placeholder="Enter amount to withdraw" step="0.01" class="wallet-address-input" style="flex:2;">
+                    <button class="btn btn-success" onclick="requestWithdrawal()" style="flex:1;"><i class="fas fa-hand-holding-usd"></i> Withdraw</button>
+                </div>
+                <p class="address-hint"><i class="fas fa-exclamation-triangle"></i> Max withdrawal: <span id="maxWithdrawHint">$0.00</span> | Your payout address: <span id="withdrawAddrDisplay">Not set</span></p>
+                <div style="margin-top: 1rem;">
+                    <h4>Payout Settings</h4>
+                    <input type="text" id="withdrawalAddress" placeholder="PayPal Email or Crypto Wallet" class="wallet-address-input">
+                    <button class="btn btn-outline" onclick="saveWithdrawalAddress()">Save Payout Address</button>
+                </div>
+            </div>
+        </div>
 
         <!-- PROFILE -->
         <div id="profile-page" class="page"><h1>👤 Your Profile</h1><div class="stats-grid"><div class="stat-card" style="text-align:center;"><div class="user-avatar" id="profileAvatar" style="width:80px; height:80px; font-size:2rem; margin:0 auto 1rem;">JD</div><h2 id="displayName"></h2><p id="displayEmail"></p><p id="displayCategory"></p></div><div class="stat-card"><h3>Personal Info</h3><input type="text" id="editName" placeholder="Full Name" class="wallet-address-input"><select id="editCategory" class="wallet-address-input"><option>Essay Writing</option><option>Research Papers</option><option>Proofreading</option><option>Coding</option><option>Tutoring</option></select><button class="btn btn-primary" id="saveProfileBtn" onclick="saveProfile()">Save Changes</button><hr style="margin:1rem 0;"><h3>Payout Address</h3><p id="profileWalletAddr">Not set</p></div></div></div>
@@ -157,15 +184,58 @@
         <!-- FAQ -->
         <div id="faq-page" class="page"><h1>❓ FAQ</h1><div class="faq-section" id="faqSection"></div><div style="background:var(--gradient-primary); border-radius:28px; padding:2rem; text-align:center; margin-top:2rem;"><h2>Still have questions?</h2><button class="btn btn-outline" onclick="showToast('support@academixpro.com | 24/7 live chat')">Contact Support</button></div></div>
 
-        <!-- SETUP PAGE (first time) -->
+        <!-- SETUP PAGE -->
         <div id="setup-page" class="page"><div style="max-width:500px; margin:0 auto; background:var(--card-bg); border-radius:32px; padding:2rem;"><h1>✨ Complete Your Profile</h1><input type="text" id="setupName" placeholder="Full Name" class="wallet-address-input"><select id="setupCategory"><option>Essay Writing</option><option>Research Papers</option><option>Proofreading</option><option>Coding</option><option>Tutoring</option></select><input type="text" id="setupWalletAddr" placeholder="PayPal / Crypto wallet (for payouts)" class="wallet-address-input"><button class="btn btn-primary" style="width:100%; margin-top:1rem;" onclick="completeSetup()">Start Earning</button></div></div>
     </div>
 
-    <footer><div class="footer-grid"><div><div class="logo">AcademiXPro</div><p>Empowering scholars worldwide since 2022</p><div class="social-links"><div class="social-icon" onclick="window.open('https://twitter.com','_blank')"><i class="fab fa-twitter"></i></div><div class="social-icon" onclick="window.open('https://linkedin.com','_blank')"><i class="fab fa-linkedin-in"></i></div><div class="social-icon" onclick="window.open('https://github.com','_blank')"><i class="fab fa-github"></i></div></div></div><div class="partner-grid"><div class="partner-item"><i class="fab fa-instagram"></i> MIT</div><div class="partner-item"><i class="fab fa-twitter"></i> Harvard</div><div class="partner-item"><i class="fab fa-linkedin"></i> Stanford</div><div class="partner-item"><i class="fab fa-github"></i> Oxford</div></div><div class="footer-links"><h4>Quick Links</h4><a onclick="showPage('work')">Find Work</a><a onclick="showPage('packages')">Packages</a><a onclick="showPage('dashboard')">Dashboard</a></div><div class="footer-links"><h4>Support</h4><a onclick="showToast('support@academixpro.com')">Email</a><a onclick="showPage('faq')">FAQ</a></div></div><div class="copyright"><p>© 2022-2026 AcademiX Pro | Global Scholar Network</p></div></footer>
+    <footer>
+        <div class="footer-grid">
+            <div>
+                <div class="logo">AcademiX<span style="color: var(--accent);">Pro</span></div>
+                <p style="margin: 1rem 0; color: var(--text-secondary);">Empowering scholars worldwide since 2022</p>
+                <div class="social-links">
+                    <a href="https://twitter.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                    <a href="https://linkedin.com/company/academixpro" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="https://github.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-github"></i></a>
+                    <a href="https://instagram.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://facebook.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                </div>
+            </div>
+            <div>
+                <h4 style="margin-bottom: 1rem; color: var(--primary);">🌟 Partner Institutions</h4>
+                <div class="partner-grid">
+                    <a href="https://www.mit.edu" target="_blank" class="partner-item"><i class="fab fa-university"></i> MIT</a>
+                    <a href="https://www.harvard.edu" target="_blank" class="partner-item"><i class="fas fa-graduation-cap"></i> Harvard</a>
+                    <a href="https://www.stanford.edu" target="_blank" class="partner-item"><i class="fas fa-chalkboard"></i> Stanford</a>
+                    <a href="https://www.ox.ac.uk" target="_blank" class="partner-item"><i class="fas fa-landmark"></i> Oxford</a>
+                </div>
+                <div style="margin-top: 1rem;">
+                    <p style="font-size: 0.75rem; color: var(--text-muted);">🌍 Global Academic Partners Network</p>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>⚡ Quick Links</h4>
+                <a onclick="showPage('work')"><i class="fas fa-briefcase"></i> Find Work</a>
+                <a onclick="showPage('packages')"><i class="fas fa-box"></i> Packages</a>
+                <a onclick="showPage('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a>
+                <a onclick="showPage('contests')"><i class="fas fa-trophy"></i> Contests</a>
+            </div>
+            <div class="footer-links">
+                <h4>🛡️ Support</h4>
+                <a onclick="showToast('📧 support@academixpro.com')"><i class="fas fa-envelope"></i> Email Support</a>
+                <a onclick="showPage('faq')"><i class="fas fa-question-circle"></i> FAQ</a>
+                <a onclick="showToast('💬 24/7 Live Chat Available')"><i class="fas fa-comments"></i> Live Chat</a>
+                <a onclick="showToast('📞 +1 (888) 123-4567')"><i class="fas fa-phone"></i> Contact Us</a>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2022-2026 AcademiX Pro | Global Scholar Network | Empowering Academic Excellence Worldwide</p>
+            <p style="margin-top: 0.5rem; font-size: 0.7rem;">🌐 85,000+ Scholars | 120+ Countries | 4.9★ Rating</p>
+        </div>
+    </footer>
 
-    <!-- AUTH MODAL (with payment method selector for registration) -->
+    <!-- AUTH MODAL -->
     <div class="modal" id="authModal"><div class="modal-content"><div style="display:flex; justify-content:space-between;"><h2>Welcome to AcademiX Pro</h2><i class="fas fa-times" style="cursor:pointer;" onclick="closeModal('authModal')"></i></div><div style="display:flex; gap:0.5rem; margin:1rem 0;"><button class="btn btn-primary" id="loginTabBtn" onclick="showAuthTab('login')" style="flex:1">Login</button><button class="btn btn-outline" id="registerTabBtn" onclick="showAuthTab('register')" style="flex:1">Register</button></div><div id="loginForm"><input type="email" id="loginEmail" placeholder="Email" class="wallet-address-input"><input type="password" id="loginPassword" placeholder="Password" class="wallet-address-input"><button class="btn btn-primary" style="width:100%;" onclick="handleLogin()">Sign In</button></div><div id="registerForm" style="display:none;"><input type="text" id="regName" placeholder="Full Name" class="wallet-address-input"><input type="email" id="regEmail" placeholder="Email" class="wallet-address-input"><input type="password" id="regPassword" placeholder="Password (min 6 chars)" class="wallet-address-input"><select id="regCategory"><option>Essay Writing</option><option>Research Papers</option><option>Proofreading</option><option>Coding</option></select>
-            <!-- NEW: Payment method selection for withdrawals -->
             <div style="margin: 0.5rem 0 0.2rem;"><label style="font-weight:500;">Payment Method for Withdrawals</label></div>
             <div class="payment-method-toggle" id="regPaymentMethodToggle">
                 <div class="payment-option active" data-method="paypal" onclick="selectRegPaymentMethod('paypal')"><i class="fab fa-paypal"></i> PayPal</div>
@@ -179,20 +249,38 @@
     <div id="toast" class="toast"></div>
 
     <script>
-        // ---------- COMBINED PLATFORM ----------
+        // Global state
         let currentUser = null;
         let walletBalance = 0, tasksCompleted = 0, totalEarned = 0;
         let activePackage = null, tasksRemaining = 0, availableTasks = [];
         let userWithdrawalAddress = "";
-        let selectedPaymentMethod = "paypal"; // new field for registration/withdrawal method
+        let selectedPaymentMethod = "paypal";
         let isGuest = false;
         let charts = { earnings: null, tasks: null };
 
-        const packagesList = [
-            {id:1, name:"Starter", price:50, tasks:8, features:["8 Academic Tasks","Essay Writing","Proofreading","Email Support"], hasContests:false},
-            {id:2, name:"Professional", price:99, tasks:20, features:["20 Academic Tasks","Coding Projects","Research Papers","Priority Support"], hasContests:false},
-            {id:3, name:"Premium", price:199, tasks:50, features:["50 Academic Tasks","All Categories","Contest Access","24/7 Support","Double Rewards"], hasContests:true, popular:true}
+        // NOWPAYMENTS INVOICE URLs
+        const NOWPAYMENTS_URLS = {
+            starter: "https://nowpayments.io/payment/?iid=4699167845",
+            professional: "https://nowpayments.io/payment/?iid=4586664203",
+            premium: "https://nowpayments.io/payment/?iid=5548722510"
+        };
+
+        // 6 Sample Tasks for Guest View
+        const guestTasksList = [
+            {category:"essay", title:"Academic Essay Writing", price:15, desc:"Write a compelling 1000-word essay on given topic", icon:"fa-pen-fancy"},
+            {category:"research", title:"Literature Review", price:35, desc:"Summarize recent research findings in your field", icon:"fa-book"},
+            {category:"coding", title:"HTML/CSS Project", price:25, desc:"Build responsive web components", icon:"fa-code"},
+            {category:"proofreading", title:"Document Proofreading", price:12, desc:"Proofread and edit academic papers", icon:"fa-spell-check"},
+            {category:"essay", title:"Personal Statement", price:20, desc:"Craft powerful personal statement for applications", icon:"fa-user-graduate"},
+            {category:"research", title:"Data Analysis Report", price:45, desc:"Analyze datasets and create comprehensive reports", icon:"fa-chart-bar"}
         ];
+
+        const packagesList = [
+            {id:1, name:"Starter", price:50, tasks:8, features:["8 Academic Tasks","Essay Writing","Proofreading","Email Support"], hasContests:false, npUrl:NOWPAYMENTS_URLS.starter},
+            {id:2, name:"Professional", price:99, tasks:20, features:["20 Academic Tasks","Coding Projects","Research Papers","Priority Support"], hasContests:false, npUrl:NOWPAYMENTS_URLS.professional},
+            {id:3, name:"Premium", price:199, tasks:50, features:["50 Academic Tasks","All Categories","Contest Access","24/7 Support","Double Rewards"], hasContests:true, popular:true, npUrl:NOWPAYMENTS_URLS.premium}
+        ];
+        
         const taskTemplates = [
             {category:"essay", title:"Academic Essay", price:15, desc:"Write a compelling essay on given topic"},
             {category:"coding", title:"HTML/CSS Project", price:25, desc:"Build responsive web components"},
@@ -200,69 +288,390 @@
             {category:"proofreading", title:"Document Review", price:12, desc:"Proofread and edit academic papers"},
             {category:"essay", title:"Personal Statement", price:20, desc:"Craft powerful personal statement"}
         ];
+        
         const contestsList = [
             {id:1, name:"Global Essay Championship", prize:5000, deadline:"15 days left"},
             {id:2, name:"Code Masters Challenge", prize:3000, deadline:"10 days left"},
             {id:3, name:"Research Excellence Award", prize:7500, deadline:"20 days left"}
         ];
+        
         const previousWinners = [{name:"Dr. Sarah Chen", contest:"Global Essay Championship", prize:5000},{name:"Marcus Thompson", contest:"Code Masters Challenge", prize:3000},{name:"Elena Rodriguez", contest:"Research Excellence", prize:7500}];
 
-        function selectRegPaymentMethod(method) {
-            selectedPaymentMethod = method;
-            document.querySelectorAll('#regPaymentMethodToggle .payment-option').forEach(opt => opt.classList.remove('active'));
-            document.querySelector(`#regPaymentMethodToggle .payment-option[data-method="${method}"]`).classList.add('active');
-            let addrInput = document.getElementById('regWalletAddr');
-            let hint = document.getElementById('regAddrHint');
-            if(method === 'paypal') {
-                addrInput.placeholder = "PayPal Email (e.g., name@example.com)";
-                hint.innerHTML = '<i class="fab fa-paypal"></i> Enter your PayPal email for withdrawals';
-            } else {
-                addrInput.placeholder = "Crypto Wallet Address (BTC/ETH/USDT)";
-                hint.innerHTML = '<i class="fas fa-coins"></i> Enter your crypto wallet address for withdrawals';
-            }
+        // Helper Functions
+        function updateMaxWithdrawHint() { 
+            let maxSpan = document.getElementById('maxWithdrawHint');
+            if(maxSpan) maxSpan.innerText = `$${walletBalance.toFixed(2)}`;
         }
-
-        function saveUser() { if(currentUser && !isGuest) localStorage.setItem(`academix_${currentUser.email}`, JSON.stringify({...currentUser, walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod})); else if(isGuest) localStorage.setItem('academix_guest', JSON.stringify({walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod})); }
-        function loadSaved() {
-            let session = localStorage.getItem('academix_session');
-            if(session) { let data = JSON.parse(localStorage.getItem(`academix_${session}`)); if(data && data.email) { restoreUser(data); return true; } }
-            let guest = localStorage.getItem('academix_guest');
-            if(guest) { let g = JSON.parse(guest); isGuest=true; walletBalance=g.walletBalance||0; tasksCompleted=g.tasksCompleted||0; totalEarned=g.totalEarned||0; activePackage=g.activePackage; tasksRemaining=g.tasksRemaining||0; availableTasks=g.availableTasks||[]; userWithdrawalAddress=g.userWithdrawalAddress||""; selectedPaymentMethod=g.paymentMethod || "paypal"; updateGuestUI(); return true; }
+        
+        function updateWithdrawDisplayAddr() {
+            let span = document.getElementById('withdrawAddrDisplay');
+            if(span) span.innerText = userWithdrawalAddress ? (userWithdrawalAddress.length > 25 ? userWithdrawalAddress.substring(0,15)+'...' : userWithdrawalAddress) : "Not set";
+        }
+        
+        function requestWithdrawal() {
+            let amount = parseFloat(document.getElementById('withdrawAmountInput').value);
+            if(isNaN(amount) || amount <= 0) { showToast("Please enter a valid positive amount"); return; }
+            if(amount > walletBalance) { showToast(`Insufficient balance. Max withdraw: $${walletBalance.toFixed(2)}`); return; }
+            if(!userWithdrawalAddress) { showToast("Please set a payout address first (PayPal or Crypto)"); return; }
+            walletBalance -= amount;
+            saveUser();
+            updateAll();
+            showToast(`✅ Withdrawal of $${amount.toFixed(2)} requested to ${userWithdrawalAddress.substring(0,20)}...`);
+            document.getElementById('withdrawAmountInput').value = '';
+            updateMaxWithdrawHint();
+        }
+        
+        // FIXED: Crypto deposit with custom amount
+        function openCryptoDeposit() {
+            let amount = parseFloat(document.getElementById('cryptoAmountInput').value);
+            
+            if(isNaN(amount) || amount < 10) {
+                showToast("Minimum crypto deposit is $10");
+                document.getElementById('cryptoAmountInput').value = 10;
+                amount = 10;
+            }
+            
+            amount = Math.round(amount * 100) / 100;
+            
+            // Pass the custom amount to NowPayments
+            const paymentUrl = `${NOWPAYMENTS_URLS.starter}&amount=${amount}`;
+            
+            window.open(paymentUrl, '_blank');
+            showToast(`Redirecting to NowPayments for $${amount.toFixed(2)}...`);
+            
+            localStorage.setItem('pendingCryptoAmount', amount);
+            
+            setTimeout(() => {
+                if(confirm(`After completing the $${amount.toFixed(2)} payment, click OK to add funds to your wallet.`)) {
+                    walletBalance += amount;
+                    saveUser();
+                    updateAll();
+                    showToast(`$${amount.toFixed(2)} added to wallet!`);
+                    localStorage.removeItem('pendingCryptoAmount');
+                }
+            }, 2000);
+            
             return false;
         }
-        function restoreUser(data) { currentUser = {name:data.name, email:data.email, avatar:data.avatar, category:data.category, password:data.password}; walletBalance=data.walletBalance; tasksCompleted=data.tasksCompleted; totalEarned=data.totalEarned; activePackage=data.activePackage; tasksRemaining=data.tasksRemaining; availableTasks=data.availableTasks||[]; userWithdrawalAddress=data.userWithdrawalAddress||""; selectedPaymentMethod=data.paymentMethod || "paypal"; isGuest=false; updateUI(); if(activePackage && availableTasks.length===0 && tasksRemaining>0) generateTasks(); }
-        function updateUI() { if(!currentUser) return; document.getElementById('authButton').style.display='none'; document.getElementById('walletInfo').style.display='flex'; document.getElementById('userMenu').style.display='flex'; document.getElementById('userName').innerHTML=currentUser.name.split(' ')[0]; document.getElementById('userAvatar').innerHTML=currentUser.avatar||currentUser.name.charAt(0).toUpperCase(); document.getElementById('profileAvatar').innerHTML=currentUser.avatar||currentUser.name.charAt(0).toUpperCase(); document.getElementById('displayName').innerHTML=currentUser.name; document.getElementById('displayEmail').innerHTML=currentUser.email; document.getElementById('displayCategory').innerHTML=currentUser.category||"Scholar"; document.getElementById('editName').value=currentUser.name; document.getElementById('editCategory').value=currentUser.category||"Essay Writing"; document.getElementById('profileWalletAddr').innerHTML=userWithdrawalAddress||"Not set"; updateWalletDisplay(); updateDashboard(); }
-        function updateGuestUI() { document.getElementById('authButton').style.display='flex'; document.getElementById('walletInfo').style.display='flex'; document.getElementById('userMenu').style.display='none'; document.getElementById('walletDisplay').innerHTML=`$${walletBalance.toFixed(2)}`; if(document.getElementById('displayName')) document.getElementById('displayName').innerHTML="Guest Scholar"; updateWalletDisplay(); updateDashboard(); }
-        function updateAll() { updateDashboard(); updateWalletDisplay(); updatePackageStatusUI(); if(activePackage && availableTasks.length===0 && tasksRemaining>0) generateTasks(); loadTasks(); loadContests(); saveUser(); }
-        function updateDashboard() { document.getElementById('dashboardBalance').innerHTML=`$${walletBalance.toFixed(2)}`; document.getElementById('tasksCompleted').innerHTML=tasksCompleted; document.getElementById('totalEarned').innerHTML=`$${totalEarned.toFixed(2)}`; document.getElementById('activePackageDisplay').innerHTML=activePackage?activePackage.name:'None'; document.getElementById('tasksLeft').innerHTML=tasksRemaining; if(charts.tasks) charts.tasks.data.datasets[0].data=[tasksCompleted, Math.max(0,(activePackage?.tasks||50)-tasksCompleted)]; charts.tasks?.update(); }
-        function updateWalletDisplay() { document.getElementById('walletDisplay').innerHTML=`$${walletBalance.toFixed(2)}`; document.getElementById('walletPageBalance').innerHTML=`$${walletBalance.toFixed(2)}`; if(document.getElementById('walletAddressDisplay')) document.getElementById('walletAddressDisplay').innerHTML=userWithdrawalAddress?`Payout (${selectedPaymentMethod==='paypal'?'PayPal':'Crypto'}): ${userWithdrawalAddress}`:"Set payout address"; }
-        function updatePackageStatusUI() { let div=document.getElementById('packageStatus'); if(activePackage && (currentUser||isGuest)) { div.style.display='block'; document.getElementById('activePackageName').innerHTML=`Active: ${activePackage.name}`; document.getElementById('tasksRemainingText').innerHTML=`${tasksRemaining} tasks remaining`; } else div.style.display='none'; }
-        function generateTasks() { availableTasks=[]; let count=Math.min(activePackage.tasks,12); for(let i=0;i<count;i++) availableTasks.push({...taskTemplates[Math.floor(Math.random()*taskTemplates.length)], id:Date.now()+i}); saveUser(); loadTasks(); }
-        function loadTasks() { if(!currentUser && !isGuest) { let html=`<div style="grid-column:1/-1;text-align:center;padding:2rem;"><i class="fas fa-eye"></i><h3>Sign in to unlock tasks</h3><button class="btn btn-primary" onclick="showAuthModal()">Sign In</button></div>`; taskTemplates.slice(0,3).forEach(t=>{ html+=`<div class="task-card locked-task"><span class="task-badge">${t.category}</span><h3>${t.title}</h3><p>${t.desc}</p><div style="font-size:1.5rem;color:var(--primary);">$${t.price}</div></div>`;}); document.getElementById('tasksGrid').innerHTML=html; return; } if(!activePackage){ document.getElementById('tasksGrid').innerHTML=`<div style="text-align:center;padding:2rem;"><i class="fas fa-box-open"></i><h3>Choose a package to start earning</h3><button class="btn btn-primary" onclick="showPage('packages')">View Packages</button></div>`; return; } if(tasksRemaining<=0){ document.getElementById('tasksGrid').innerHTML=`<div style="text-align:center;padding:2rem;"><i class="fas fa-trophy"></i><h3>Package completed! 🎉</h3></div>`; return; } let html=''; availableTasks.forEach(t=>{ html+=`<div class="task-card" onclick="completeTask(${t.id})"><span class="task-badge">${t.category}</span><h3 style="margin:0.8rem 0;">${t.title}</h3><p>${t.desc}</p><div style="font-size:1.5rem;color:var(--primary);">$${t.price}</div></div>`;}); document.getElementById('tasksGrid').innerHTML=html; }
-        function completeTask(id){ let task=availableTasks.find(t=>t.id===id); if(task && tasksRemaining>0){ tasksRemaining--; tasksCompleted++; totalEarned+=task.price; walletBalance+=task.price; availableTasks=availableTasks.filter(t=>t.id!==id); updateAll(); showToast(`+$${task.price} earned!`); if(availableTasks.length===0 && tasksRemaining>0) generateTasks(); else loadTasks(); } }
-        function loadContests(){ let premiumAccess=(activePackage && activePackage.hasContests); if(!premiumAccess){ let html=`<div style="grid-column:1/-1;text-align:center;"><i class="fas fa-crown"></i><h3>Premium Package Required</h3><button class="btn btn-primary" onclick="showPage('packages')">Upgrade to Premium</button></div>`; previousWinners.forEach(w=>{ html+=`<div class="task-card locked-task"><span class="task-badge">🏆 Winner</span><h3>${w.contest}</h3><div>Winner: ${w.name} | $${w.prize}</div></div>`;}); document.getElementById('contestsGrid').innerHTML=html; return; } let html=''; contestsList.forEach(c=>{ html+=`<div class="task-card" onclick="enterContest(${c.id})"><span class="task-badge" style="background:var(--accent);">🏆 Contest</span><h3>${c.name}</h3><div style="font-size:1.8rem;color:var(--accent);">$${c.prize}</div><p>${c.deadline}</p></div>`;}); document.getElementById('contestsGrid').innerHTML=html; }
+        
+        function purchasePackageWithCrypto(pkgId) {
+            let pkg = packagesList.find(p => p.id === pkgId);
+            if(!pkg) return false;
+            if(!currentUser && !isGuest) {
+                showToast("Sign in to purchase packages");
+                showAuthModal();
+                return false;
+            }
+            const paymentUrl = pkg.npUrl;
+            window.open(paymentUrl, '_blank');
+            showToast(`Redirecting to NowPayments for ${pkg.name} Package ($${pkg.price})...`);
+            localStorage.setItem('pendingPackageId', pkgId);
+            localStorage.setItem('pendingPackageAmount', pkg.price);
+            setTimeout(() => {
+                if(confirm(`After completing the $${pkg.price} payment for ${pkg.name} package, click OK to activate your package.`)) {
+                    walletBalance += pkg.price;
+                    saveUser();
+                    updateAll();
+                    if(walletBalance >= pkg.price) {
+                        walletBalance -= pkg.price;
+                        activePackage = pkg;
+                        tasksRemaining = pkg.tasks;
+                        generateTasks();
+                        updateAll();
+                        showToast(`✅ ${pkg.name} package activated! Complete ${pkg.tasks} tasks to earn rewards.`);
+                    } else {
+                        showToast(`Funds added! Now you have $${walletBalance.toFixed(2)}. Please purchase package again.`);
+                    }
+                    localStorage.removeItem('pendingPackageId');
+                    localStorage.removeItem('pendingPackageAmount');
+                }
+            }, 2000);
+            return false;
+        }
+        
+        function saveUser() { 
+            if(currentUser && !isGuest) {
+                localStorage.setItem(`academix_${currentUser.email}`, JSON.stringify({
+                    ...currentUser, walletBalance, tasksCompleted, totalEarned, activePackage, 
+                    tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod
+                }));
+            } else if(isGuest) {
+                localStorage.setItem('academix_guest', JSON.stringify({
+                    walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, 
+                    availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod
+                }));
+            }
+        }
+        
+        function loadSaved() {
+            let session = localStorage.getItem('academix_session');
+            if(session) { 
+                let data = JSON.parse(localStorage.getItem(`academix_${session}`)); 
+                if(data && data.email) { restoreUser(data); return true; } 
+            }
+            let guest = localStorage.getItem('academix_guest');
+            if(guest) { 
+                let g = JSON.parse(guest); 
+                isGuest=true; walletBalance=g.walletBalance||0; tasksCompleted=g.tasksCompleted||0; 
+                totalEarned=g.totalEarned||0; activePackage=g.activePackage; tasksRemaining=g.tasksRemaining||0; 
+                availableTasks=g.availableTasks||[]; userWithdrawalAddress=g.userWithdrawalAddress||""; 
+                selectedPaymentMethod=g.paymentMethod || "paypal"; updateGuestUI(); return true; 
+            }
+            return false;
+        }
+        
+        function restoreUser(data) { 
+            currentUser = {name:data.name, email:data.email, avatar:data.avatar, category:data.category, password:data.password}; 
+            walletBalance=data.walletBalance; tasksCompleted=data.tasksCompleted; totalEarned=data.totalEarned; 
+            activePackage=data.activePackage; tasksRemaining=data.tasksRemaining; availableTasks=data.availableTasks||[]; 
+            userWithdrawalAddress=data.userWithdrawalAddress||""; selectedPaymentMethod=data.paymentMethod || "paypal"; 
+            isGuest=false; updateUI(); if(activePackage && availableTasks.length===0 && tasksRemaining>0) generateTasks(); 
+        }
+        
+        function updateUI() { 
+            if(!currentUser) return; 
+            document.getElementById('authButton').style.display='none'; 
+            document.getElementById('walletInfo').style.display='flex'; 
+            document.getElementById('userMenu').style.display='flex'; 
+            document.getElementById('userName').innerHTML=currentUser.name.split(' ')[0]; 
+            document.getElementById('userAvatar').innerHTML=currentUser.avatar||currentUser.name.charAt(0).toUpperCase(); 
+            document.getElementById('profileAvatar').innerHTML=currentUser.avatar||currentUser.name.charAt(0).toUpperCase(); 
+            document.getElementById('displayName').innerHTML=currentUser.name; 
+            document.getElementById('displayEmail').innerHTML=currentUser.email; 
+            document.getElementById('displayCategory').innerHTML=currentUser.category||"Scholar"; 
+            document.getElementById('editName').value=currentUser.name; 
+            document.getElementById('editCategory').value=currentUser.category||"Essay Writing"; 
+            document.getElementById('profileWalletAddr').innerHTML=userWithdrawalAddress||"Not set"; 
+            document.getElementById('guestBadge').style.display = 'none';
+            updateWalletDisplay(); updateDashboard(); updateWithdrawDisplayAddr(); updateMaxWithdrawHint(); 
+        }
+        
+        function updateGuestUI() { 
+            document.getElementById('authButton').style.display='flex'; 
+            document.getElementById('walletInfo').style.display='flex'; 
+            document.getElementById('userMenu').style.display='none'; 
+            document.getElementById('walletDisplay').innerHTML=`$${walletBalance.toFixed(2)}`; 
+            document.getElementById('guestBadge').style.display = 'inline-block';
+            if(document.getElementById('displayName')) document.getElementById('displayName').innerHTML="Guest Scholar"; 
+            updateWalletDisplay(); updateDashboard(); updateWithdrawDisplayAddr(); updateMaxWithdrawHint(); 
+        }
+        
+        function updateAll() { 
+            updateDashboard(); updateWalletDisplay(); updatePackageStatusUI(); 
+            if(activePackage && availableTasks.length===0 && tasksRemaining>0) generateTasks(); 
+            loadTasks(); loadContests(); saveUser(); updateMaxWithdrawHint(); updateWithdrawDisplayAddr(); 
+        }
+        
+        function updateDashboard() { 
+            document.getElementById('dashboardBalance').innerHTML=`$${walletBalance.toFixed(2)}`; 
+            document.getElementById('tasksCompleted').innerHTML=tasksCompleted; 
+            document.getElementById('totalEarned').innerHTML=`$${totalEarned.toFixed(2)}`; 
+            document.getElementById('activePackageDisplay').innerHTML=activePackage?activePackage.name:'None'; 
+            document.getElementById('tasksLeft').innerHTML=tasksRemaining; 
+            if(charts.tasks) charts.tasks.data.datasets[0].data=[tasksCompleted, Math.max(0,(activePackage?.tasks||50)-tasksCompleted)]; 
+            charts.tasks?.update(); 
+        }
+        
+        function updateWalletDisplay() { 
+            document.getElementById('walletDisplay').innerHTML=`$${walletBalance.toFixed(2)}`; 
+            document.getElementById('walletPageBalance').innerHTML=`$${walletBalance.toFixed(2)}`; 
+            if(document.getElementById('walletAddressDisplay')) document.getElementById('walletAddressDisplay').innerHTML=userWithdrawalAddress?`Payout (${selectedPaymentMethod==='paypal'?'PayPal':'Crypto'}): ${userWithdrawalAddress}`:"Set payout address"; 
+        }
+        
+        function updatePackageStatusUI() { 
+            let div=document.getElementById('packageStatus'); 
+            if(activePackage && (currentUser||isGuest)) { 
+                div.style.display='block'; 
+                document.getElementById('activePackageName').innerHTML=`Active: ${activePackage.name}`; 
+                document.getElementById('tasksRemainingText').innerHTML=`${tasksRemaining} tasks remaining`; 
+            } else div.style.display='none'; 
+        }
+        
+        function generateTasks() { 
+            availableTasks=[]; 
+            let count=Math.min(activePackage.tasks,12); 
+            for(let i=0;i<count;i++) availableTasks.push({...taskTemplates[Math.floor(Math.random()*taskTemplates.length)], id:Date.now()+i}); 
+            saveUser(); loadTasks(); 
+        }
+        
+        function loadTasks() { 
+            // GUEST MODE - Show 6 locked tasks
+            if(!currentUser && !isGuest) {
+                // Show sign-in prompt with 6 locked tasks
+                let html = '';
+                guestTasksList.forEach(t => { 
+                    html += `<div class="task-card locked-task" onclick="showAuthModal()">
+                        <span class="task-badge"><i class="fas ${t.icon}"></i> ${t.category}</span>
+                        <h3 style="margin:0.8rem 0;">${t.title}</h3>
+                        <p>${t.desc}</p>
+                        <div style="font-size:1.5rem;color:var(--primary);">$${t.price}</div>
+                        <div style="margin-top:0.8rem; font-size:0.8rem; color:var(--accent);"><i class="fas fa-lock"></i> Sign in to unlock</div>
+                    </div>`;
+                });
+                document.getElementById('tasksGrid').innerHTML = html;
+                return;
+            }
+            
+            // GUEST with no package
+            if(isGuest && !activePackage) {
+                let html = '';
+                guestTasksList.forEach(t => { 
+                    html += `<div class="task-card locked-task" onclick="showPage('packages')">
+                        <span class="task-badge"><i class="fas ${t.icon}"></i> ${t.category}</span>
+                        <h3 style="margin:0.8rem 0;">${t.title}</h3>
+                        <p>${t.desc}</p>
+                        <div style="font-size:1.5rem;color:var(--primary);">$${t.price}</div>
+                        <div style="margin-top:0.8rem; font-size:0.8rem; color:var(--accent);"><i class="fas fa-gem"></i> Purchase a package to unlock</div>
+                    </div>`;
+                });
+                document.getElementById('tasksGrid').innerHTML = html;
+                return;
+            }
+            
+            // Logged in user with package
+            if(!activePackage){ 
+                document.getElementById('tasksGrid').innerHTML=`<div style="text-align:center;padding:2rem;"><i class="fas fa-box-open"></i><h3>Choose a package to start earning</h3><button class="btn btn-primary" onclick="showPage('packages')">View Packages</button></div>`; 
+                return; 
+            }
+            
+            if(tasksRemaining<=0){ 
+                document.getElementById('tasksGrid').innerHTML=`<div style="text-align:center;padding:2rem;"><i class="fas fa-trophy"></i><h3>Package completed! 🎉</h3><button class="btn btn-primary" onclick="showPage('packages')">Upgrade Package</button></div>`; 
+                return; 
+            }
+            
+            let html=''; 
+            availableTasks.forEach(t=>{ html+=`<div class="task-card" onclick="completeTask(${t.id})"><span class="task-badge">${t.category}</span><h3 style="margin:0.8rem 0;">${t.title}</h3><p>${t.desc}</p><div style="font-size:1.5rem;color:var(--primary);">$${t.price}</div></div>`;}); 
+            document.getElementById('tasksGrid').innerHTML=html; 
+        }
+        
+        function completeTask(id){ 
+            let task=availableTasks.find(t=>t.id===id); 
+            if(task && tasksRemaining>0){ 
+                tasksRemaining--; tasksCompleted++; totalEarned+=task.price; walletBalance+=task.price; 
+                availableTasks=availableTasks.filter(t=>t.id!==id); updateAll(); 
+                showToast(`+$${task.price} earned!`); 
+                if(availableTasks.length===0 && tasksRemaining>0) generateTasks(); else loadTasks(); 
+            } 
+        }
+        
+        function loadContests(){ 
+            let premiumAccess=(activePackage && activePackage.hasContests); 
+            if(!premiumAccess){ 
+                let html=`<div style="grid-column:1/-1;text-align:center;"><i class="fas fa-crown"></i><h3>Premium Package Required</h3><button class="btn btn-primary" onclick="showPage('packages')">Upgrade to Premium</button></div>`; 
+                previousWinners.forEach(w=>{ html+=`<div class="task-card locked-task"><span class="task-badge">🏆 Winner</span><h3>${w.contest}</h3><div>Winner: ${w.name} | $${w.prize}</div></div>`;}); 
+                document.getElementById('contestsGrid').innerHTML=html; return; 
+            } 
+            let html=''; contestsList.forEach(c=>{ html+=`<div class="task-card" onclick="enterContest(${c.id})"><span class="task-badge" style="background:var(--accent);">🏆 Contest</span><h3>${c.name}</h3><div style="font-size:1.8rem;color:var(--accent);">$${c.prize}</div><p>${c.deadline}</p></div>`;}); 
+            document.getElementById('contestsGrid').innerHTML=html; 
+        }
+        
         function enterContest(id){ showToast("✨ Contest entry submitted! Winners announced soon."); }
-        function handleLogin(){ let email=document.getElementById('loginEmail').value.trim(), pwd=document.getElementById('loginPassword').value; if(!email||!pwd){ showToast("Enter email & password"); return; } let data=localStorage.getItem(`academix_${email}`); if(data){ let u=JSON.parse(data); if(u.password===pwd){ restoreUser(u); localStorage.setItem('academix_session',email); closeModal('authModal'); showPage('home'); showToast(`Welcome back ${currentUser.name}!`); return; } } showToast("Invalid credentials"); }
-        function handleRegister(){ let name=document.getElementById('regName').value.trim(), email=document.getElementById('regEmail').value.trim(), pwd=document.getElementById('regPassword').value, cat=document.getElementById('regCategory').value, wallet=document.getElementById('regWalletAddr').value.trim(); if(!name||!email||!pwd){ showToast("Fill all required fields"); return; } if(pwd.length<6){ showToast("Password min 6 chars"); return; } if(localStorage.getItem(`academix_${email}`)){ showToast("Email already exists"); return; } let newUser={name,email,password:pwd, category:cat, avatar:name.charAt(0).toUpperCase(), walletBalance:0, tasksCompleted:0, totalEarned:0, activePackage:null, tasksRemaining:0, availableTasks:[], userWithdrawalAddress:wallet, paymentMethod:selectedPaymentMethod}; localStorage.setItem(`academix_${email}`, JSON.stringify(newUser)); localStorage.setItem('academix_session',email); currentUser={name,email,avatar:name.charAt(0).toUpperCase(), category:cat, password:pwd}; walletBalance=0; tasksCompleted=0; totalEarned=0; activePackage=null; tasksRemaining=0; availableTasks=[]; userWithdrawalAddress=wallet; selectedPaymentMethod=newUser.paymentMethod; isGuest=false; updateUI(); closeModal('authModal'); showPage('setup'); showToast("Account created! Complete profile."); }
-        function completeSetup(){ let name=document.getElementById('setupName').value.trim(), cat=document.getElementById('setupCategory').value, wallet=document.getElementById('setupWalletAddr').value.trim(); if(!name||!cat){ showToast("Name & specialization required"); return; } if(currentUser && !isGuest){ currentUser.name=name; currentUser.category=cat; currentUser.avatar=name.charAt(0).toUpperCase(); userWithdrawalAddress=wallet; saveUser(); updateUI(); showPage('home'); showToast("Profile ready! Purchase a package to start."); } else if(isGuest){ userWithdrawalAddress=wallet; saveUser(); updateGuestUI(); showPage('home'); showToast("Guest profile saved."); } }
-        function saveProfile(){ if(currentUser && !isGuest){ currentUser.name=document.getElementById('editName').value; currentUser.category=document.getElementById('editCategory').value; currentUser.avatar=currentUser.name.charAt(0).toUpperCase(); saveUser(); updateUI(); showToast("Profile updated"); } }
-        function saveWithdrawalAddress(){ let addr=document.getElementById('withdrawalAddress').value.trim(); if(addr){ userWithdrawalAddress=addr; saveUser(); updateWalletDisplay(); if(currentUser) document.getElementById('profileWalletAddr').innerHTML=addr; showToast("Payout address saved"); } }
-        function purchasePackage(id){ let pkg=packagesList.find(p=>p.id===id); if(!currentUser && !isGuest){ showToast("Sign in to purchase packages"); showAuthModal(); return false; } if(walletBalance>=pkg.price){ walletBalance-=pkg.price; activePackage=pkg; tasksRemaining=pkg.tasks; generateTasks(); updateAll(); showToast(`${pkg.name} activated! Complete ${pkg.tasks} tasks.`); } else { showToast(`Insufficient balance. Need $${(pkg.price-walletBalance).toFixed(2)}`); showPage('wallet'); } return false; }
-        function loadPackages(){ let html=''; packagesList.forEach(p=>{ html+=`<div class="package-card ${p.popular?'popular':''}">${p.popular?'<div class="popular-badge">BEST VALUE</div>':''}<h3>${p.name}</h3><div class="package-price">$${p.price}</div><ul class="package-features">${p.features.map(f=>`<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul><div style="display:flex; gap:0.5rem;"><form action="https://www.paypal.com/cgi-bin/webscr" method="post" style="flex:1;"><input type="hidden" name="cmd" value="_xclick"><input type="hidden" name="business" value="F46BGYVCNCTFN"><input type="hidden" name="amount" value="${p.price}"><button type="submit" class="btn btn-primary" style="width:100%;" onclick="return purchasePackage(${p.id})">PayPal $${p.price}</button></form><a href="https://nowpayments.io/payment/?iid=4699167845&source=button" target="_blank" style="flex:1;"><button class="btn btn-primary" style="width:100%;" onclick="return purchasePackage(${p.id})">Crypto $${p.price}</button></a></div></div>`;}); document.getElementById('packagesGrid').innerHTML=html; }
-        function logout(){ if(currentUser && !isGuest) saveUser(); localStorage.removeItem('academix_session'); currentUser=null; isGuest=false; walletBalance=0; tasksCompleted=0; totalEarned=0; activePackage=null; tasksRemaining=0; availableTasks=[]; userWithdrawalAddress=""; selectedPaymentMethod="paypal"; document.getElementById('authButton').style.display='flex'; document.getElementById('walletInfo').style.display='none'; document.getElementById('userMenu').style.display='none'; showPage('home'); showToast("Logged out"); }
-        function deleteAccount(){ if(confirm("⚠️ Delete account permanently? This cannot be undone.")){ if(currentUser && !isGuest) localStorage.removeItem(`academix_${currentUser.email}`); localStorage.removeItem('academix_session'); logout(); showToast("Account deleted"); } }
-        function continueAsGuest(){ isGuest=true; currentUser=null; let g=localStorage.getItem('academix_guest'); if(g){ let data=JSON.parse(g); walletBalance=data.walletBalance||0; tasksCompleted=data.tasksCompleted||0; totalEarned=data.totalEarned||0; activePackage=data.activePackage; tasksRemaining=data.tasksRemaining||0; availableTasks=data.availableTasks||[]; userWithdrawalAddress=data.userWithdrawalAddress||""; selectedPaymentMethod=data.paymentMethod || "paypal"; } else { walletBalance=0; tasksCompleted=0; totalEarned=0; activePackage=null; tasksRemaining=0; availableTasks=[]; userWithdrawalAddress=""; selectedPaymentMethod="paypal"; } updateGuestUI(); updateAll(); closeModal('authModal'); showPage('home'); showToast("Guest mode - data saved locally"); }
+        
+        function handleLogin(){ 
+            let email=document.getElementById('loginEmail').value.trim(), pwd=document.getElementById('loginPassword').value; 
+            if(!email||!pwd){ showToast("Enter email & password"); return; } 
+            let data=localStorage.getItem(`academix_${email}`); 
+            if(data){ let u=JSON.parse(data); if(u.password===pwd){ restoreUser(u); localStorage.setItem('academix_session',email); closeModal('authModal'); showPage('home'); showToast(`Welcome back ${currentUser.name}!`); return; } } 
+            showToast("Invalid credentials"); 
+        }
+        
+        function handleRegister(){ 
+            let name=document.getElementById('regName').value.trim(), email=document.getElementById('regEmail').value.trim(), pwd=document.getElementById('regPassword').value, cat=document.getElementById('regCategory').value, wallet=document.getElementById('regWalletAddr').value.trim(); 
+            if(!name||!email||!pwd){ showToast("Fill all required fields"); return; } 
+            if(pwd.length<6){ showToast("Password min 6 chars"); return; } 
+            if(localStorage.getItem(`academix_${email}`)){ showToast("Email already exists"); return; } 
+            let newUser={name,email,password:pwd, category:cat, avatar:name.charAt(0).toUpperCase(), walletBalance:0, tasksCompleted:0, totalEarned:0, activePackage:null, tasksRemaining:0, availableTasks:[], userWithdrawalAddress:wallet, paymentMethod:selectedPaymentMethod}; 
+            localStorage.setItem(`academix_${email}`, JSON.stringify(newUser)); localStorage.setItem('academix_session',email); 
+            currentUser={name,email,avatar:name.charAt(0).toUpperCase(), category:cat, password:pwd}; 
+            walletBalance=0; tasksCompleted=0; totalEarned=0; activePackage=null; tasksRemaining=0; availableTasks=[]; userWithdrawalAddress=wallet; selectedPaymentMethod=newUser.paymentMethod; isGuest=false; updateUI(); closeModal('authModal'); showPage('setup'); showToast("Account created! Complete profile."); 
+        }
+        
+        function completeSetup(){ 
+            let name=document.getElementById('setupName').value.trim(), cat=document.getElementById('setupCategory').value, wallet=document.getElementById('setupWalletAddr').value.trim(); 
+            if(!name||!cat){ showToast("Name & specialization required"); return; } 
+            if(currentUser && !isGuest){ currentUser.name=name; currentUser.category=cat; currentUser.avatar=name.charAt(0).toUpperCase(); userWithdrawalAddress=wallet; saveUser(); updateUI(); showPage('home'); showToast("Profile ready! Purchase a package to start."); } 
+            else if(isGuest){ userWithdrawalAddress=wallet; saveUser(); updateGuestUI(); showPage('home'); showToast("Guest profile saved."); } 
+        }
+        
+        function saveProfile(){ 
+            if(currentUser && !isGuest){ currentUser.name=document.getElementById('editName').value; currentUser.category=document.getElementById('editCategory').value; currentUser.avatar=currentUser.name.charAt(0).toUpperCase(); saveUser(); updateUI(); showToast("Profile updated"); } 
+        }
+        
+        function saveWithdrawalAddress(){ 
+            let addr=document.getElementById('withdrawalAddress').value.trim(); 
+            if(addr){ userWithdrawalAddress=addr; saveUser(); updateWalletDisplay(); if(currentUser) document.getElementById('profileWalletAddr').innerHTML=addr; updateWithdrawDisplayAddr(); showToast("Payout address saved"); } 
+        }
+        
+        function purchasePackage(id){ 
+            let pkg=packagesList.find(p=>p.id===id); 
+            if(!currentUser && !isGuest){ showToast("Sign in to purchase packages"); showAuthModal(); return false; } 
+            if(walletBalance>=pkg.price){ walletBalance-=pkg.price; activePackage=pkg; tasksRemaining=pkg.tasks; generateTasks(); updateAll(); showToast(`${pkg.name} activated! Complete ${pkg.tasks} tasks.`); } 
+            else { showToast(`Insufficient balance. Need $${(pkg.price-walletBalance).toFixed(2)}`); showPage('wallet'); } 
+            return false; 
+        }
+        
+        function loadPackages(){ 
+            let html=''; 
+            packagesList.forEach(p=>{ 
+                html+=`<div class="package-card ${p.popular?'popular':''}">${p.popular?'<div class="popular-badge">BEST VALUE</div>':''}<h3>${p.name}</h3><div class="package-price">$${p.price}</div><ul class="package-features">${p.features.map(f=>`<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul><div style="display:flex; gap:0.5rem;"><button class="btn btn-primary" style="flex:1;" onclick="purchasePackage(${p.id})"><i class="fab fa-paypal"></i> PayPal $${p.price}</button><button class="btn btn-primary" style="flex:1;" onclick="purchasePackageWithCrypto(${p.id})"><i class="fas fa-coins"></i> Crypto $${p.price}</button></div></div>`;}); 
+            document.getElementById('packagesGrid').innerHTML=html; 
+        }
+        
+        function logout(){ 
+            if(currentUser && !isGuest) saveUser(); localStorage.removeItem('academix_session'); 
+            currentUser=null; isGuest=false; walletBalance=0; tasksCompleted=0; totalEarned=0; activePackage=null; 
+            tasksRemaining=0; availableTasks=[]; userWithdrawalAddress=""; selectedPaymentMethod="paypal"; 
+            document.getElementById('authButton').style.display='flex'; document.getElementById('walletInfo').style.display='none'; 
+            document.getElementById('userMenu').style.display='none'; showPage('home'); showToast("Logged out"); 
+        }
+        
+        function deleteAccount(){ 
+            if(confirm("⚠️ Delete account permanently? This cannot be undone.")){ 
+                if(currentUser && !isGuest) localStorage.removeItem(`academix_${currentUser.email}`); 
+                localStorage.removeItem('academix_session'); logout(); showToast("Account deleted"); 
+            } 
+        }
+        
+        function continueAsGuest(){ 
+            isGuest=true; currentUser=null; let g=localStorage.getItem('academix_guest'); 
+            if(g){ let data=JSON.parse(g); walletBalance=data.walletBalance||0; tasksCompleted=data.tasksCompleted||0; totalEarned=data.totalEarned||0; activePackage=data.activePackage; tasksRemaining=data.tasksRemaining||0; availableTasks=data.availableTasks||[]; userWithdrawalAddress=data.userWithdrawalAddress||""; selectedPaymentMethod=data.paymentMethod || "paypal"; } 
+            else { walletBalance=0; tasksCompleted=0; totalEarned=0; activePackage=null; tasksRemaining=0; availableTasks=[]; userWithdrawalAddress=""; selectedPaymentMethod="paypal"; } 
+            updateGuestUI(); updateAll(); closeModal('authModal'); showPage('home'); showToast("Guest mode - data saved locally"); 
+        }
+        
         function setTheme(theme){ document.body.className=`theme-${theme}`; localStorage.setItem('academix_theme',theme); showToast(`Theme: ${theme}`); }
-        function showPage(page){ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); document.getElementById(page+'-page').classList.add('active'); if(page==='work') loadTasks(); if(page==='packages') loadPackages(); if(page==='contests') loadContests(); if(page==='dashboard'){ if(charts.earnings) charts.earnings.data.datasets[0].data=[totalEarned*0.2,totalEarned*0.3,totalEarned*0.5,totalEarned]; charts.earnings.update(); updateDashboard(); } document.getElementById('navMenu')?.classList.remove('show'); }
-        function initCharts(){ let ctx1=document.getElementById('earningsChart')?.getContext('2d'); if(ctx1) charts.earnings=new Chart(ctx1,{type:'line',data:{labels:['Week1','Week2','Week3','Week4'],datasets:[{label:'Earnings ($)',data:[0,0,0,0],borderColor:'var(--primary)',tension:0.4,fill:true}]},options:{responsive:true,maintainAspectRatio:false}}); let ctx2=document.getElementById('tasksChart')?.getContext('2d'); if(ctx2) charts.tasks=new Chart(ctx2,{type:'doughnut',data:{labels:['Completed','Remaining'],datasets:[{data:[0,50],backgroundColor:['#10b981','#334155']}]},options:{responsive:true}}); }
-        function loadFAQ(){ let faqs=[{q:"How do packages work?",a:"Starter($50), Professional($99), Premium($199). Each unlocks tasks. Complete tasks to earn cash."},{q:"How do I add funds?",a:"Go to Wallet → PayPal or Crypto. Min $10 deposit."},{q:"Are earnings real?",a:"Yes! Real USD rewards paid to your wallet. Withdraw via PayPal or crypto."},{q:"Contest eligibility?",a:"Premium members can join contests and win big prizes."}]; let html=''; faqs.forEach((f,i)=>{ html+=`<div class="faq-item ${i===0?'active':''}" onclick="this.classList.toggle('active')"><div class="faq-question"><h3>${f.q}</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${f.a}</p></div></div>`;}); document.getElementById('faqSection').innerHTML=html; }
+        
+        function showPage(page){ 
+            document.querySelectorAll('.page').forEach(p=>p.classList.remove('active')); 
+            document.getElementById(page+'-page').classList.add('active'); 
+            if(page==='work') loadTasks(); if(page==='packages') loadPackages(); if(page==='contests') loadContests(); 
+            if(page==='dashboard'){ if(charts.earnings) charts.earnings.data.datasets[0].data=[totalEarned*0.2,totalEarned*0.3,totalEarned*0.5,totalEarned]; charts.earnings.update(); updateDashboard(); } 
+            if(page==='wallet'){ updateMaxWithdrawHint(); updateWithdrawDisplayAddr(); } 
+            document.getElementById('navMenu')?.classList.remove('show'); 
+        }
+        
+        function initCharts(){ 
+            let ctx1=document.getElementById('earningsChart')?.getContext('2d'); 
+            if(ctx1) charts.earnings=new Chart(ctx1,{type:'line',data:{labels:['Week1','Week2','Week3','Week4'],datasets:[{label:'Earnings ($)',data:[0,0,0,0],borderColor:'var(--primary)',tension:0.4,fill:true}]},options:{responsive:true,maintainAspectRatio:false}}); 
+            let ctx2=document.getElementById('tasksChart')?.getContext('2d'); 
+            if(ctx2) charts.tasks=new Chart(ctx2,{type:'doughnut',data:{labels:['Completed','Remaining'],datasets:[{data:[0,50],backgroundColor:['#10b981','#334155']}]},options:{responsive:true}}); 
+        }
+        
+        function loadFAQ(){ 
+            let faqs=[{q:"How do packages work?",a:"Starter($50), Professional($99), Premium($199). Each unlocks tasks. Complete tasks to earn cash."},{q:"How do I add funds?",a:"Go to Wallet → PayPal or Crypto. Min $10 deposit."},{q:"Are earnings real?",a:"Yes! Real USD rewards paid to your wallet. Withdraw via PayPal or crypto."},{q:"Contest eligibility?",a:"Premium members can join contests and win big prizes."}]; 
+            let html=''; faqs.forEach((f,i)=>{ html+=`<div class="faq-item ${i===0?'active':''}" onclick="this.classList.toggle('active')"><div class="faq-question"><h3>${f.q}</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${f.a}</p></div></div>`;}); 
+            document.getElementById('faqSection').innerHTML=html; 
+        }
+        
         function showToast(msg){ let t=document.getElementById('toast'); t.innerHTML=`<i class="fas fa-info-circle"></i> ${msg}`; t.style.display='block'; setTimeout(()=>t.style.display='none',3000); }
         function closeModal(id){ document.getElementById(id).classList.remove('active'); }
         function toggleMobileMenu(){ document.getElementById('navMenu').classList.toggle('show'); }
         function showAuthModal(){ document.getElementById('authModal').classList.add('active'); selectRegPaymentMethod('paypal'); document.getElementById('regWalletAddr').value = ''; }
         function showAuthTab(tab){ let login=document.getElementById('loginForm'), reg=document.getElementById('registerForm'), loginBtn=document.getElementById('loginTabBtn'), regBtn=document.getElementById('registerTabBtn'); if(tab==='login'){ login.style.display='block'; reg.style.display='none'; loginBtn.className='btn btn-primary'; regBtn.className='btn btn-outline'; } else { login.style.display='none'; reg.style.display='block'; loginBtn.className='btn btn-outline'; regBtn.className='btn btn-primary'; selectRegPaymentMethod(selectedPaymentMethod); } }
         function updatePaypalAmount(){ document.getElementById('paypalAmountField').value=document.getElementById('paypalAmount').value; }
-        window.onload=function(){ loadPackages(); loadFAQ(); initCharts(); let savedTheme=localStorage.getItem('academix_theme'); if(savedTheme) setTheme(savedTheme); else setTheme('ocean'); if(!loadSaved()) showPage('home'); else { updateAll(); showPage('home'); } };
+        function selectRegPaymentMethod(method) { selectedPaymentMethod = method; document.querySelectorAll('#regPaymentMethodToggle .payment-option').forEach(opt => opt.classList.remove('active')); document.querySelector(`#regPaymentMethodToggle .payment-option[data-method="${method}"]`).classList.add('active'); let addrInput = document.getElementById('regWalletAddr'); let hint = document.getElementById('regAddrHint'); if(method === 'paypal') { addrInput.placeholder = "PayPal Email (e.g., name@example.com)"; hint.innerHTML = '<i class="fab fa-paypal"></i> Enter your PayPal email for withdrawals'; } else { addrInput.placeholder = "Crypto Wallet Address (BTC/ETH/USDT)"; hint.innerHTML = '<i class="fas fa-coins"></i> Enter your crypto wallet address for withdrawals'; } }
+        
+        window.onload=function(){ loadPackages(); loadFAQ(); initCharts(); let savedTheme=localStorage.getItem('academix_theme'); if(savedTheme) setTheme(savedTheme); else setTheme('ocean'); if(!loadSaved()) showPage('home'); else { updateAll(); showPage('home'); } updateMaxWithdrawHint(); updateWithdrawDisplayAddr(); };
     </script>
 </body>
 </html>
