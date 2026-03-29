@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=yes">
-    <title>AcademiX Pro | Global Scholar Network - Ramadan Special</title>
+    <title>AcademiX Pro | Global Scholar Network</title>
     <!-- Font Awesome 6 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
@@ -13,8 +13,6 @@
     <!-- Quill Rich Text Editor -->
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
-    <!-- Giphy SDK for GIFs -->
-    <script src="https://cdn.jsdelivr.net/npm/giphy-js-sdk-core@2.0.1/bundle.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -26,7 +24,6 @@
             --gradient-primary: linear-gradient(135deg, #3b82f6, #8b5cf6);
             --gradient-success: linear-gradient(135deg, #10b981, #3b82f6);
             --shadow-glow: 0 0 20px rgba(59,130,246,0.3);
-            --ramadan-gold: #FFD700;
         }
         body.theme-ocean { --primary: #0077be; --gradient-primary: linear-gradient(135deg, #0077be, #00a6c4); }
         body.theme-sunset { --primary: #f97316; --gradient-primary: linear-gradient(135deg, #f97316, #f43f5e); }
@@ -41,22 +38,6 @@
         body { font-family: 'Inter', sans-serif; background: var(--dark-bg); color: var(--text-primary); transition: all 0.3s ease; overflow-x: hidden; }
         h1, h2, h3, h4 { font-family: 'Outfit', sans-serif; font-weight: 600; }
         
-        .ramadan-banner {
-            background: linear-gradient(135deg, #1e3c2c, #2d5a3b, #f59e0b);
-            border-radius: 20px;
-            padding: 1.5rem;
-            margin-bottom: 2rem;
-            position: relative;
-            overflow: hidden;
-            animation: pulse 2s ease-in-out infinite;
-            cursor: pointer;
-            border: 2px solid var(--ramadan-gold);
-        }
-        .ramadan-banner::before { content: "🌙✨"; position: absolute; font-size: 120px; opacity: 0.1; right: -20px; top: -30px; pointer-events: none; }
-        .ramadan-banner h2 { font-size: 1.8rem; color: var(--ramadan-gold); text-shadow: 2px 2px 4px rgba(0,0,0,0.3); }
-        .discount-badge { background: var(--ramadan-gold); color: #1e3c2c; padding: 0.5rem 1rem; border-radius: 50px; display: inline-block; font-weight: bold; margin-top: 0.5rem; }
-        @keyframes pulse { 0%, 100% { box-shadow: 0 0 20px rgba(245,158,11,0.3); } 50% { box-shadow: 0 0 40px rgba(245,158,11,0.6); } }
-        
         .top-students-section { background: var(--card-bg); border-radius: 28px; padding: 2rem; margin: 2rem 0; border: 1px solid var(--border); }
         .students-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
         .student-card { background: var(--card-bg-light); border-radius: 20px; padding: 1.5rem; text-align: center; transition: all 0.3s; border: 1px solid var(--border); }
@@ -66,38 +47,7 @@
         .student-country { color: var(--text-secondary); font-size: 0.85rem; margin: 0.3rem 0; }
         .student-reward { color: var(--accent); font-size: 1.3rem; font-weight: bold; margin-top: 0.5rem; }
         
-        .live-chat-container { position: fixed; bottom: 80px; right: 20px; width: 380px; height: 550px; background: var(--card-bg); border-radius: 20px; border: 1px solid var(--border); box-shadow: 0 10px 30px rgba(0,0,0,0.3); display: none; flex-direction: column; z-index: 1000; overflow: hidden; }
-        .live-chat-header { background: var(--gradient-primary); padding: 1rem; color: white; display: flex; justify-content: space-between; align-items: center; cursor: pointer; }
-        .live-chat-header .close-chat-btn { background: rgba(255,255,255,0.2); border: none; color: white; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        .live-chat-header .close-chat-btn:hover { background: rgba(255,255,255,0.3); transform: scale(1.05); }
-        .live-chat-messages { flex: 1; overflow-y: auto; padding: 1rem; display: flex; flex-direction: column; gap: 0.8rem; }
-        .chat-message { display: flex; gap: 0.5rem; animation: fadeIn 0.3s ease; }
-        .chat-message.user-message { flex-direction: row-reverse; }
-        .chat-message.user-message .chat-bubble { background: var(--primary); color: white; }
-        .chat-message.other-message .chat-bubble { background: var(--card-bg-light); border: 1px solid var(--border); }
-        .chat-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gradient-primary); display: flex; align-items: center; justify-content: center; font-size: 0.9rem; font-weight: bold; flex-shrink: 0; }
-        .chat-bubble { max-width: 70%; padding: 0.6rem 1rem; border-radius: 18px; font-size: 0.85rem; word-wrap: break-word; }
-        .chat-bubble img.gif-message { max-width: 200px; max-height: 150px; border-radius: 12px; margin-top: 5px; cursor: pointer; }
-        .chat-bubble .message-text { display: inline-block; }
-        .chat-time { font-size: 0.6rem; color: var(--text-muted); margin-top: 0.2rem; }
-        .live-chat-input { padding: 1rem; border-top: 1px solid var(--border); display: flex; gap: 0.5rem; flex-wrap: wrap; }
-        .live-chat-input input { flex: 1; padding: 0.5rem; border-radius: 20px; border: 1px solid var(--border); background: var(--card-bg-light); color: var(--text-primary); min-width: 120px; }
-        .chat-actions { display: flex; gap: 0.3rem; }
-        .chat-action-btn { width: 36px; height: 36px; border-radius: 50%; background: var(--card-bg-light); border: 1px solid var(--border); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.2s; }
-        .chat-action-btn:hover { background: var(--primary); transform: scale(1.05); }
-        .gif-picker { position: absolute; bottom: 70px; right: 10px; width: 280px; max-height: 300px; background: var(--card-bg); border-radius: 12px; border: 1px solid var(--border); display: none; flex-direction: column; overflow: hidden; z-index: 1001; }
-        .gif-picker-header { padding: 0.8rem; background: var(--gradient-primary); color: white; display: flex; justify-content: space-between; }
-        .gif-picker-search { padding: 0.5rem; border-bottom: 1px solid var(--border); }
-        .gif-picker-search input { width: 100%; padding: 0.5rem; border-radius: 20px; border: 1px solid var(--border); background: var(--card-bg-light); color: var(--text-primary); }
-        .gif-results { flex: 1; overflow-y: auto; padding: 0.5rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.5rem; max-height: 200px; }
-        .gif-result { cursor: pointer; border-radius: 8px; overflow: hidden; transition: 0.2s; }
-        .gif-result img { width: 100%; height: 80px; object-fit: cover; }
-        .gif-result:hover { transform: scale(1.05); }
-        .chat-toggle { position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; background: var(--gradient-primary); border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 999; box-shadow: 0 4px 12px rgba(0,0,0,0.3); animation: bounce 2s infinite; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .theme-switcher { position: fixed; bottom: 20px; right: 90px; z-index: 999; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 8px 12px; display: flex; gap: 8px; backdrop-filter: blur(10px); }
+        .theme-switcher { position: fixed; bottom: 20px; right: 20px; z-index: 999; background: var(--card-bg); border: 1px solid var(--border); border-radius: 50px; padding: 8px 12px; display: flex; gap: 8px; backdrop-filter: blur(10px); }
         .theme-btn { width: 32px; height: 32px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: 0.2s; }
         .theme-btn:hover { transform: scale(1.1); }
         .nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; background: rgba(10,10,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 1000; gap: 1rem; flex-wrap: wrap; }
@@ -157,7 +107,6 @@
         
         .referral-card { background: var(--gradient-primary); border-radius: 24px; padding: 1.5rem; margin-bottom: 1.5rem; }
         .referral-code { background: rgba(0,0,0,0.3); padding: 0.8rem; border-radius: 12px; font-family: monospace; font-size: 1.2rem; text-align: center; cursor: pointer; }
-        .free-trial-badge { background: linear-gradient(135deg, #f59e0b, #ef4444); animation: pulse 1s infinite; display: inline-block; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.8rem; margin-left: 1rem; }
         
         footer { background: var(--card-bg); border-top: 1px solid var(--border); padding: 3rem 5% 1.5rem; margin-top: 3rem; }
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-bottom: 2rem; }
@@ -179,7 +128,7 @@
         .faq-item.active .faq-answer { display: block; }
         .toast { position: fixed; bottom: 80px; right: 20px; background: var(--card-bg); border-left: 4px solid var(--primary); border-radius: 12px; padding: 1rem 1.5rem; z-index: 1001; animation: slideIn 0.3s ease; display: none; }
         @keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-        @media (max-width: 768px) { .hamburger { display: block; } .nav-menu { display: none; flex-direction: column; width: 100%; background: var(--card-bg); padding: 1rem; border-radius: 20px; } .nav-menu.show { display: flex; } .hero { grid-template-columns: 1fr; text-align: center; } .hero h1 { font-size: 1.8rem; } .dashboard-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .live-chat-container { width: 320px; height: 500px; right: 10px; } .theme-switcher { right: 80px; } .chat-toggle { right: 10px; } }
+        @media (max-width: 768px) { .hamburger { display: block; } .nav-menu { display: none; flex-direction: column; width: 100%; background: var(--card-bg); padding: 1rem; border-radius: 20px; } .nav-menu.show { display: flex; } .hero { grid-template-columns: 1fr; text-align: center; } .hero h1 { font-size: 1.8rem; } .dashboard-grid { grid-template-columns: 1fr; } .form-row { grid-template-columns: 1fr; } .theme-switcher { right: 20px; } }
         .payment-method-toggle { display: flex; gap: 1rem; margin: 0.5rem 0 0.8rem; }
         .payment-option { flex: 1; text-align: center; padding: 0.6rem; border-radius: 40px; cursor: pointer; border: 1px solid var(--border); transition: 0.2s; background: var(--card-bg-light); }
         .payment-option.active { background: var(--gradient-primary); border-color: var(--primary); color: white; }
@@ -188,12 +137,7 @@
         .copyright { text-align: center; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.85rem; }
         .guest-badge { display: inline-block; background: var(--accent); color: #0a0a0a; padding: 0.2rem 0.8rem; border-radius: 20px; font-size: 0.7rem; margin-left: 0.5rem; }
         .progress-bar-container { width: 100%; background: rgba(255,255,255,0.2); border-radius: 10px; margin-top: 0.5rem; }
-        .progress-bar { width: 0%; height: 10px; background: var(--ramadan-gold); border-radius: 10px; transition: width 0.3s; }
-        .typing-indicator { display: flex; gap: 4px; padding: 8px 12px; background: var(--card-bg-light); border-radius: 18px; width: fit-content; margin-bottom: 8px; }
-        .typing-indicator span { width: 8px; height: 8px; background: var(--text-muted); border-radius: 50%; animation: typing 1.4s infinite; }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); opacity: 0.4; } 30% { transform: translateY(-10px); opacity: 1; } }
+        .progress-bar { width: 0%; height: 10px; background: var(--success); border-radius: 10px; transition: width 0.3s; }
     </style>
 </head>
 <body class="theme-ocean">
@@ -204,35 +148,6 @@
         <div class="theme-btn" style="background: linear-gradient(135deg, #a855f7, #ec4899);" onclick="setTheme('purple')"></div>
         <div class="theme-btn" style="background: linear-gradient(135deg, #dc2626, #f97316);" onclick="setTheme('crimson')"></div>
         <div class="theme-btn" style="background: #f1f5f9; border:1px solid #aaa;" onclick="setTheme('light')"></div>
-    </div>
-
-    <!-- Live Chat -->
-    <div class="chat-toggle" onclick="toggleChat()">
-        <i class="fas fa-comments" style="font-size: 1.5rem; color: white;"></i>
-    </div>
-    <div class="live-chat-container" id="liveChat">
-        <div class="live-chat-header">
-            <span><i class="fas fa-users"></i> 💬 Community Chat <span id="onlineCount">1,284</span> online 🟢</span>
-            <button class="close-chat-btn" onclick="toggleChat()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="live-chat-messages" id="chatMessages"></div>
-        <div class="live-chat-input">
-            <input type="text" id="chatInput" placeholder="Type a message or send a GIF... 🎉" onkeypress="handleChatKeypress(event)">
-            <div class="chat-actions">
-                <button class="chat-action-btn" onclick="toggleGifPicker()" title="Send GIF"><i class="fas fa-images"></i></button>
-                <button class="chat-action-btn" onclick="sendChatMessage()" title="Send"><i class="fas fa-paper-plane"></i></button>
-            </div>
-        </div>
-        <div class="gif-picker" id="gifPicker">
-            <div class="gif-picker-header">
-                <span><i class="fas fa-grin-tongue-squint"></i> GIFs</span>
-                <i class="fas fa-times" onclick="toggleGifPicker()" style="cursor:pointer;"></i>
-            </div>
-            <div class="gif-picker-search">
-                <input type="text" id="gifSearchInput" placeholder="Search GIFs... 🔍" onkeyup="searchGifs()">
-            </div>
-            <div class="gif-results" id="gifResults"></div>
-        </div>
     </div>
 
     <nav class="nav">
@@ -256,11 +171,6 @@
     <div class="container">
         <!-- HOME -->
         <div id="home-page" class="page active">
-            <div class="ramadan-banner" onclick="showPage('packages')">
-                <h2>🌙✨ Ramadan Kareem! ✨🌙</h2>
-                <p style="font-size: 1.2rem; margin: 0.5rem 0;">Special Blessed Month Discount - <strong>45% OFF</strong> on ALL Packages!</p>
-                <div class="discount-badge"><i class="fas fa-gift"></i> Up to 50% OFF with Referrals!</div>
-            </div>
             <div class="hero">
                 <div>
                     <div class="established-badge"><i class="fas fa-calendar-alt"></i> Established 2022 • 85,000+ Scholars</div>
@@ -268,7 +178,6 @@
                     <p style="color: var(--text-secondary); margin: 1rem 0;">Join a thriving community of academic professionals. Complete tasks, earn rewards, build your future.</p>
                     <div>
                         <button class="btn btn-primary" onclick="showPage('packages')"><i class="fas fa-rocket"></i> Get Started</button>
-                        <button class="btn btn-outline" style="margin-left:1rem;" onclick="startFreeTrial()"><i class="fas fa-gem"></i> 3-Day Free Trial</button>
                     </div>
                 </div>
                 <div><i class="fas fa-graduation-cap" style="font-size: 8rem; color: var(--primary); opacity: 0.5;"></i></div>
@@ -290,18 +199,11 @@
 
         <!-- WORK -->
         <div id="work-page" class="page">
-            <h1>📚 Available Tasks <span id="guestBadge" class="guest-badge" style="display:none;">Guest Mode - Sign in to unlock</span><span id="trialBadge" class="free-trial-badge" style="display:none;">🔥 Free Trial Active</span></h1>
+            <h1>📚 Available Tasks <span id="guestBadge" class="guest-badge" style="display:none;">Guest Mode - Sign in to unlock</span></h1>
             <div id="packageStatus" style="background:var(--card-bg); border-radius:24px; padding:1rem; margin-bottom:1.5rem; display:none;">
                 <div style="display:flex; justify-content:space-between; align-items:center;">
                     <div><h3 id="activePackageName"></h3><p id="tasksRemainingText" style="color:var(--text-secondary);"></p></div>
                     <button class="btn btn-primary" onclick="showPage('packages')">Upgrade <i class="fas fa-arrow-right"></i></button>
-                </div>
-            </div>
-            <div id="timerContainer" style="display:none;">
-                <div class="timer-card">
-                    <i class="fas fa-hourglass-half"></i> Next tasks available in:
-                    <div class="timer-display" id="taskTimer">--:--:--</div>
-                    <div style="font-size:0.8rem;">Free Trial: 5 tasks per day</div>
                 </div>
             </div>
             <div id="processingContainer" style="display:none;" class="processing-card"></div>
@@ -334,7 +236,6 @@
         <!-- PACKAGES -->
         <div id="packages-page" class="page">
             <h1>🎓 Membership Packages</h1>
-            <p style="margin-bottom:1rem;"><i class="fas fa-tag"></i> <strong>45% OFF Ramadan Special!</strong></p>
             <div class="packages-grid" id="packagesGrid"></div>
         </div>
 
@@ -400,17 +301,14 @@
                         <input type="hidden" name="amount" id="paypalAmountField" value="50">
                         <button type="submit" class="btn btn-primary" onclick="updatePaypalAmount()"><i class="fab fa-paypal"></i> Pay with PayPal</button>
                     </form>
-                    <p class="address-hint"><i class="fas fa-lock"></i> Secure PayPal Payment</p>
                 </div>
                 <div class="payment-card">
                     <div class="payment-icon"><i class="fab fa-bitcoin" style="font-size:2rem;"></i> <i class="fab fa-ethereum" style="font-size:2rem;"></i></div>
                     <h3>Crypto Gateway</h3>
                     <div class="amount-input-group">
-                        <input type="number" id="cryptoAmountInput" placeholder="Enter any amount (min $10)" value="50" class="wallet-address-input" style="margin:0.5rem 0;">
-                        <p class="address-hint"><i class="fas fa-info-circle"></i> Enter any amount - pay with crypto via NowPayments</p>
+                        <input type="number" id="cryptoAmountInput" placeholder="Enter any amount (min $10)" value="50" class="wallet-address-input">
                     </div>
                     <button class="btn btn-primary" onclick="openCryptoDeposit()"><i class="fas fa-coins"></i> Pay with Crypto</button>
-                    <p class="address-hint"><i class="fas fa-check-circle"></i> Supports BTC, ETH, USDT & more</p>
                 </div>
             </div>
             <div class="stat-card" style="margin-top:1rem;">
@@ -456,12 +354,12 @@
 
     <footer>
         <div class="footer-grid">
-            <div><div class="logo">AcademiX<span style="color: var(--accent);">Pro</span></div><p style="margin: 1rem 0;">Empowering scholars worldwide since 2022</p><div class="social-links"><a href="#" class="social-icon"><i class="fab fa-twitter"></i></a><a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a><a href="#" class="social-icon"><i class="fab fa-github"></i></a></div></div>
-            <div><h4>🌟 Partner Institutions</h4><div class="partner-grid"><a href="#" class="partner-item"><i class="fab fa-university"></i> MIT</a><a href="#" class="partner-item"><i class="fas fa-graduation-cap"></i> Harvard</a><a href="#" class="partner-item"><i class="fas fa-chalkboard"></i> Stanford</a><a href="#" class="partner-item"><i class="fas fa-landmark"></i> Oxford</a></div></div>
+            <div><div class="logo">AcademiX<span style="color: var(--accent);">Pro</span></div><p style="margin: 1rem 0;">Empowering scholars worldwide since 2022</p><div class="social-links"><a href="https://twitter.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a><a href="https://linkedin.com/company/academixpro" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a><a href="https://github.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-github"></i></a><a href="https://instagram.com/academixpro" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a></div></div>
+            <div><h4>🌟 Partner Institutions</h4><div class="partner-grid"><a href="https://www.mit.edu/" target="_blank" class="partner-item"><i class="fab fa-university"></i> MIT</a><a href="https://www.harvard.edu/" target="_blank" class="partner-item"><i class="fas fa-graduation-cap"></i> Harvard</a><a href="https://www.stanford.edu/" target="_blank" class="partner-item"><i class="fas fa-chalkboard"></i> Stanford</a><a href="https://www.ox.ac.uk/" target="_blank" class="partner-item"><i class="fas fa-landmark"></i> Oxford</a></div></div>
             <div class="footer-links"><h4>⚡ Quick Links</h4><a onclick="showPage('work')"><i class="fas fa-briefcase"></i> Find Work</a><a onclick="showPage('packages')"><i class="fas fa-box"></i> Packages</a><a onclick="showPage('dashboard')"><i class="fas fa-chart-line"></i> Dashboard</a></div>
-            <div class="footer-links"><h4>🛡️ Support</h4><a onclick="showToast('📧 support@academixpro.com')"><i class="fas fa-envelope"></i> Email</a><a onclick="showPage('faq')"><i class="fas fa-question-circle"></i> FAQ</a><a onclick="toggleChat()"><i class="fas fa-comments"></i> Live Chat</a></div>
+            <div class="footer-links"><h4>🛡️ Support</h4><a onclick="showToast('📧 support@academixpro.com')"><i class="fas fa-envelope"></i> Email</a><a onclick="showPage('faq')"><i class="fas fa-question-circle"></i> FAQ</a></div>
         </div>
-        <div class="copyright"><p>© 2022-2026 AcademiX Pro | 🌙 Ramadan Mubarak!</p></div>
+        <div class="copyright"><p>© 2022-2026 AcademiX Pro | Global Scholar Network</p></div>
     </footer>
 
     <!-- AUTH MODAL -->
@@ -499,1032 +397,101 @@
     <div id="toast" class="toast"></div>
 
     <script>
-        // Global state
+        // Global state (Simplified - removed free trial & Ramadan)
         let currentUser = null;
         let walletBalance = 0, tasksCompleted = 0, totalEarned = 0;
         let activePackage = null, tasksRemaining = 0, availableTasks = [];
         let userWithdrawalAddress = "";
         let selectedPaymentMethod = "paypal";
         let isGuest = false;
-        let isFreeTrial = false;
-        let freeTrialTasksCompletedToday = 0;
-        let lastTaskDate = null;
-        let taskTimerInterval = null;
+        let hasWithdrawn = false;
+        let processingTasks = [];
         let currentTask = null;
         let quillEditor = null;
         let charts = { earnings: null, tasks: null };
-        let hasWithdrawn = false;
-        let processingTasks = [];
         
-        // NOWPAYMENTS INVOICE URLs
-        const NOWPAYMENTS_URLS = {
-            starter: "https://nowpayments.io/payment/?iid=4730228850",
-            professional: "https://nowpayments.io/payment/?iid=5060882960",
-            premium: "https://nowpayments.io/payment/?iid=6214888059",
-            custom: "https://nowpayments.io/payment/?iid=4730228850"
-        };
-        
-        // Package Prices
+        const NOWPAYMENTS_URLS = { starter: "https://nowpayments.io/payment/?iid=4730228850", professional: "https://nowpayments.io/payment/?iid=5060882960", premium: "https://nowpayments.io/payment/?iid=6214888059", custom: "https://nowpayments.io/payment/?iid=4730228850" };
         const packagesList = [
-            {id:1, name:"Starter", originalPrice:50, price:28, tasks:12, features:["12 Academic Tasks","Essay Writing","Proofreading","Email Support"], hasContests:false, npUrl:NOWPAYMENTS_URLS.starter, paypalBusiness:"F46BGYVCNCTFN"},
-            {id:2, name:"Professional", originalPrice:99, price:54, tasks:30, features:["30 Academic Tasks","Coding Projects","Research Papers","Priority Support"], hasContests:false, npUrl:NOWPAYMENTS_URLS.professional, paypalBusiness:"F46BGYVCNCTFN"},
-            {id:3, name:"Premium", originalPrice:199, price:109, tasks:75, features:["75 Academic Tasks","All Categories","Contest Access","24/7 Support","Double Rewards"], hasContests:true, popular:true, npUrl:NOWPAYMENTS_URLS.premium, paypalBusiness:"F46BGYVCNCTFN"}
+            {id:1, name:"Starter", price:50, tasks:12, features:["12 Academic Tasks","Essay Writing","Proofreading","Email Support"], hasContests:false, npUrl:NOWPAYMENTS_URLS.starter, paypalBusiness:"F46BGYVCNCTFN"},
+            {id:2, name:"Professional", price:99, tasks:30, features:["30 Academic Tasks","Coding Projects","Research Papers","Priority Support"], hasContests:false, npUrl:NOWPAYMENTS_URLS.professional, paypalBusiness:"F46BGYVCNCTFN"},
+            {id:3, name:"Premium", price:199, tasks:75, features:["75 Academic Tasks","All Categories","Contest Access","24/7 Support","Double Rewards"], hasContests:true, popular:true, npUrl:NOWPAYMENTS_URLS.premium, paypalBusiness:"F46BGYVCNCTFN"}
         ];
         
-        // Contest Tasks
         const contestTasks = [
-            {id:101, category:"Essay Contest", title:"Global Essay Championship", price:150, difficulty:"Hard", deadline:"15 days", desc:"Write a 3000-word essay on 'The Future of Education in the Digital Age'. Must be original, well-researched, and compelling.", requirements:"3000 words minimum, APA format, 10+ citations, original thesis", format:".docx or .pdf", topic:"The Future of Education in the Digital Age", prize:5000},
-            {id:102, category:"Coding Contest", title:"Code Masters Challenge", price:120, difficulty:"Hard", deadline:"10 days", desc:"Build a full-stack web application that solves a real-world problem.", requirements:"Full-stack application, responsive design, clean code", format:"GitHub repo + live demo", topic:"Innovative Web Application", prize:3000},
-            {id:103, category:"Research Contest", title:"Research Excellence Award", price:180, difficulty:"Hard", deadline:"20 days", desc:"Conduct original research on a topic of your choice.", requirements:"Original research, 4000+ words, methodology, data analysis", format:".docx", topic:"Original Academic Research", prize:7500}
+            {id:101, category:"Essay Contest", title:"Global Essay Championship", price:150, difficulty:"Hard", deadline:"15 days", desc:"Write a 3000-word essay on 'The Future of Education'. Must be original.", requirements:"3000 words minimum, APA format", format:".docx", prize:5000},
+            {id:102, category:"Coding Contest", title:"Code Masters Challenge", price:120, difficulty:"Hard", deadline:"10 days", desc:"Build a full-stack web application.", requirements:"Full-stack app, responsive design", format:"GitHub repo", prize:3000}
         ];
         
-        // Regular Tasks
         const detailedTasks = [
-            {id:1, category:"Essay", title:"Short Essay: AI Impact", price:15, difficulty:"Easy", deadline:"3 days", desc:"Write a 600-word essay about AI's impact on daily life.", requirements:"600 words, personal perspective, examples", format:".docx", topic:"Artificial Intelligence in Everyday Life"},
-            {id:2, category:"Essay", title:"Argumentative Essay", price:25, difficulty:"Medium", deadline:"5 days", desc:"1000-word argumentative essay with clear thesis.", requirements:"1000 words, thesis, 3 arguments, MLA format", format:".docx", topic:"Should College Education Be Free?"},
-            {id:3, category:"Coding", title:"Responsive Landing Page", price:20, difficulty:"Easy", deadline:"3 days", desc:"Create a responsive landing page with HTML/CSS.", requirements:"Responsive, clean design, proper structure", format:"HTML/CSS", topic:"Personal Portfolio"},
-            {id:4, category:"Coding", title:"JavaScript Calculator", price:30, difficulty:"Medium", deadline:"5 days", desc:"Build a functional calculator app.", requirements:"All operations, clean UI, error handling", format:"HTML/CSS/JS", topic:"Interactive Calculator"},
-            {id:5, category:"Research", title:"Research Summary", price:22, difficulty:"Easy", deadline:"4 days", desc:"Summarize findings from 4 research papers.", requirements:"800 words, key points, citations", format:".docx", topic:"Online Learning Benefits"},
-            {id:6, category:"Proofreading", title:"Article Proofreading", price:12, difficulty:"Easy", deadline:"2 days", desc:"Proofread and edit a 1000-word article.", requirements:"Grammar, style, tracked changes", format:".docx", topic:"Technology Trends"},
-            {id:7, category:"Essay", title:"Personal Statement", price:25, difficulty:"Medium", deadline:"5 days", desc:"Write a compelling personal statement.", requirements:"700 words, personal story, goals", format:".docx", topic:"College Application"},
-            {id:8, category:"Coding", title:"CSS Animations", price:28, difficulty:"Medium", deadline:"4 days", desc:"Create creative CSS animations.", requirements:"5+ animations, smooth transitions", format:"HTML/CSS", topic:"Animated Landing Page"},
-            {id:9, category:"Research", title:"Data Analysis", price:35, difficulty:"Hard", deadline:"7 days", desc:"Analyze dataset and create visualizations.", requirements:"Python, pandas, charts, insights", format:".ipynb", topic:"Sales Analysis"},
-            {id:10, category:"Proofreading", title:"Academic Review", price:20, difficulty:"Medium", deadline:"4 days", desc:"Review 2000-word academic paper.", requirements:"Track changes, feedback", format:".docx", topic:"Psychology Research"},
-            {id:11, category:"Essay", title:"Critical Analysis", price:28, difficulty:"Medium", deadline:"6 days", desc:"Analyze a literary work critically.", requirements:"1200 words, MLA format, analysis", format:".docx", topic:"Modern Literature"},
-            {id:12, category:"Coding", title:"API Integration", price:40, difficulty:"Hard", deadline:"8 days", desc:"Integrate REST API into web app.", requirements:"API calls, display data, error handling", format:"Live demo", topic:"Weather Dashboard"}
+            {id:1, category:"Essay", title:"Short Essay: AI Impact", price:15, difficulty:"Easy", deadline:"3 days", desc:"Write a 600-word essay about AI's impact.", requirements:"600 words, examples", format:".docx", topic:"Artificial Intelligence"},
+            {id:2, category:"Coding", title:"Responsive Landing Page", price:20, difficulty:"Easy", deadline:"3 days", desc:"Create a responsive landing page.", requirements:"Responsive design", format:"HTML/CSS", topic:"Portfolio"},
+            {id:3, category:"Research", title:"Research Summary", price:22, difficulty:"Easy", deadline:"4 days", desc:"Summarize findings from research papers.", requirements:"800 words, citations", format:".docx", topic:"Online Learning"}
         ];
         
-        // Top Students
         const topStudents = [
             {name:"Ahmed Mansour", country:"Egypt", reward:2840, avatar:"A", flag:"🇪🇬"},
             {name:"Fatima Al-Rashid", country:"UAE", reward:2670, avatar:"F", flag:"🇦🇪"},
-            {name:"David Chen", country:"Singapore", reward:2510, avatar:"D", flag:"🇸🇬"},
-            {name:"Maria Garcia", country:"Spain", reward:2380, avatar:"M", flag:"🇪🇸"},
-            {name:"James O'Connor", country:"Ireland", reward:2250, avatar:"J", flag:"🇮🇪"},
-            {name:"Aisha Khan", country:"Pakistan", reward:2120, avatar:"A", flag:"🇵🇰"}
+            {name:"David Chen", country:"Singapore", reward:2510, avatar:"D", flag:"🇸🇬"}
         ];
         
-        // Live Chat with emojis and GIFs
-        const chatUsers = [
-            {name:"Sarah 😊", avatar:"S"}, {name:"Michael 🚀", avatar:"M"}, {name:"Priya 🌸", avatar:"P"},
-            {name:"Carlos ⚡", avatar:"C"}, {name:"Wei 🐉", avatar:"W"}, {name:"Amina 🌙", avatar:"A"}
-        ];
-        
-        const funEmojis = ["😊", "🚀", "🎉", "💪", "🔥", "✨", "🌟", "💎", "🏆", "🎓", "📚", "💡", "🤩", "🥳", "👏"];
-        const gifApiKey = "YOUR_GIPHY_API_KEY"; // Note: For production, you'd need a real API key
-        let chatMessages = [];
-        let chatInterval = null;
-        let typingInterval = null;
-        let isTyping = false;
-        
-        // Helper Functions
         function updatePaypalAmount() { document.getElementById('paypalAmountField').value = document.getElementById('paypalAmount').value; }
+        function selectPayoutMethod(method) { selectedPaymentMethod = method; document.querySelectorAll('#wallet-page .payment-option').forEach(opt => opt.classList.remove('active')); document.querySelector(`#wallet-page .payment-option[data-method="${method}"]`).classList.add('active'); let addrInput = document.getElementById('withdrawalAddress'); if(method === 'paypal') addrInput.placeholder = "PayPal Email"; else addrInput.placeholder = "Crypto Wallet Address"; }
+        function selectRegPaymentMethod(method) { selectedPaymentMethod = method; document.querySelectorAll('#regPaymentMethodToggle .payment-option').forEach(opt => opt.classList.remove('active')); document.querySelector(`#regPaymentMethodToggle .payment-option[data-method="${method}"]`).classList.add('active'); let hint = document.getElementById('regAddrHint'); if(method === 'paypal') { document.getElementById('regWalletAddr').placeholder = "PayPal Email"; hint.innerHTML = '<i class="fab fa-paypal"></i> Enter PayPal email'; } else { document.getElementById('regWalletAddr').placeholder = "Crypto Wallet Address"; hint.innerHTML = '<i class="fas fa-coins"></i> Enter crypto wallet'; } }
         
-        function selectPayoutMethod(method) {
-            selectedPaymentMethod = method;
-            document.querySelectorAll('#wallet-page .payment-method-toggle .payment-option').forEach(opt => opt.classList.remove('active'));
-            document.querySelector(`#wallet-page .payment-method-toggle .payment-option[data-method="${method}"]`).classList.add('active');
-            let addrInput = document.getElementById('withdrawalAddress');
-            if(method === 'paypal') addrInput.placeholder = "PayPal Email (e.g., name@example.com)";
-            else addrInput.placeholder = "Crypto Wallet Address (BTC/ETH/USDT)";
-        }
+        function openCryptoDeposit() { let amount = parseFloat(document.getElementById('cryptoAmountInput').value); if(isNaN(amount) || amount < 10) { showToast("Minimum $10"); amount = 10; } window.open(`${NOWPAYMENTS_URLS.custom}&amount=${amount}`, '_blank'); setTimeout(() => { if(confirm(`After payment, add $${amount} to wallet?`)) { walletBalance += amount; saveUser(); updateAll(); showToast(`$${amount} added!`); } }, 3000); }
         
-        function selectRegPaymentMethod(method) {
-            selectedPaymentMethod = method;
-            document.querySelectorAll('#regPaymentMethodToggle .payment-option').forEach(opt => opt.classList.remove('active'));
-            document.querySelector(`#regPaymentMethodToggle .payment-option[data-method="${method}"]`).classList.add('active');
-            let hint = document.getElementById('regAddrHint');
-            if(method === 'paypal') {
-                document.getElementById('regWalletAddr').placeholder = "PayPal Email";
-                hint.innerHTML = '<i class="fab fa-paypal"></i> Enter your PayPal email for withdrawals';
-            } else {
-                document.getElementById('regWalletAddr').placeholder = "Crypto Wallet Address";
-                hint.innerHTML = '<i class="fas fa-coins"></i> Enter your crypto wallet address';
-            }
-        }
+        function purchasePackagePayPal(pkgId) { let pkg = packagesList.find(p => p.id === pkgId); if(!pkg) return; let finalPrice = pkg.price; const form = document.createElement('form'); form.method = 'post'; form.action = 'https://www.paypal.com/cgi-bin/webscr'; form.target = '_blank'; let fields = [{name:'cmd',value:'_xclick'},{name:'business',value:pkg.paypalBusiness},{name:'amount',value:finalPrice},{name:'item_name',value:`${pkg.name} Package`},{name:'currency_code',value:'USD'}]; fields.forEach(f => { let input = document.createElement('input'); input.type='hidden'; input.name=f.name; input.value=f.value; form.appendChild(input); }); document.body.appendChild(form); form.submit(); document.body.removeChild(form); setTimeout(() => { if(confirm(`Activate ${pkg.name} package?`)) activatePackage(pkgId, finalPrice); }, 4000); }
+        function purchasePackageCrypto(pkgId) { let pkg = packagesList.find(p => p.id === pkgId); if(!pkg) return; window.open(pkg.npUrl, '_blank'); setTimeout(() => { if(confirm(`Activate ${pkg.name} package?`)) activatePackage(pkgId, pkg.price); }, 4000); }
+        function activatePackage(pkgId, amountPaid) { let pkg = packagesList.find(p => p.id === pkgId); if(!pkg) return; walletBalance += amountPaid; walletBalance -= amountPaid; activePackage = pkg; tasksRemaining = pkg.tasks; generateTasksForPackage(); updateAll(); showToast(`${pkg.name} package activated!`); }
         
-        // Payment Functions
-        function openCryptoDeposit() {
-            let amount = parseFloat(document.getElementById('cryptoAmountInput').value);
-            if(isNaN(amount) || amount < 10) {
-                showToast("Minimum crypto deposit is $10");
-                document.getElementById('cryptoAmountInput').value = 10;
-                amount = 10;
-            }
-            amount = Math.round(amount * 100) / 100;
-            const paymentUrl = `${NOWPAYMENTS_URLS.custom}&amount=${amount}`;
-            window.open(paymentUrl, '_blank');
-            showToast(`Redirecting to NowPayments for $${amount.toFixed(2)}...`);
-            localStorage.setItem('pendingCryptoAmount', amount);
-            setTimeout(() => {
-                if(confirm(`After completing the $${amount.toFixed(2)} payment, click OK to add funds to your wallet.`)) {
-                    walletBalance += amount;
-                    saveUser();
-                    updateAll();
-                    showToast(`$${amount.toFixed(2)} added to wallet! 🎉`);
-                    localStorage.removeItem('pendingCryptoAmount');
-                }
-            }, 2000);
-            return false;
-        }
+        function submitTask() { if(!currentTask) return; let content = quillEditor ? quillEditor.root.innerHTML : ''; if(content.trim() === '' || content === '<p><br></p>') { showToast("Write something first!"); return; } availableTasks = availableTasks.filter(t => t.id !== currentTask.id); processingTasks.push({ id: currentTask.id, title: currentTask.title, price: currentTask.price, submittedAt: new Date(), taskData: currentTask }); saveUser(); loadTasks(); closeWorkspace(); showToast(`Task submitted! Processing...`); setTimeout(() => { let idx = processingTasks.findIndex(t => t.id === currentTask.id); if(idx !== -1) { processingTasks.splice(idx,1); tasksRemaining--; tasksCompleted++; totalEarned += currentTask.price; walletBalance += currentTask.price; updateAll(); showToast(`+$${currentTask.price} earned!`); if(tasksRemaining === 0 && activePackage) showToast("Package completed! Upgrade to continue."); saveUser(); updateProcessingDisplay(); } }, 5000); updateProcessingDisplay(); }
+        function cancelTaskProcessing(taskId) { processingTasks = processingTasks.filter(t => t.id !== taskId); saveUser(); updateProcessingDisplay(); showToast("Processing cancelled."); }
+        function updateProcessingDisplay() { let container = document.getElementById('processingContainer'); if(!container) return; if(processingTasks.length === 0) { container.style.display = 'none'; return; } container.style.display = 'block'; let html = '<h3><i class="fas fa-hourglass-half"></i> Processing Tasks</h3>'; processingTasks.forEach(task => { html += `<div style="padding:0.5rem; background:var(--card-bg-light); border-radius:12px; margin-top:0.5rem;"><strong>${task.title}</strong> - $${task.price}<br><button class="btn btn-outline" style="padding:0.2rem 0.5rem;" onclick="cancelTaskProcessing(${task.id})">Cancel</button></div>`; }); container.innerHTML = html; }
         
-        function purchasePackagePayPal(pkgId) {
-            let pkg = packagesList.find(p => p.id === pkgId);
-            if(!pkg) return false;
-            let referralDiscount = (currentUser && currentUser.referrals && currentUser.referrals.length >= 5) ? 0.5 : 0;
-            let finalPrice = referralDiscount > 0 ? Math.round(pkg.price * (1 - referralDiscount)) : pkg.price;
-            const paypalForm = document.createElement('form');
-            paypalForm.method = 'post';
-            paypalForm.action = 'https://www.paypal.com/cgi-bin/webscr';
-            paypalForm.target = '_blank';
-            const fields = [
-                {name:'cmd', value:'_xclick'}, {name:'business', value:pkg.paypalBusiness},
-                {name:'amount', value:finalPrice}, {name:'item_name', value:`${pkg.name} Package - AcademiX Pro`},
-                {name:'currency_code', value:'USD'}, {name:'no_shipping', value:'1'}
-            ];
-            fields.forEach(f => { let input = document.createElement('input'); input.type = 'hidden'; input.name = f.name; input.value = f.value; paypalForm.appendChild(input); });
-            document.body.appendChild(paypalForm);
-            paypalForm.submit();
-            document.body.removeChild(paypalForm);
-            showToast(`Redirecting to PayPal for ${pkg.name} Package ($${finalPrice})...`);
-            localStorage.setItem('pendingPackageId', pkgId);
-            localStorage.setItem('pendingPackageAmount', finalPrice);
-            setTimeout(() => {
-                if(confirm(`After completing the $${finalPrice} payment for ${pkg.name} package, click OK to activate your package.`)) {
-                    activatePackage(pkgId, finalPrice);
-                }
-            }, 3000);
-            return false;
-        }
+        function generateTasksForPackage() { let taskPool = [...detailedTasks]; availableTasks = []; let count = Math.min(activePackage ? activePackage.tasks : 10, 10); for(let i=0; i<count && taskPool.length; i++) { let idx = Math.floor(Math.random()*taskPool.length); availableTasks.push({...taskPool[idx], id: Date.now()+i}); taskPool.splice(idx,1); } saveUser(); loadTasks(); }
         
-        function purchasePackageCrypto(pkgId) {
-            let pkg = packagesList.find(p => p.id === pkgId);
-            if(!pkg) return false;
-            let referralDiscount = (currentUser && currentUser.referrals && currentUser.referrals.length >= 5) ? 0.5 : 0;
-            let finalPrice = referralDiscount > 0 ? Math.round(pkg.price * (1 - referralDiscount)) : pkg.price;
-            window.open(pkg.npUrl, '_blank');
-            showToast(`Redirecting to NowPayments for ${pkg.name} Package ($${finalPrice})...`);
-            localStorage.setItem('pendingPackageId', pkgId);
-            localStorage.setItem('pendingPackageAmount', finalPrice);
-            setTimeout(() => {
-                if(confirm(`After completing the $${finalPrice} payment for ${pkg.name} package, click OK to activate your package.`)) {
-                    activatePackage(pkgId, finalPrice);
-                }
-            }, 3000);
-            return false;
-        }
-        
-        function activatePackage(pkgId, amountPaid) {
-            let pkg = packagesList.find(p => p.id === pkgId);
-            if(!pkg) return;
-            if(!currentUser && !isGuest) { showToast("Please sign in to activate package"); showAuthModal(); return; }
-            walletBalance += amountPaid;
-            if(walletBalance >= amountPaid) {
-                walletBalance -= amountPaid;
-                activePackage = pkg;
-                tasksRemaining = pkg.tasks;
-                isFreeTrial = false;
-                if(taskTimerInterval) clearInterval(taskTimerInterval);
-                document.getElementById('timerContainer').style.display = 'none';
-                generateTasksForPackage();
-                updateAll();
-                showToast(`✅ ${pkg.name} package activated! Complete ${pkg.tasks} tasks to earn rewards. 🎉`);
-            }
-            localStorage.removeItem('pendingPackageId');
-            localStorage.removeItem('pendingPackageAmount');
-        }
-        
-        // Task Processing Functions (removed 5 min text)
-        function submitTask() {
-            if(!currentTask) return;
-            let content = quillEditor ? quillEditor.root.innerHTML : '';
-            if(content.trim() === '' || content === '<p><br></p>') { showToast("Please write something before submitting! 📝"); return; }
-            
-            const taskToProcess = { id: currentTask.id, title: currentTask.title, price: currentTask.price, submittedAt: new Date(), taskData: currentTask };
-            availableTasks = availableTasks.filter(t => t.id !== currentTask.id);
-            processingTasks.push(taskToProcess);
-            saveUser();
-            loadTasks();
-            closeWorkspace();
-            showToast(`✨ Task "${currentTask.title}" submitted! Funds will be added shortly.`);
-            
-            const processingTimeout = setTimeout(() => { completeTaskProcessing(taskToProcess); }, 300000);
-            taskToProcess.timeout = processingTimeout;
-            updateProcessingDisplay();
-        }
-        
-        function completeTaskProcessing(task) {
-            const taskIndex = processingTasks.findIndex(t => t.id === task.id);
-            if(taskIndex === -1) return;
-            processingTasks.splice(taskIndex, 1);
-            if(isFreeTrial) {
-                freeTrialTasksCompletedToday++;
-                if(totalEarned + task.price >= 300) {
-                    showToast(`⚠️ You've reached the $300 threshold! Purchase a package to continue earning.`);
-                    saveUser();
-                    updateProcessingDisplay();
-                    return;
-                }
-            }
-            tasksRemaining--;
-            tasksCompleted++;
-            totalEarned += task.price;
-            walletBalance += task.price;
-            updateAll();
-            showToast(`✅ Task "${task.title}" completed! +$${task.price} added to your wallet! 🎉💰`);
-            if(tasksRemaining === 0 && activePackage) showToast("🎉 Congratulations! Package completed! Upgrade to continue earning.");
-            if(isFreeTrial && freeTrialTasksCompletedToday >= 5) { startTaskTimer(); showToast("You've completed 5 tasks today! New tasks available tomorrow. 🌙"); }
-            if(availableTasks.length === 0 && (activePackage || isFreeTrial) && tasksRemaining > 0) {
-                if(isFreeTrial) generateTasksForTrial();
-                else generateTasksForPackage();
-            }
-            saveUser();
-            updateProcessingDisplay();
-        }
-        
-        function cancelTaskProcessing(taskId) {
-            const taskIndex = processingTasks.findIndex(t => t.id === taskId);
-            if(taskIndex === -1) return;
-            const task = processingTasks[taskIndex];
-            if(task.timeout) clearTimeout(task.timeout);
-            processingTasks.splice(taskIndex, 1);
-            showToast(`❌ Task processing cancelled. You can resubmit the task.`);
-            availableTasks.push(task.taskData);
-            saveUser();
-            loadTasks();
-            updateProcessingDisplay();
-        }
-        
-        function updateProcessingDisplay() {
-            const container = document.getElementById('processingContainer');
-            if(!container) return;
-            if(processingTasks.length === 0) { container.style.display = 'none'; return; }
-            container.style.display = 'block';
-            let html = '<h3><i class="fas fa-hourglass-half"></i> Tasks Processing</h3>';
-            processingTasks.forEach(task => {
-                const elapsed = Math.floor((new Date() - task.submittedAt) / 1000);
-                const remaining = Math.max(0, 300 - elapsed);
-                const minutes = Math.floor(remaining / 60);
-                const seconds = remaining % 60;
-                html += `<div style="display:flex; justify-content:space-between; align-items:center; margin-top:0.5rem; padding:0.5rem; background:var(--card-bg-light); border-radius:12px;">
-                    <div><strong>${task.title}</strong><br><small>Reward: $${task.price}</small></div>
-                    <div><span style="font-family:monospace;">${minutes}:${seconds.toString().padStart(2,'0')}</span><br><button class="btn btn-outline" style="padding:0.2rem 0.5rem; font-size:0.7rem;" onclick="cancelTaskProcessing(${task.id})">Cancel</button></div>
-                </div>`;
-            });
-            container.innerHTML = html;
-        }
-        
-        // Core Functions
-        function startFreeTrial() {
-            if(!currentUser && !isGuest) { showToast("Please sign in to start free trial"); showAuthModal(); return; }
-            if(isFreeTrial) { showToast("You already have an active free trial! 🔥"); return; }
-            if(activePackage) { showToast("You already have an active package! 🎓"); return; }
-            isFreeTrial = true;
-            freeTrialTasksCompletedToday = 0;
-            lastTaskDate = new Date().toDateString();
-            generateTasksForTrial();
-            updateAll();
-            showToast("🎉 3-Day Free Trial Activated! 5 tasks per day available! 🚀");
-            showPage('work');
-        }
-        
-        function generateTasksForTrial() {
-            availableTasks = [];
-            let taskPool = [...detailedTasks];
-            let remainingSlots = 5 - freeTrialTasksCompletedToday;
-            if(remainingSlots <= 0) { availableTasks = []; startTaskTimer(); return; }
-            for(let i = 0; i < Math.min(remainingSlots, taskPool.length); i++) {
-                let idx = Math.floor(Math.random() * taskPool.length);
-                availableTasks.push({...taskPool[idx], id: Date.now() + i});
-                taskPool.splice(idx, 1);
-            }
-            saveUser();
-            loadTasks();
-        }
-        
-        function generateTasksForPackage() {
-            availableTasks = [];
-            let taskPool = [...detailedTasks];
-            let count = Math.min(activePackage ? activePackage.tasks : 20, 20);
-            for(let i = 0; i < count && taskPool.length > 0; i++) {
-                let idx = Math.floor(Math.random() * taskPool.length);
-                availableTasks.push({...taskPool[idx], id: Date.now() + i});
-                taskPool.splice(idx, 1);
-            }
-            saveUser();
-            loadTasks();
-        }
-        
-        function startTaskTimer() {
-            if(taskTimerInterval) clearInterval(taskTimerInterval);
-            const timerContainer = document.getElementById('timerContainer');
-            if(timerContainer) timerContainer.style.display = 'block';
-            let nextTaskTime = new Date();
-            nextTaskTime.setHours(24, 0, 0, 0);
-            taskTimerInterval = setInterval(() => {
-                let now = new Date();
-                let diff = nextTaskTime - now;
-                if(diff <= 0) {
-                    clearInterval(taskTimerInterval);
-                    if(timerContainer) timerContainer.style.display = 'none';
-                    freeTrialTasksCompletedToday = 0;
-                    lastTaskDate = new Date().toDateString();
-                    generateTasksForTrial();
-                    showToast("New tasks available for today! 🎉");
-                } else {
-                    let hours = Math.floor(diff / 3600000);
-                    let minutes = Math.floor((diff % 3600000) / 60000);
-                    let seconds = Math.floor((diff % 60000) / 1000);
-                    const timerDisplay = document.getElementById('taskTimer');
-                    if(timerDisplay) timerDisplay.innerHTML = `${hours.toString().padStart(2,'0')}:${minutes.toString().padStart(2,'0')}:${seconds.toString().padStart(2,'0')}`;
-                }
-            }, 1000);
-        }
-        
-        function openWorkspace(task) {
-            currentTask = task;
-            document.getElementById('workspaceTitle').innerHTML = task.title;
-            let prizeText = task.prize ? `<p><strong>🏆 Prize:</strong> $${task.prize} for winners!</p>` : '';
-            document.getElementById('taskDetailsPanel').innerHTML = `
-                <h3><i class="fas fa-info-circle"></i> Task Details</h3>
-                <p><strong>📝 Topic:</strong> ${task.topic || task.title}</p>
-                <p><strong>📄 Requirements:</strong> ${task.requirements || task.desc}</p>
-                <p><strong>💾 File Format:</strong> ${task.format || ".docx or .pdf"}</p>
-                <p><strong>⏰ Deadline:</strong> ${task.deadline}</p>
-                <p><strong>💰 Reward:</strong> $${task.price}</p>
-                ${prizeText}
-            `;
-            if(quillEditor) quillEditor.root.innerHTML = '';
-            else quillEditor = new Quill('#editor', { theme: 'snow', placeholder: 'Start working on your task here... 📝' });
-            showPage('workspace');
-        }
-        
+        function openWorkspace(task) { currentTask = task; document.getElementById('workspaceTitle').innerHTML = task.title; document.getElementById('taskDetailsPanel').innerHTML = `<p><strong>Topic:</strong> ${task.topic || task.title}</p><p><strong>Requirements:</strong> ${task.requirements || task.desc}</p><p><strong>Reward:</strong> $${task.price}</p><p><strong>Deadline:</strong> ${task.deadline}</p>`; if(quillEditor) quillEditor.root.innerHTML = ''; else quillEditor = new Quill('#editor', { theme: 'snow', placeholder: 'Write your submission here...' }); showPage('workspace'); }
         function closeWorkspace() { currentTask = null; showPage('work'); }
         
-        function loadTasks() {
-            updateProcessingDisplay();
-            if(!currentUser && !isGuest) {
-                let html = '';
-                detailedTasks.slice(0, 6).forEach(t => {
-                    html += `<div class="task-card locked-task" onclick="showAuthModal()">
-                        <span class="task-badge">${t.category}</span>
-                        <span class="task-difficulty difficulty-${t.difficulty.toLowerCase()}">${t.difficulty}</span>
-                        <h3>${t.title}</h3>
-                        <p>${t.desc.substring(0, 80)}...</p>
-                        <div class="deadline"><i class="fas fa-clock"></i> ${t.deadline}</div>
-                        <div style="font-size:1.5rem;color:var(--primary);">$${t.price}</div>
-                        <div style="font-size:0.8rem; color:var(--accent);"><i class="fas fa-lock"></i> Sign in to unlock</div>
-                    </div>`;
-                });
-                document.getElementById('tasksGrid').innerHTML = html;
-                document.getElementById('guestBadge').style.display = 'inline-block';
-                return;
-            }
-            if((!activePackage && !isFreeTrial) || (isGuest && !activePackage && !isFreeTrial)) {
-                document.getElementById('tasksGrid').innerHTML = `<div style="text-align:center;padding:2rem;"><i class="fas fa-box-open"></i><h3>Start Free Trial or Choose a Package</h3><div style="margin-top:1rem;"><button class="btn btn-primary" onclick="startFreeTrial()">3-Day Free Trial</button><button class="btn btn-outline" onclick="showPage('packages')" style="margin-left:1rem;">View Packages</button></div></div>`;
-                return;
-            }
-            if(isFreeTrial && freeTrialTasksCompletedToday >= 5 && availableTasks.length === 0 && processingTasks.length === 0) {
-                document.getElementById('tasksGrid').innerHTML = `<div style="text-align:center;padding:2rem;"><i class="fas fa-clock"></i><h3>Daily Limit Reached 🌙</h3><p>You've completed 5 tasks today. New tasks available tomorrow!</p></div>`;
-                startTaskTimer();
-                return;
-            }
-            if(availableTasks.length === 0 && processingTasks.length === 0 && (activePackage || isFreeTrial) && tasksRemaining > 0) {
-                if(isFreeTrial) generateTasksForTrial();
-                else generateTasksForPackage();
-                return;
-            }
-            let html = '';
-            availableTasks.forEach(task => {
-                html += `<div class="task-card" onclick="openWorkspace(${JSON.stringify(task).replace(/"/g, '&quot;')})">
-                    <span class="task-badge">${task.category}</span>
-                    <span class="task-difficulty difficulty-${task.difficulty.toLowerCase()}">${task.difficulty}</span>
-                    <h3>${task.title}</h3>
-                    <p>${task.desc.substring(0, 80)}...</p>
-                    <div class="deadline"><i class="fas fa-clock"></i> ${task.deadline}</div>
-                    <div style="font-size:1.5rem;color:var(--primary);">$${task.price}</div>
-                </div>`;
-            });
-            document.getElementById('tasksGrid').innerHTML = html;
-            document.getElementById('trialBadge').style.display = isFreeTrial ? 'inline-block' : 'none';
-        }
+        function loadTasks() { updateProcessingDisplay(); if(!currentUser && !isGuest) { let html = ''; detailedTasks.forEach(t => { html += `<div class="task-card locked-task" onclick="showAuthModal()"><span class="task-badge">${t.category}</span><span class="task-difficulty difficulty-${t.difficulty.toLowerCase()}">${t.difficulty}</span><h3>${t.title}</h3><div class="deadline">${t.deadline}</div><div style="font-size:1.5rem;">$${t.price}</div><div style="font-size:0.8rem;"><i class="fas fa-lock"></i> Sign in</div></div>`; }); document.getElementById('tasksGrid').innerHTML = html; document.getElementById('guestBadge').style.display = 'inline-block'; return; } if(!activePackage) { document.getElementById('tasksGrid').innerHTML = `<div style="text-align:center;"><i class="fas fa-box-open"></i><h3>Choose a Package</h3><button class="btn btn-primary" onclick="showPage('packages')">View Packages</button></div>`; return; } if(availableTasks.length === 0 && activePackage && tasksRemaining > 0) generateTasksForPackage(); let html = ''; availableTasks.forEach(task => { html += `<div class="task-card" onclick="openWorkspace(${JSON.stringify(task).replace(/"/g, '&quot;')})"><span class="task-badge">${task.category}</span><span class="task-difficulty difficulty-${task.difficulty.toLowerCase()}">${task.difficulty}</span><h3>${task.title}</h3><p>${task.desc.substring(0,80)}...</p><div class="deadline">${task.deadline}</div><div style="font-size:1.5rem;">$${task.price}</div></div>`; }); document.getElementById('tasksGrid').innerHTML = html; }
+        function loadContests() { let premiumAccess = activePackage && activePackage.hasContests; if(!premiumAccess) { document.getElementById('contestsGrid').innerHTML = `<div style="text-align:center;"><i class="fas fa-crown"></i><h3>Premium Package Required</h3><button class="btn btn-primary" onclick="showPage('packages')">Upgrade</button></div>`; return; } let html = ''; contestTasks.forEach(c => { html += `<div class="task-card" onclick="openWorkspace(${JSON.stringify(c).replace(/"/g, '&quot;')})"><span class="task-badge">🏆 Contest</span><span class="task-difficulty difficulty-hard">${c.difficulty}</span><h3>${c.title}</h3><p>${c.desc.substring(0,80)}</p><div>🏆 Prize: $${c.prize}</div><div>Entry: $${c.price}</div></div>`; }); document.getElementById('contestsGrid').innerHTML = html; }
+        function loadPackages() { let html = ''; packagesList.forEach(p => { html += `<div class="package-card ${p.popular?'popular':''}"><h3>${p.name}</h3><div class="package-price">$${p.price}</div><ul>${p.features.map(f=>`<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul><div style="display:flex; gap:0.5rem;"><button class="btn btn-primary" onclick="purchasePackagePayPal(${p.id})"><i class="fab fa-paypal"></i> PayPal</button><button class="btn btn-primary" onclick="purchasePackageCrypto(${p.id})"><i class="fas fa-coins"></i> Crypto</button></div></div>`; }); document.getElementById('packagesGrid').innerHTML = html; }
+        function requestWithdrawal() { let amount = parseFloat(document.getElementById('withdrawAmountInput').value); if(isNaN(amount) || amount <= 0) { showToast("Valid amount"); return; } if(amount > walletBalance) { showToast("Insufficient balance"); return; } if(!hasWithdrawn && amount < 300) { showToast("First withdrawal min $300"); return; } if(!userWithdrawalAddress) { showToast("Set payout address first"); return; } walletBalance -= amount; hasWithdrawn = true; saveUser(); updateAll(); showToast(`Withdrawal of $${amount} requested`); updateThresholdDisplay(); }
+        function updateThresholdDisplay() { let container = document.getElementById('thresholdContainer'); let hint = document.getElementById('withdrawHint'); if(hasWithdrawn) { if(container) container.style.display = 'none'; if(hint) hint.innerHTML = `<i class="fas fa-check-circle"></i> Unlimited withdrawals | Payout: ${userWithdrawalAddress || 'Not set'}`; } else { if(container) container.style.display = 'block'; if(hint) hint.innerHTML = `<i class="fas fa-exclamation-triangle"></i> First withdrawal min $300 | Payout: ${userWithdrawalAddress || 'Not set'}`; } }
         
-        function loadContests() {
-            let premiumAccess = (activePackage && activePackage.hasContests) || isFreeTrial;
-            if(!premiumAccess) {
-                let html = `<div style="grid-column:1/-1;text-align:center;"><i class="fas fa-crown"></i><h3>Premium Package Required</h3><button class="btn btn-primary" onclick="showPage('packages')">Upgrade to Premium</button></div>`;
-                document.getElementById('contestsGrid').innerHTML = html;
-                return;
-            }
-            let html = '';
-            contestTasks.forEach(contest => {
-                html += `<div class="task-card" onclick="openWorkspace(${JSON.stringify(contest).replace(/"/g, '&quot;')})">
-                    <span class="task-badge" style="background:var(--accent);">🏆 Contest</span>
-                    <span class="task-difficulty difficulty-hard">${contest.difficulty}</span>
-                    <h3>${contest.title}</h3>
-                    <p>${contest.desc.substring(0, 100)}...</p>
-                    <div class="deadline"><i class="fas fa-clock"></i> ${contest.deadline}</div>
-                    <div style="font-size:1.5rem;color:var(--accent);">🏆 Prize: $${contest.prize}</div>
-                    <div style="font-size:1rem;color:var(--primary);">Entry Reward: $${contest.price}</div>
-                </div>`;
-            });
-            document.getElementById('contestsGrid').innerHTML = html;
-        }
+        function loadTopStudents() { let html = ''; topStudents.forEach(s => { html += `<div class="student-card"><div class="student-avatar">${s.avatar}</div><div class="student-name">${s.name} ${s.flag}</div><div class="student-country">${s.country}</div><div class="student-reward">$${s.reward} earned 🏆</div></div>`; }); document.getElementById('topStudentsGrid').innerHTML = html; }
         
-        function loadPackages() {
-            let html = '';
-            packagesList.forEach(p => {
-                let referralDiscount = (currentUser && currentUser.referrals && currentUser.referrals.length >= 5) ? 0.5 : 0;
-                let finalPrice = referralDiscount > 0 ? Math.round(p.price * (1 - referralDiscount)) : p.price;
-                html += `<div class="package-card ${p.popular?'popular':''}">
-                    ${p.popular?'<div class="popular-badge">BEST VALUE</div>':''}
-                    <h3>${p.name}</h3>
-                    <div style="text-decoration:line-through; color:var(--text-muted);">$${p.originalPrice}</div>
-                    <div class="package-price">$${finalPrice} <span>(45% OFF)</span></div>
-                    ${referralDiscount > 0 ? '<div style="color:var(--accent);">🎉 50% Referral Discount Applied!</div>' : ''}
-                    <ul>${p.features.map(f=>`<li><i class="fas fa-check"></i> ${f}</li>`).join('')}</ul>
-                    <div style="display:flex; gap:0.5rem; margin-top:1rem;">
-                        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank" style="flex:1;">
-                            <input type="hidden" name="cmd" value="_xclick">
-                            <input type="hidden" name="business" value="${p.paypalBusiness}">
-                            <input type="hidden" name="amount" value="${finalPrice}">
-                            <input type="hidden" name="item_name" value="${p.name} Package - AcademiX Pro">
-                            <input type="hidden" name="currency_code" value="USD">
-                            <input type="hidden" name="no_shipping" value="1">
-                            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fab fa-paypal"></i> PayPal $${finalPrice}</button>
-                        </form>
-                        <button class="btn btn-primary" style="flex:1;" onclick="purchasePackageCrypto(${p.id})"><i class="fas fa-coins"></i> Crypto $${finalPrice}</button>
-                    </div>
-                </div>`;
-            });
-            document.getElementById('packagesGrid').innerHTML = html;
-        }
-        
-        function requestWithdrawal() {
-            let amount = parseFloat(document.getElementById('withdrawAmountInput').value);
-            if(isNaN(amount) || amount <= 0) { showToast("Enter valid amount 💰"); return; }
-            if(amount > walletBalance) { showToast(`Insufficient balance. Max: $${walletBalance.toFixed(2)}`); return; }
-            if(!hasWithdrawn && amount < 300) { showToast(`First withdrawal minimum is $300. You need $${(300-amount).toFixed(2)} more.`); return; }
-            if(!userWithdrawalAddress) { showToast("Set payout address first 📧"); return; }
-            walletBalance -= amount;
-            hasWithdrawn = true;
-            saveUser();
-            updateAll();
-            showToast(`✅ Withdrawal of $${amount.toFixed(2)} requested to ${userWithdrawalAddress} 🎉`);
-            document.getElementById('withdrawAmountInput').value = '';
-            updateThresholdDisplay();
-        }
-        
-        function updateThresholdDisplay() {
-            const thresholdContainer = document.getElementById('thresholdContainer');
-            const withdrawHint = document.getElementById('withdrawHint');
-            if(hasWithdrawn) {
-                if(thresholdContainer) thresholdContainer.style.display = 'none';
-                if(withdrawHint) withdrawHint.innerHTML = `<i class="fas fa-check-circle"></i> Unlimited withdrawals now available! 🚀 | Payout: <span id="withdrawAddrDisplay">${userWithdrawalAddress || 'Not set'}</span>`;
-            } else {
-                if(thresholdContainer) thresholdContainer.style.display = 'block';
-                if(withdrawHint) withdrawHint.innerHTML = `<i class="fas fa-exclamation-triangle"></i> First withdrawal minimum: $300 | Payout: <span id="withdrawAddrDisplay">${userWithdrawalAddress || 'Not set'}</span>`;
-            }
-        }
-        
-        function loadTopStudents() {
-            let html = '';
-            topStudents.forEach(s => {
-                html += `<div class="student-card"><div class="student-avatar">${s.avatar}</div><div class="student-name">${s.name} ${s.flag}</div><div class="student-country">${s.country}</div><div class="student-reward">$${s.reward} earned 🏆</div></div>`;
-            });
-            document.getElementById('topStudentsGrid').innerHTML = html;
-        }
-        
-        // Live Chat Functions with emojis and GIFs
-        function initChat() {
-            chatMessages = [
-                {user:"Sarah 😊", text:"Hey everyone! Just completed a coding task and earned $40! 🚀💰", time:"2 min ago", avatar:"S", isGif:false},
-                {user:"Michael 🚀", text:"Nice! I'm working on the research paper contest. $5000 prize is huge! 🏆✨", time:"2 min ago", avatar:"M", isGif:false},
-                {user:"Priya 🌸", text:"The free trial is awesome. I've done 5 tasks today! 🎉📚", time:"3 min ago", avatar:"P", isGif:false},
-                {user:"Carlos ⚡", text:"Premium package is worth it. Already made $200 this week! 💪🔥", time:"4 min ago", avatar:"C", isGif:false},
-                {user:"Wei 🐉", text:"Anyone joining the essay contest? Looking for a study buddy! 👥✨", time:"5 min ago", avatar:"W", isGif:false},
-                {user:"Amina 🌙", text:"Just withdrew $350! The process was super fast! 🎉💎", time:"6 min ago", avatar:"A", isGif:false}
-            ];
-            displayChatMessages();
-            if(chatInterval) clearInterval(chatInterval);
-            chatInterval = setInterval(() => {
-                const randomUser = chatUsers[Math.floor(Math.random() * chatUsers.length)];
-                const messages = [
-                    "Just finished a task! So rewarding! 🎉💰", 
-                    "Anyone need help with coding tasks? 💻✨", 
-                    "This platform is amazing! 🌟🚀", 
-                    "Premium membership is totally worth it! 💎🏆", 
-                    "Just hit $500 in earnings! 🚀🎉", 
-                    "The contests look exciting! 🔥✨", 
-                    "Love the workspace feature! 📝💪", 
-                    "Made $150 this week already! 💰🎉", 
-                    "Referral program is great! 👥✨", 
-                    "The Ramadan discounts are incredible! 🌙🎁"
-                ];
-                const randomEmoji = funEmojis[Math.floor(Math.random() * funEmojis.length)];
-                const message = messages[Math.floor(Math.random() * messages.length)] + " " + randomEmoji;
-                chatMessages.unshift({user:randomUser.name, text:message, time:"Just now", avatar:randomUser.avatar, isGif:false});
-                if(chatMessages.length > 50) chatMessages.pop();
-                displayChatMessages();
-                simulateTyping();
-            }, 15000);
-            
-            // Simulate typing indicator every 20-40 seconds
-            setInterval(() => {
-                if(Math.random() > 0.6) simulateTyping();
-            }, 25000);
-        }
-        
-        function simulateTyping() {
-            if(isTyping) return;
-            isTyping = true;
-            const container = document.getElementById('chatMessages');
-            const typingDiv = document.createElement('div');
-            typingDiv.className = 'typing-indicator';
-            typingDiv.id = 'typingIndicator';
-            typingDiv.innerHTML = '<span></span><span></span><span></span><span style="margin-left:5px;">someone is typing...</span>';
-            container.appendChild(typingDiv);
-            container.scrollTop = container.scrollHeight;
-            
-            setTimeout(() => {
-                const indicator = document.getElementById('typingIndicator');
-                if(indicator) indicator.remove();
-                isTyping = false;
-                
-                // Sometimes add a message after typing
-                if(Math.random() > 0.5) {
-                    const randomUser = chatUsers[Math.floor(Math.random() * chatUsers.length)];
-                    const typingMessages = [
-                        "Great discussion! 💬✨", 
-                        "Anyone else working on tasks? 👥", 
-                        "This community is awesome! 🌟", 
-                        "Just learned something new! 📚💡"
-                    ];
-                    const randomMsg = typingMessages[Math.floor(Math.random() * typingMessages.length)];
-                    chatMessages.unshift({user:randomUser.name, text:randomMsg + " " + funEmojis[Math.floor(Math.random() * funEmojis.length)], time:"Just now", avatar:randomUser.avatar, isGif:false});
-                    displayChatMessages();
-                }
-            }, 3000);
-        }
-        
-        function displayChatMessages() {
-            const container = document.getElementById('chatMessages');
-            if(!container) return;
-            let html = '';
-            chatMessages.slice(0, 40).forEach(msg => {
-                if(msg.isGif) {
-                    html += `<div class="chat-message other-message"><div class="chat-avatar">${msg.avatar}</div><div><div class="chat-bubble"><strong>${msg.user}</strong><br><img src="${msg.text}" class="gif-message" alt="GIF" onclick="window.open('${msg.text}','_blank')"></div><div class="chat-time">${msg.time}</div></div></div>`;
-                } else {
-                    html += `<div class="chat-message other-message"><div class="chat-avatar">${msg.avatar}</div><div><div class="chat-bubble"><strong>${msg.user}</strong><br><span class="message-text">${msg.text}</span></div><div class="chat-time">${msg.time}</div></div></div>`;
-                }
-            });
-            container.innerHTML = html;
-            container.scrollTop = container.scrollHeight;
-        }
-        
-        function sendChatMessage() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if(!text) return;
-            const userName = currentUser ? currentUser.name.split(' ')[0] + " " + funEmojis[Math.floor(Math.random() * funEmojis.length)] : "Guest 👋";
-            const userAvatar = currentUser ? currentUser.name.charAt(0).toUpperCase() : "G";
-            chatMessages.unshift({user:userName, text:text, time:"Just now", avatar:userAvatar, isGif:false});
-            input.value = '';
-            displayChatMessages();
-            
-            // Auto-reply sometimes
-            setTimeout(() => {
-                if(Math.random() > 0.4) {
-                    const randomUser = chatUsers[Math.floor(Math.random() * chatUsers.length)];
-                    const autoReplies = [
-                        "That's awesome! 🎉", 
-                        "Great point! 💡", 
-                        "I agree! 👍", 
-                        "Welcome! 👋✨", 
-                        "Interesting! 🤔💭"
-                    ];
-                    const reply = autoReplies[Math.floor(Math.random() * autoReplies.length)];
-                    chatMessages.unshift({user:randomUser.name, text:reply + " " + funEmojis[Math.floor(Math.random() * funEmojis.length)], time:"Just now", avatar:randomUser.avatar, isGif:false});
-                    displayChatMessages();
-                }
-            }, 2000);
-        }
-        
-        function sendGifMessage(gifUrl) {
-            const userName = currentUser ? currentUser.name.split(' ')[0] + " 😊" : "Guest 👋";
-            const userAvatar = currentUser ? currentUser.name.charAt(0).toUpperCase() : "G";
-            chatMessages.unshift({user:userName, text:gifUrl, time:"Just now", avatar:userAvatar, isGif:true});
-            displayChatMessages();
-            toggleGifPicker();
-        }
-        
-        function toggleGifPicker() {
-            const picker = document.getElementById('gifPicker');
-            if(picker.style.display === 'flex') picker.style.display = 'none';
-            else {
-                picker.style.display = 'flex';
-                loadTrendingGifs();
-            }
-        }
-        
-        function loadTrendingGifs() {
-            // Sample trending GIFs (using GIPHY CDN - these are free and safe)
-            const trendingGifs = [
-                "https://media.tenor.com/x8v1oNUOmg4AAAAd/party-rock.gif",
-                "https://media.tenor.com/G7FwZlx0Y6cAAAAC/excited-happy.gif",
-                "https://media.tenor.com/5oB0L9Fz1tIAAAAC/thumbs-up-approval.gif",
-                "https://media.tenor.com/WzQa9mUqR8IAAAAC/congrats-celebration.gif",
-                "https://media.tenor.com/5PRa7x4y-3IAAAAC/clapping-applause.gif",
-                "https://media.tenor.com/6QvL4z9y8XIAAAAC/high-five-success.gif",
-                "https://media.tenor.com/YqGq7qk4z_MAAAAC/celebration-dance.gif",
-                "https://media.tenor.com/9iG7n7h7Y_wAAAAC/awesome-cool.gif"
-            ];
-            const resultsDiv = document.getElementById('gifResults');
-            let html = '';
-            trendingGifs.forEach(gif => {
-                html += `<div class="gif-result" onclick="sendGifMessage('${gif}')"><img src="${gif}" alt="GIF"></div>`;
-            });
-            resultsDiv.innerHTML = html;
-        }
-        
-        function searchGifs() {
-            const query = document.getElementById('gifSearchInput').value.trim().toLowerCase();
-            const resultsDiv = document.getElementById('gifResults');
-            
-            // Sample search results based on query
-            const gifLibrary = {
-                "happy": ["https://media.tenor.com/0AVbKGYlC7IAAAAC/happy-dance.gif", "https://media.tenor.com/8f7tJ7w2l4IAAAAC/happy-smile.gif"],
-                "sad": ["https://media.tenor.com/uS1MkS8X1wIAAAAC/sad-cry.gif"],
-                "excited": ["https://media.tenor.com/G7FwZlx0Y6cAAAAC/excited-happy.gif"],
-                "celebration": ["https://media.tenor.com/5PRa7x4y-3IAAAAC/clapping-applause.gif", "https://media.tenor.com/YqGq7qk4z_MAAAAC/celebration-dance.gif"],
-                "congrats": ["https://media.tenor.com/WzQa9mUqR8IAAAAC/congrats-celebration.gif"],
-                "thanks": ["https://media.tenor.com/5oB0L9Fz1tIAAAAC/thumbs-up-approval.gif"],
-                "awesome": ["https://media.tenor.com/9iG7n7h7Y_wAAAAC/awesome-cool.gif"],
-                "party": ["https://media.tenor.com/x8v1oNUOmg4AAAAd/party-rock.gif"],
-                "clap": ["https://media.tenor.com/5PRa7x4y-3IAAAAC/clapping-applause.gif"]
-            };
-            
-            let matchingGifs = [];
-            for(let key in gifLibrary) {
-                if(query === "" || key.includes(query) || query.includes(key)) {
-                    matchingGifs = [...matchingGifs, ...gifLibrary[key]];
-                }
-            }
-            
-            if(matchingGifs.length === 0 && query !== "") {
-                matchingGifs = ["https://media.tenor.com/0AVbKGYlC7IAAAAC/happy-dance.gif"];
-            }
-            
-            if(matchingGifs.length === 0) {
-                matchingGifs = [
-                    "https://media.tenor.com/x8v1oNUOmg4AAAAd/party-rock.gif",
-                    "https://media.tenor.com/G7FwZlx0Y6cAAAAC/excited-happy.gif",
-                    "https://media.tenor.com/5oB0L9Fz1tIAAAAC/thumbs-up-approval.gif"
-                ];
-            }
-            
-            let html = '';
-            matchingGifs.forEach(gif => {
-                html += `<div class="gif-result" onclick="sendGifMessage('${gif}')"><img src="${gif}" alt="GIF"></div>`;
-            });
-            resultsDiv.innerHTML = html;
-        }
-        
-        function handleChatKeypress(e) { if(e.key === 'Enter') sendChatMessage(); }
-        function toggleChat() {
-            const chat = document.getElementById('liveChat');
-            if(chat.style.display === 'flex') chat.style.display = 'none';
-            else { chat.style.display = 'flex'; if(chatMessages.length === 0) initChat(); }
-        }
-        
-        // User Management
-        function saveUser() {
-            if(currentUser && !isGuest) {
-                const processingTasksForStorage = processingTasks.map(task => ({ id: task.id, title: task.title, price: task.price, submittedAt: task.submittedAt, taskData: task.taskData }));
-                let userData = {...currentUser, walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod, isFreeTrial, freeTrialTasksCompletedToday, lastTaskDate, hasWithdrawn, processingTasks: processingTasksForStorage};
-                localStorage.setItem(`academix_${currentUser.email}`, JSON.stringify(userData));
-            } else if(isGuest) {
-                const processingTasksForStorage = processingTasks.map(task => ({ id: task.id, title: task.title, price: task.price, submittedAt: task.submittedAt, taskData: task.taskData }));
-                localStorage.setItem('academix_guest', JSON.stringify({walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod, isFreeTrial, freeTrialTasksCompletedToday, lastTaskDate, hasWithdrawn, processingTasks: processingTasksForStorage}));
-            }
-        }
-        
-        function restoreUser(data) {
-            currentUser = {name:data.name, email:data.email, avatar:data.avatar, category:data.category, password:data.password, phone:data.phone, country:data.country, referrals:data.referrals || [], referralCode:data.referralCode};
-            walletBalance = data.walletBalance || 0;
-            tasksCompleted = data.tasksCompleted || 0;
-            totalEarned = data.totalEarned || 0;
-            activePackage = data.activePackage;
-            tasksRemaining = data.tasksRemaining || 0;
-            availableTasks = data.availableTasks || [];
-            userWithdrawalAddress = data.userWithdrawalAddress || "";
-            selectedPaymentMethod = data.paymentMethod || "paypal";
-            isFreeTrial = data.isFreeTrial || false;
-            freeTrialTasksCompletedToday = data.freeTrialTasksCompletedToday || 0;
-            lastTaskDate = data.lastTaskDate;
-            hasWithdrawn = data.hasWithdrawn || false;
-            if(data.processingTasks && data.processingTasks.length > 0) {
-                processingTasks = [];
-                data.processingTasks.forEach(savedTask => {
-                    const restoredTask = {...savedTask, submittedAt: new Date(savedTask.submittedAt), timeout: null};
-                    processingTasks.push(restoredTask);
-                    const elapsed = (new Date() - restoredTask.submittedAt) / 1000;
-                    const remaining = Math.max(0, 300000 - (elapsed * 1000));
-                    if(remaining > 0) restoredTask.timeout = setTimeout(() => completeTaskProcessing(restoredTask), remaining);
-                    else completeTaskProcessing(restoredTask);
-                });
-                updateProcessingDisplay();
-            }
-            isGuest = false;
-            updateUI();
-            if(activePackage && availableTasks.length === 0 && tasksRemaining > 0) generateTasksForPackage();
-            else if(isFreeTrial && availableTasks.length === 0) generateTasksForTrial();
-            updateThresholdDisplay();
-        }
-        
-        function updateUI() {
-            if(!currentUser) return;
-            document.getElementById('authButton').style.display = 'none';
-            document.getElementById('walletInfo').style.display = 'flex';
-            document.getElementById('userMenu').style.display = 'flex';
-            document.getElementById('userName').innerHTML = currentUser.name.split(' ')[0];
-            document.getElementById('userAvatar').innerHTML = currentUser.avatar;
-            document.getElementById('profileAvatar').innerHTML = currentUser.avatar;
-            document.getElementById('displayName').innerHTML = currentUser.name;
-            document.getElementById('displayEmail').innerHTML = currentUser.email;
-            document.getElementById('displayPhone').innerHTML = currentUser.phone || "Not set";
-            document.getElementById('displayCountry').innerHTML = currentUser.country || "Not set";
-            document.getElementById('displayCategory').innerHTML = currentUser.category;
-            document.getElementById('editName').value = currentUser.name;
-            document.getElementById('editPhone').value = currentUser.phone || "";
-            document.getElementById('editCountry').value = currentUser.country || "United States";
-            document.getElementById('editCategory').value = currentUser.category;
-            document.getElementById('profileWalletAddr').innerHTML = userWithdrawalAddress || "Not set";
-            document.getElementById('guestBadge').style.display = 'none';
-            let code = currentUser.referralCode || generateReferralCode();
-            document.getElementById('referralCodeDisplay').innerHTML = `<i class="fas fa-copy"></i> ${code} - Click to copy`;
-            document.getElementById('referralCount').innerHTML = currentUser.referrals ? currentUser.referrals.length : 0;
-            let discountMsg = (currentUser.referrals && currentUser.referrals.length >= 5) ? "🎉 5 referrals! 50% OFF on next package!" : `${5 - (currentUser.referrals?.length || 0)} more referrals needed for 50% OFF! 🎁`;
-            document.getElementById('discountStatus').innerHTML = discountMsg;
-            updateWalletDisplay();
-            updateDashboard();
-            updateWithdrawDisplayAddr();
-        }
-        
-        function updateGuestUI() {
-            document.getElementById('authButton').style.display = 'flex';
-            document.getElementById('walletInfo').style.display = 'flex';
-            document.getElementById('userMenu').style.display = 'none';
-            document.getElementById('walletDisplay').innerHTML = `$${walletBalance.toFixed(2)}`;
-            document.getElementById('guestBadge').style.display = 'inline-block';
-            updateWalletDisplay();
-            updateDashboard();
-            updateWithdrawDisplayAddr();
-        }
-        
+        function saveUser() { if(currentUser && !isGuest) { let userData = {...currentUser, walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod, hasWithdrawn, processingTasks}; localStorage.setItem(`academix_${currentUser.email}`, JSON.stringify(userData)); } else if(isGuest) { localStorage.setItem('academix_guest', JSON.stringify({walletBalance, tasksCompleted, totalEarned, activePackage, tasksRemaining, availableTasks, userWithdrawalAddress, paymentMethod: selectedPaymentMethod, hasWithdrawn, processingTasks})); } }
+        function restoreUser(data) { currentUser = {name:data.name, email:data.email, avatar:data.avatar, category:data.category, password:data.password, phone:data.phone, country:data.country, referrals:data.referrals || [], referralCode:data.referralCode}; walletBalance = data.walletBalance || 0; tasksCompleted = data.tasksCompleted || 0; totalEarned = data.totalEarned || 0; activePackage = data.activePackage; tasksRemaining = data.tasksRemaining || 0; availableTasks = data.availableTasks || []; userWithdrawalAddress = data.userWithdrawalAddress || ""; selectedPaymentMethod = data.paymentMethod || "paypal"; hasWithdrawn = data.hasWithdrawn || false; processingTasks = data.processingTasks || []; isGuest = false; updateUI(); if(activePackage && availableTasks.length === 0 && tasksRemaining > 0) generateTasksForPackage(); updateThresholdDisplay(); }
+        function updateUI() { if(!currentUser) return; document.getElementById('authButton').style.display = 'none'; document.getElementById('walletInfo').style.display = 'flex'; document.getElementById('userMenu').style.display = 'flex'; document.getElementById('userName').innerHTML = currentUser.name.split(' ')[0]; document.getElementById('userAvatar').innerHTML = currentUser.avatar; document.getElementById('profileAvatar').innerHTML = currentUser.avatar; document.getElementById('displayName').innerHTML = currentUser.name; document.getElementById('displayEmail').innerHTML = currentUser.email; document.getElementById('displayPhone').innerHTML = currentUser.phone || "Not set"; document.getElementById('displayCountry').innerHTML = currentUser.country || "Not set"; document.getElementById('displayCategory').innerHTML = currentUser.category; document.getElementById('editName').value = currentUser.name; document.getElementById('editPhone').value = currentUser.phone || ""; document.getElementById('editCountry').value = currentUser.country || "United States"; document.getElementById('editCategory').value = currentUser.category; document.getElementById('profileWalletAddr').innerHTML = userWithdrawalAddress || "Not set"; document.getElementById('referralCodeDisplay').innerHTML = `<i class="fas fa-copy"></i> ${currentUser.referralCode || generateReferralCode()}`; document.getElementById('referralCount').innerHTML = currentUser.referrals ? currentUser.referrals.length : 0; let discountMsg = (currentUser.referrals && currentUser.referrals.length >= 5) ? "50% OFF unlocked!" : `${5 - (currentUser.referrals?.length || 0)} more referrals needed`; document.getElementById('discountStatus').innerHTML = discountMsg; updateWalletDisplay(); updateDashboard(); updateWithdrawDisplayAddr(); }
+        function updateGuestUI() { document.getElementById('authButton').style.display = 'flex'; document.getElementById('walletInfo').style.display = 'flex'; document.getElementById('userMenu').style.display = 'none'; document.getElementById('walletDisplay').innerHTML = `$${walletBalance.toFixed(2)}`; document.getElementById('guestBadge').style.display = 'inline-block'; updateWalletDisplay(); updateDashboard(); updateWithdrawDisplayAddr(); }
         function updateAll() { updateDashboard(); updateWalletDisplay(); updatePackageStatusUI(); saveUser(); }
-        
-        function updateDashboard() {
-            document.getElementById('dashboardBalance').innerHTML = `$${walletBalance.toFixed(2)}`;
-            document.getElementById('tasksCompleted').innerHTML = tasksCompleted;
-            document.getElementById('totalEarned').innerHTML = `$${totalEarned.toFixed(2)}`;
-            document.getElementById('activePackageDisplay').innerHTML = activePackage ? activePackage.name : (isFreeTrial ? "Free Trial 🔥" : "None");
-            document.getElementById('tasksLeft').innerHTML = tasksRemaining;
-            let progress = Math.min((totalEarned / 300) * 100, 100);
-            document.getElementById('progressBar').style.width = `${progress}%`;
-            document.getElementById('progressText').innerHTML = `$${totalEarned.toFixed(2)} / $300`;
-            if(charts.tasks) charts.tasks.data.datasets[0].data = [tasksCompleted, activePackage ? activePackage.tasks - tasksCompleted : 50];
-            if(charts.earnings) charts.earnings.data.datasets[0].data = [totalEarned * 0.2, totalEarned * 0.3, totalEarned * 0.5, totalEarned];
-            charts.tasks?.update();
-            charts.earnings?.update();
-        }
-        
-        function updateWalletDisplay() {
-            document.getElementById('walletDisplay').innerHTML = `$${walletBalance.toFixed(2)}`;
-            document.getElementById('walletPageBalance').innerHTML = `$${walletBalance.toFixed(2)}`;
-            document.getElementById('walletAddressDisplay').innerHTML = userWithdrawalAddress ? `Payout (${selectedPaymentMethod}): ${userWithdrawalAddress}` : "Set payout address 📧";
-        }
-        
-        function updatePackageStatusUI() {
-            let div = document.getElementById('packageStatus');
-            if(activePackage) {
-                div.style.display = 'block';
-                document.getElementById('activePackageName').innerHTML = `Active: ${activePackage.name} 🎓`;
-                document.getElementById('tasksRemainingText').innerHTML = `${tasksRemaining} tasks remaining`;
-            } else if(isFreeTrial) {
-                div.style.display = 'block';
-                document.getElementById('activePackageName').innerHTML = `🔥 Free Trial Active 🔥`;
-                document.getElementById('tasksRemainingText').innerHTML = `${5 - freeTrialTasksCompletedToday} tasks left today | Progress to $300`;
-            } else div.style.display = 'none';
-        }
-        
-        function updateWithdrawDisplayAddr() {
-            let span = document.getElementById('withdrawAddrDisplay');
-            if(span) span.innerText = userWithdrawalAddress ? (userWithdrawalAddress.length > 25 ? userWithdrawalAddress.substring(0,15)+'...' : userWithdrawalAddress) : "Not set";
-        }
-        
-        function saveWithdrawalAddress() {
-            let addr = document.getElementById('withdrawalAddress').value.trim();
-            if(addr) { userWithdrawalAddress = addr; saveUser(); updateWalletDisplay(); updateWithdrawDisplayAddr(); showToast("Payout address saved ✅"); }
-        }
-        
-        function saveProfile() {
-            if(currentUser) {
-                currentUser.name = document.getElementById('editName').value;
-                currentUser.phone = document.getElementById('editPhone').value;
-                currentUser.country = document.getElementById('editCountry').value;
-                currentUser.category = document.getElementById('editCategory').value;
-                currentUser.avatar = currentUser.name.charAt(0).toUpperCase();
-                saveUser();
-                updateUI();
-                showToast("Profile updated ✨");
-            }
-        }
-        
-        function completeSetup() {
-            let name = document.getElementById('setupName').value.trim();
-            let phone = document.getElementById('setupPhone').value.trim();
-            let country = document.getElementById('setupCountry').value;
-            let cat = document.getElementById('setupCategory').value;
-            let wallet = document.getElementById('setupWalletAddr').value.trim();
-            if(!name || !country || !cat) { showToast("Name, country & specialization required 📝"); return; }
-            if(currentUser) {
-                currentUser.name = name;
-                currentUser.phone = phone;
-                currentUser.country = country;
-                currentUser.category = cat;
-                currentUser.avatar = name.charAt(0).toUpperCase();
-                userWithdrawalAddress = wallet;
-                saveUser();
-                updateUI();
-                showPage('home');
-                showToast("Profile ready! 🎉");
-            } else if(isGuest) {
-                userWithdrawalAddress = wallet;
-                saveUser();
-                updateGuestUI();
-                showPage('home');
-                showToast("Guest profile saved. 👋");
-            }
-        }
-        
-        function generateReferralCode() {
-            if(currentUser && currentUser.name) return `${currentUser.name.substring(0,3).toUpperCase()}${Math.floor(Math.random()*10000)}`;
-            return `SCHOLAR${Math.floor(Math.random()*10000)}`;
-        }
-        
-        function copyReferralCode() {
-            let code = currentUser ? (currentUser.referralCode || generateReferralCode()) : "GUEST123";
-            navigator.clipboard.writeText(code);
-            showToast("Referral code copied! 📋✨");
-        }
-        
-        function handleLogin() {
-            let email = document.getElementById('loginEmail').value.trim();
-            let pwd = document.getElementById('loginPassword').value;
-            if(!email||!pwd){ showToast("Enter email & password 📧"); return; }
-            let data = localStorage.getItem(`academix_${email}`);
-            if(data){ let u = JSON.parse(data); if(u.password === pwd){ restoreUser(u); localStorage.setItem('academix_session',email); closeModal('authModal'); showPage('home'); showToast(`Welcome back ${currentUser.name}! 🎉`); return; } }
-            showToast("Invalid credentials ❌");
-        }
-        
-        function handleRegister() {
-            let name = document.getElementById('regName').value.trim();
-            let email = document.getElementById('regEmail').value.trim();
-            let pwd = document.getElementById('regPassword').value;
-            let phone = document.getElementById('regPhone').value.trim();
-            let country = document.getElementById('regCountry').value;
-            let cat = document.getElementById('regCategory').value;
-            let wallet = document.getElementById('regWalletAddr').value.trim();
-            let referralInput = document.getElementById('referralCodeInput').value.trim();
-            if(!name||!email||!pwd||!country||!wallet){ showToast("Fill all required fields 📝"); return; }
-            if(pwd.length<6){ showToast("Password min 6 chars 🔒"); return; }
-            if(localStorage.getItem(`academix_${email}`)){ showToast("Email exists 📧"); return; }
-            let referredBy = null;
-            if(referralInput) {
-                for(let i = 0; i < localStorage.length; i++) {
-                    let key = localStorage.key(i);
-                    if(key.startsWith('academix_') && !key.includes('session') && !key.includes('guest') && !key.includes('theme')) {
-                        try {
-                            let userData = JSON.parse(localStorage.getItem(key));
-                            if(userData.referralCode === referralInput) {
-                                referredBy = userData.email;
-                                if(!userData.referrals) userData.referrals = [];
-                                userData.referrals.push(email);
-                                localStorage.setItem(key, JSON.stringify(userData));
-                                showToast("🎉 Referral applied! 10% OFF on first package!");
-                                break;
-                            }
-                        } catch(e) {}
-                    }
-                }
-            }
-            let newReferralCode = generateReferralCode();
-            let newUser = {name, email, password:pwd, phone, country, category:cat, avatar:name.charAt(0).toUpperCase(), walletBalance:0, tasksCompleted:0, totalEarned:0, activePackage:null, tasksRemaining:0, availableTasks:[], userWithdrawalAddress:wallet, paymentMethod:selectedPaymentMethod, referrals:[], referralCode:newReferralCode, referredBy, hasWithdrawn:false};
-            localStorage.setItem(`academix_${email}`, JSON.stringify(newUser));
-            localStorage.setItem('academix_session', email);
-            restoreUser(newUser);
-            closeModal('authModal');
-            showPage('setup');
-            showToast("Account created! Complete your profile. 🎉");
-        }
-        
-        function logout() {
-            if(currentUser && !isGuest) saveUser();
-            localStorage.removeItem('academix_session');
-            currentUser = null; isGuest = false; isFreeTrial = false; hasWithdrawn = false;
-            walletBalance = 0; tasksCompleted = 0; totalEarned = 0; activePackage = null;
-            tasksRemaining = 0; availableTasks = []; userWithdrawalAddress = "";
-            processingTasks.forEach(task => { if(task.timeout) clearTimeout(task.timeout); });
-            processingTasks = [];
-            if(taskTimerInterval) clearInterval(taskTimerInterval);
-            document.getElementById('authButton').style.display = 'flex';
-            document.getElementById('walletInfo').style.display = 'none';
-            document.getElementById('userMenu').style.display = 'none';
-            showPage('home');
-            showToast("Logged out 👋");
-        }
-        
-        function deleteAccount() {
-            if(confirm("⚠️ Delete account permanently?")) {
-                if(currentUser && !isGuest) localStorage.removeItem(`academix_${currentUser.email}`);
-                logout();
-                showToast("Account deleted ❌");
-            }
-        }
-        
-        function continueAsGuest() {
-            isGuest = true; currentUser = null;
-            let g = localStorage.getItem('academix_guest');
-            if(g) { let data = JSON.parse(g); walletBalance = data.walletBalance||0; tasksCompleted = data.tasksCompleted||0; totalEarned = data.totalEarned||0; activePackage = data.activePackage; tasksRemaining = data.tasksRemaining||0; availableTasks = data.availableTasks||[]; userWithdrawalAddress = data.userWithdrawalAddress||""; selectedPaymentMethod = data.paymentMethod||"paypal"; isFreeTrial = data.isFreeTrial||false; freeTrialTasksCompletedToday = data.freeTrialTasksCompletedToday||0; lastTaskDate = data.lastTaskDate; hasWithdrawn = data.hasWithdrawn||false; }
-            else { walletBalance = 0; tasksCompleted = 0; totalEarned = 0; activePackage = null; tasksRemaining = 0; availableTasks = []; userWithdrawalAddress = ""; selectedPaymentMethod = "paypal"; isFreeTrial = false; freeTrialTasksCompletedToday = 0; lastTaskDate = new Date().toDateString(); hasWithdrawn = false; }
-            updateGuestUI(); updateAll(); closeModal('authModal'); showPage('home'); showToast("Guest mode 👋");
-        }
-        
-        function initCharts() {
-            let ctx1 = document.getElementById('earningsChart')?.getContext('2d');
-            if(ctx1) charts.earnings = new Chart(ctx1, {type:'line', data:{labels:['Week1','Week2','Week3','Week4'], datasets:[{label:'Earnings ($)', data:[0,0,0,0], borderColor:'var(--primary)', tension:0.4, fill:true}]}, options:{responsive:true, maintainAspectRatio:false}});
-            let ctx2 = document.getElementById('tasksChart')?.getContext('2d');
-            if(ctx2) charts.tasks = new Chart(ctx2, {type:'doughnut', data:{labels:['Completed','Remaining'], datasets:[{data:[0,50], backgroundColor:['#10b981','#334155']}]}, options:{responsive:true}});
-        }
-        
-        function loadFAQ() {
-            let faqs = [
-                {q:"How do packages work? 📦", a:"Starter($28/12 tasks), Professional($54/30 tasks), Premium($109/75 tasks) with 45% discount."},
-                {q:"How do I add funds? 💰", a:"Wallet → PayPal (real PayPal payment) or Crypto (NowPayments). Both work with real payment gateways!"},
-                {q:"What's the withdrawal policy? 💸", a:"First withdrawal minimum $300. After first withdrawal, you can withdraw any amount!"},
-                {q:"How do contests work? 🏆", a:"Premium members can enter contests. Submit entries via workspace. Winners get cash prizes!"},
-                {q:"Free Trial details? 🔥", a:"3-day trial with 5 tasks/day. Complete tasks up to $299.99. After threshold, purchase package to continue."},
-                {q:"Referral program? 👥", a:"Refer 5 friends → 50% OFF. Referred friends get 10% OFF on first package!"}
-            ];
-            let html = '';
-            faqs.forEach((f,i) => { html += `<div class="faq-item ${i===0?'active':''}" onclick="this.classList.toggle('active')"><div class="faq-question"><h3>${f.q}</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${f.a}</p></div></div>`; });
-            document.getElementById('faqSection').innerHTML = html;
-        }
-        
-        function showPage(page) {
-            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-            document.getElementById(page + '-page').classList.add('active');
-            if(page === 'work') loadTasks();
-            if(page === 'packages') loadPackages();
-            if(page === 'contests') loadContests();
-            if(page === 'dashboard') { updateDashboard(); if(charts.earnings) charts.earnings.update(); }
-            if(page === 'wallet') updateWithdrawDisplayAddr();
-            if(page === 'referrals' && currentUser) {
-                let code = currentUser.referralCode || generateReferralCode();
-                document.getElementById('referralCodeDisplay').innerHTML = `<i class="fas fa-copy"></i> ${code} - Click to copy`;
-                document.getElementById('referralCount').innerHTML = currentUser.referrals ? currentUser.referrals.length : 0;
-            }
-            if(page === 'home') loadTopStudents();
-            document.getElementById('navMenu')?.classList.remove('show');
-        }
-        
+        function updateDashboard() { document.getElementById('dashboardBalance').innerHTML = `$${walletBalance.toFixed(2)}`; document.getElementById('tasksCompleted').innerHTML = tasksCompleted; document.getElementById('totalEarned').innerHTML = `$${totalEarned.toFixed(2)}`; document.getElementById('activePackageDisplay').innerHTML = activePackage ? activePackage.name : "None"; document.getElementById('tasksLeft').innerHTML = tasksRemaining; let progress = Math.min((totalEarned / 300) * 100, 100); document.getElementById('progressBar').style.width = `${progress}%`; document.getElementById('progressText').innerHTML = `$${totalEarned.toFixed(2)} / $300`; if(charts.tasks) charts.tasks.data.datasets[0].data = [tasksCompleted, activePackage ? activePackage.tasks - tasksCompleted : 50]; if(charts.earnings) charts.earnings.data.datasets[0].data = [totalEarned * 0.2, totalEarned * 0.3, totalEarned * 0.5, totalEarned]; charts.tasks?.update(); charts.earnings?.update(); }
+        function updateWalletDisplay() { document.getElementById('walletDisplay').innerHTML = `$${walletBalance.toFixed(2)}`; document.getElementById('walletPageBalance').innerHTML = `$${walletBalance.toFixed(2)}`; document.getElementById('walletAddressDisplay').innerHTML = userWithdrawalAddress ? `Payout: ${userWithdrawalAddress}` : "Set payout address"; }
+        function updatePackageStatusUI() { let div = document.getElementById('packageStatus'); if(activePackage) { div.style.display = 'block'; document.getElementById('activePackageName').innerHTML = `Active: ${activePackage.name}`; document.getElementById('tasksRemainingText').innerHTML = `${tasksRemaining} tasks remaining`; } else div.style.display = 'none'; }
+        function updateWithdrawDisplayAddr() { let span = document.getElementById('withdrawAddrDisplay'); if(span) span.innerText = userWithdrawalAddress ? (userWithdrawalAddress.length > 25 ? userWithdrawalAddress.substring(0,15)+'...' : userWithdrawalAddress) : "Not set"; }
+        function saveWithdrawalAddress() { let addr = document.getElementById('withdrawalAddress').value.trim(); if(addr) { userWithdrawalAddress = addr; saveUser(); updateWalletDisplay(); updateWithdrawDisplayAddr(); showToast("Payout address saved"); } }
+        function saveProfile() { if(currentUser) { currentUser.name = document.getElementById('editName').value; currentUser.phone = document.getElementById('editPhone').value; currentUser.country = document.getElementById('editCountry').value; currentUser.category = document.getElementById('editCategory').value; currentUser.avatar = currentUser.name.charAt(0).toUpperCase(); saveUser(); updateUI(); showToast("Profile updated"); } }
+        function completeSetup() { let name = document.getElementById('setupName').value.trim(); let phone = document.getElementById('setupPhone').value.trim(); let country = document.getElementById('setupCountry').value; let cat = document.getElementById('setupCategory').value; let wallet = document.getElementById('setupWalletAddr').value.trim(); if(!name || !country || !cat) { showToast("Fill required fields"); return; } if(currentUser) { currentUser.name = name; currentUser.phone = phone; currentUser.country = country; currentUser.category = cat; currentUser.avatar = name.charAt(0).toUpperCase(); userWithdrawalAddress = wallet; saveUser(); updateUI(); showPage('home'); showToast("Profile ready!"); } else if(isGuest) { userWithdrawalAddress = wallet; saveUser(); updateGuestUI(); showPage('home'); showToast("Guest profile saved"); } }
+        function generateReferralCode() { if(currentUser && currentUser.name) return `${currentUser.name.substring(0,3).toUpperCase()}${Math.floor(Math.random()*10000)}`; return `SCHOLAR${Math.floor(Math.random()*10000)}`; }
+        function copyReferralCode() { let code = currentUser ? (currentUser.referralCode || generateReferralCode()) : "GUEST123"; navigator.clipboard.writeText(code); showToast("Code copied!"); }
+        function handleLogin() { let email = document.getElementById('loginEmail').value.trim(); let pwd = document.getElementById('loginPassword').value; if(!email||!pwd){ showToast("Enter credentials"); return; } let data = localStorage.getItem(`academix_${email}`); if(data){ let u = JSON.parse(data); if(u.password === pwd){ restoreUser(u); localStorage.setItem('academix_session',email); closeModal('authModal'); showPage('home'); showToast(`Welcome back!`); return; } } showToast("Invalid login"); }
+        function handleRegister() { let name = document.getElementById('regName').value.trim(); let email = document.getElementById('regEmail').value.trim(); let pwd = document.getElementById('regPassword').value; let phone = document.getElementById('regPhone').value.trim(); let country = document.getElementById('regCountry').value; let cat = document.getElementById('regCategory').value; let wallet = document.getElementById('regWalletAddr').value.trim(); let referralInput = document.getElementById('referralCodeInput').value.trim(); if(!name||!email||!pwd||!country||!wallet){ showToast("Fill required fields"); return; } if(pwd.length<6){ showToast("Password min 6 chars"); return; } if(localStorage.getItem(`academix_${email}`)){ showToast("Email exists"); return; } let referredBy = null; if(referralInput) { for(let i=0; i<localStorage.length; i++) { let key = localStorage.key(i); if(key.startsWith('academix_') && !key.includes('session') && !key.includes('guest')) { try { let userData = JSON.parse(localStorage.getItem(key)); if(userData.referralCode === referralInput) { referredBy = userData.email; if(!userData.referrals) userData.referrals = []; userData.referrals.push(email); localStorage.setItem(key, JSON.stringify(userData)); showToast("Referral applied! 10% OFF"); break; } } catch(e){} } } } let newReferralCode = generateReferralCode(); let newUser = {name, email, password:pwd, phone, country, category:cat, avatar:name.charAt(0).toUpperCase(), walletBalance:0, tasksCompleted:0, totalEarned:0, activePackage:null, tasksRemaining:0, availableTasks:[], userWithdrawalAddress:wallet, paymentMethod:selectedPaymentMethod, referrals:[], referralCode:newReferralCode, referredBy, hasWithdrawn:false}; localStorage.setItem(`academix_${email}`, JSON.stringify(newUser)); localStorage.setItem('academix_session', email); restoreUser(newUser); closeModal('authModal'); showPage('setup'); showToast("Account created! Complete profile."); }
+        function logout() { if(currentUser && !isGuest) saveUser(); localStorage.removeItem('academix_session'); currentUser = null; isGuest = false; walletBalance = 0; tasksCompleted = 0; totalEarned = 0; activePackage = null; tasksRemaining = 0; availableTasks = []; userWithdrawalAddress = ""; processingTasks = []; document.getElementById('authButton').style.display = 'flex'; document.getElementById('walletInfo').style.display = 'none'; document.getElementById('userMenu').style.display = 'none'; showPage('home'); showToast("Logged out"); }
+        function deleteAccount() { if(confirm("Delete account permanently?")) { if(currentUser && !isGuest) localStorage.removeItem(`academix_${currentUser.email}`); logout(); showToast("Account deleted"); } }
+        function continueAsGuest() { isGuest = true; currentUser = null; let g = localStorage.getItem('academix_guest'); if(g) { let data = JSON.parse(g); walletBalance = data.walletBalance||0; tasksCompleted = data.tasksCompleted||0; totalEarned = data.totalEarned||0; activePackage = data.activePackage; tasksRemaining = data.tasksRemaining||0; availableTasks = data.availableTasks||[]; userWithdrawalAddress = data.userWithdrawalAddress||""; selectedPaymentMethod = data.paymentMethod||"paypal"; hasWithdrawn = data.hasWithdrawn||false; processingTasks = data.processingTasks||[]; } else { walletBalance = 0; tasksCompleted = 0; totalEarned = 0; activePackage = null; tasksRemaining = 0; availableTasks = []; userWithdrawalAddress = ""; hasWithdrawn = false; processingTasks = []; } updateGuestUI(); updateAll(); closeModal('authModal'); showPage('home'); showToast("Guest mode"); }
+        function initCharts() { let ctx1 = document.getElementById('earningsChart')?.getContext('2d'); if(ctx1) charts.earnings = new Chart(ctx1, {type:'line', data:{labels:['Week1','Week2','Week3','Week4'], datasets:[{label:'Earnings ($)', data:[0,0,0,0], borderColor:'var(--primary)', tension:0.4, fill:true}]}, options:{responsive:true, maintainAspectRatio:false}}); let ctx2 = document.getElementById('tasksChart')?.getContext('2d'); if(ctx2) charts.tasks = new Chart(ctx2, {type:'doughnut', data:{labels:['Completed','Remaining'], datasets:[{data:[0,50], backgroundColor:['#10b981','#334155']}]}, options:{responsive:true}}); }
+        function loadFAQ() { let faqs = [{q:"How do packages work?", a:"Starter($50/12 tasks), Professional($99/30 tasks), Premium($199/75 tasks)."},{q:"How to add funds?", a:"Wallet → PayPal or Crypto. Both work with real payment gateways."},{q:"Withdrawal policy?", a:"First withdrawal min $300. After that, any amount."},{q:"Referral program?", a:"Refer 5 friends → 50% OFF. Referred friends get 10% OFF."}]; let html = ''; faqs.forEach((f,i) => { html += `<div class="faq-item ${i===0?'active':''}" onclick="this.classList.toggle('active')"><div class="faq-question"><h3>${f.q}</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>${f.a}</p></div></div>`; }); document.getElementById('faqSection').innerHTML = html; }
+        function showPage(page) { document.querySelectorAll('.page').forEach(p => p.classList.remove('active')); document.getElementById(page + '-page').classList.add('active'); if(page === 'work') loadTasks(); if(page === 'packages') loadPackages(); if(page === 'contests') loadContests(); if(page === 'dashboard') { updateDashboard(); if(charts.earnings) charts.earnings.update(); } if(page === 'wallet') updateWithdrawDisplayAddr(); if(page === 'referrals' && currentUser) { let code = currentUser.referralCode || generateReferralCode(); document.getElementById('referralCodeDisplay').innerHTML = `<i class="fas fa-copy"></i> ${code} - Click to copy`; document.getElementById('referralCount').innerHTML = currentUser.referrals ? currentUser.referrals.length : 0; } if(page === 'home') loadTopStudents(); document.getElementById('navMenu')?.classList.remove('show'); }
         function showRegisterForm() { document.getElementById('registerForm').style.display = 'block'; document.getElementById('loginForm').style.display = 'none'; document.getElementById('registerTabBtn').className = 'btn btn-primary'; document.getElementById('loginTabBtn').className = 'btn btn-outline'; }
         function showLoginForm() { document.getElementById('registerForm').style.display = 'none'; document.getElementById('loginForm').style.display = 'block'; document.getElementById('registerTabBtn').className = 'btn btn-outline'; document.getElementById('loginTabBtn').className = 'btn btn-primary'; }
-        function setTheme(theme) { document.body.className = `theme-${theme}`; localStorage.setItem('academix_theme', theme); showToast(`Theme: ${theme} 🎨`); }
+        function setTheme(theme) { document.body.className = `theme-${theme}`; localStorage.setItem('academix_theme', theme); showToast(`Theme: ${theme}`); }
         function showToast(msg) { let t = document.getElementById('toast'); t.innerHTML = `<i class="fas fa-info-circle"></i> ${msg}`; t.style.display = 'block'; setTimeout(() => t.style.display = 'none', 3000); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
         function toggleMobileMenu() { document.getElementById('navMenu').classList.toggle('show'); }
         function showAuthModal() { document.getElementById('authModal').classList.add('active'); showRegisterForm(); selectRegPaymentMethod('paypal'); document.getElementById('regWalletAddr').value = ''; }
-        
-        function loadSaved() {
-            let session = localStorage.getItem('academix_session');
-            if(session) {
-                let data = JSON.parse(localStorage.getItem(`academix_${session}`));
-                if(data && data.email) { restoreUser(data); return true; }
-            }
-            let guest = localStorage.getItem('academix_guest');
-            if(guest) { let g = JSON.parse(guest); isGuest = true; walletBalance = g.walletBalance||0; tasksCompleted = g.tasksCompleted||0; totalEarned = g.totalEarned||0; activePackage = g.activePackage; tasksRemaining = g.tasksRemaining||0; availableTasks = g.availableTasks||[]; userWithdrawalAddress = g.userWithdrawalAddress||""; selectedPaymentMethod = g.paymentMethod||"paypal"; isFreeTrial = g.isFreeTrial||false; freeTrialTasksCompletedToday = g.freeTrialTasksCompletedToday||0; lastTaskDate = g.lastTaskDate; hasWithdrawn = g.hasWithdrawn||false; updateGuestUI(); return true; }
-            return false;
-        }
-        
-        window.onload = function() {
-            loadPackages(); loadFAQ(); initCharts(); loadTopStudents(); initChat();
-            let savedTheme = localStorage.getItem('academix_theme');
-            if(savedTheme) setTheme(savedTheme); else setTheme('ocean');
-            if(!loadSaved()) showPage('home'); else { updateAll(); showPage('home'); }
-            updateWithdrawDisplayAddr(); updateThresholdDisplay();
-        };
+        function loadSaved() { let session = localStorage.getItem('academix_session'); if(session) { let data = JSON.parse(localStorage.getItem(`academix_${session}`)); if(data && data.email) { restoreUser(data); return true; } } let guest = localStorage.getItem('academix_guest'); if(guest) { let g = JSON.parse(guest); isGuest = true; walletBalance = g.walletBalance||0; tasksCompleted = g.tasksCompleted||0; totalEarned = g.totalEarned||0; activePackage = g.activePackage; tasksRemaining = g.tasksRemaining||0; availableTasks = g.availableTasks||[]; userWithdrawalAddress = g.userWithdrawalAddress||""; selectedPaymentMethod = g.paymentMethod||"paypal"; hasWithdrawn = g.hasWithdrawn||false; processingTasks = g.processingTasks||[]; updateGuestUI(); return true; } return false; }
+        window.onload = function() { loadPackages(); loadFAQ(); initCharts(); loadTopStudents(); let savedTheme = localStorage.getItem('academix_theme'); if(savedTheme) setTheme(savedTheme); else setTheme('ocean'); if(!loadSaved()) showPage('home'); else { updateAll(); showPage('home'); } updateWithdrawDisplayAddr(); updateThresholdDisplay(); };
     </script>
 </body>
 </html>
